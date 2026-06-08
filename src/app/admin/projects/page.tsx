@@ -67,7 +67,7 @@ export default function ProjectsAdminPage() {
           <h1 className="text-3xl font-extrabold tracking-tight text-foreground">Projects</h1>
           <p className="text-muted-foreground text-sm mt-1">Manage project showcase items (drag to reorder)</p>
         </div>
-        <Link href="/admin/projects/new" className={cn(buttonVariants({ variant: 'default' }), "bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:opacity-95 text-white font-semibold cursor-pointer")}>
+        <Link href="/admin/projects/new" className={cn(buttonVariants({ variant: 'default' }), "bg-violet-600 hover:bg-violet-700 text-white font-semibold cursor-pointer")}>
           + New Project
         </Link>
       </div>

@@ -98,7 +98,7 @@ export default function NewBlogPostPage() {
                 />
                 {form.published ? 'Published' : 'Draft'}
               </label>
-              <Button onClick={handleSave} disabled={saving} className="w-full bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:opacity-95 text-white font-semibold cursor-pointer">
+              <Button onClick={handleSave} disabled={saving} className="w-full bg-violet-600 hover:bg-violet-700 text-white font-semibold cursor-pointer">
                 {saving ? 'Saving…' : form.published ? '🚀 Publish' : '💾 Save Draft'}
               </Button>
             </CardContent>

@@ -33,7 +33,7 @@ export default function AdminLayoutClient({
           </button>
 
           <div className="flex items-center gap-2 px-4 py-1.5 bg-muted/30 border border-border rounded-full">
-            <div className="w-7 h-7 bg-gradient-to-br from-violet-600 to-fuchsia-600 rounded-full flex items-center justify-center text-xs font-bold text-white shadow-sm">
+            <div className="w-7 h-7 bg-violet-600 rounded-full flex items-center justify-center text-xs font-bold text-white shadow-sm">
               {initials}
             </div>
             <span className="text-sm text-muted-foreground">{email}</span>

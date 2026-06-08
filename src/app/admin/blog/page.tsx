@@ -36,7 +36,7 @@ export default function BlogAdminPage() {
           <h1 className="text-3xl font-extrabold tracking-tight text-foreground">Blog Posts</h1>
           <p className="text-muted-foreground text-sm mt-1">Manage articles and thoughts</p>
         </div>
-        <Link href="/admin/blog/new" className={cn(buttonVariants({ variant: 'default' }), "bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:opacity-95 text-white font-semibold cursor-pointer")}>
+        <Link href="/admin/blog/new" className={cn(buttonVariants({ variant: 'default' }), "bg-violet-600 hover:bg-violet-700 text-white font-semibold cursor-pointer")}>
           + New Post
         </Link>
       </div>

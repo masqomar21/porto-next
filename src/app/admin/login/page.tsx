@@ -14,7 +14,7 @@ export default function LoginPage() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(124,58,237,0.15)_0%,transparent_60%)] pointer-events-none" />
       <Card className="w-full max-w-[420px] bg-card border-border shadow-2xl relative z-10 animate-in fade-in slide-in-from-bottom-5 duration-300">
         <CardHeader className="text-center space-y-1 pb-6">
-          <div className="w-12 h-12 bg-gradient-to-br from-violet-600 to-fuchsia-600 rounded-xl flex items-center justify-center text-xl text-white shadow-md mx-auto mb-4">
+          <div className="w-12 h-12 bg-violet-600 rounded-xl flex items-center justify-center text-xl text-white shadow-md mx-auto mb-4">
             🛡️
           </div>
           <CardTitle className="text-2xl font-bold text-foreground">Admin CMS</CardTitle>
@@ -62,7 +62,7 @@ export default function LoginPage() {
             <Button
               type="submit"
               disabled={pending}
-              className="w-full py-5 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-bold rounded-md hover:opacity-95 hover:translate-y-[-1px] transition-all hover:shadow-[0_4px_20px_rgba(124,58,237,0.3)] disabled:opacity-60 cursor-pointer"
+              className="w-full py-5 bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-md hover:translate-y-[-1px] transition-all hover:shadow-[0_4px_20px_rgba(124,58,237,0.2)] disabled:opacity-60 cursor-pointer"
             >
               {pending ? 'Signing in…' : 'Sign in'}
             </Button>

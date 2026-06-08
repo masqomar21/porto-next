@@ -331,7 +331,7 @@ export default function SkillsAdminPage() {
                       <div className="flex-grow h-2 bg-muted/60 rounded-full overflow-hidden">
                         <div
                           style={{ width: `${skill.level}%` }}
-                          className="h-full bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-full"
+                          className="h-full bg-violet-600 rounded-full"
                         />
                       </div>
                       <span className="text-xs text-muted-foreground w-9 text-right font-medium">

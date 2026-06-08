@@ -68,7 +68,7 @@ export default function SettingsPage() {
             <Button
               type="submit"
               disabled={pending}
-              className="w-full bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-semibold rounded-md shadow-sm hover:opacity-95 hover:translate-y-[-1px] transition-all cursor-pointer mt-2"
+              className="w-full bg-violet-600 hover:bg-violet-700 text-white font-semibold rounded-md shadow-sm hover:translate-y-[-1px] transition-all cursor-pointer mt-2"
             >
               {pending ? 'Updating…' : 'Update Password'}
             </Button>

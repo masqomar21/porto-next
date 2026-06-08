@@ -55,7 +55,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
       >
         <div className="p-6 border-b border-border flex items-center justify-between">
           <Link href="/admin" className="flex items-center gap-3" onClick={onClose}>
-            <div className="w-9 h-9 bg-gradient-to-br from-violet-600 to-fuchsia-600 rounded-md flex items-center justify-center text-white shadow-md">
+            <div className="w-9 h-9 bg-violet-600 rounded-md flex items-center justify-center text-white shadow-md">
               <Shield className="w-5 h-5" />
             </div>
             <div>

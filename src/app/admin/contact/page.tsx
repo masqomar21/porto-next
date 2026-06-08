@@ -146,7 +146,7 @@ export default function ContactAdminPage() {
         <Button
           onClick={save}
           disabled={saving}
-          className="px-6 py-2 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-semibold rounded-md shadow-sm hover:opacity-95 hover:translate-y-[-1px] transition-all cursor-pointer"
+          className="px-6 py-2 bg-violet-600 hover:bg-violet-700 text-white font-semibold rounded-md shadow-sm hover:translate-y-[-1px] transition-all cursor-pointer"
         >
           {saving ? 'Saving…' : 'Save Contact'}
         </Button>
