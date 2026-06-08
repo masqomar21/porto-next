@@ -15,7 +15,11 @@ const links = [
   { label: "Blog", href: "/blog", type: "page" },
 ];
 
-export default function Navbar() {
+export default function Navbar({
+  navbarData,
+}: {
+  navbarData: { title?: string; imageUrl?: string };
+}) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
@@ -57,7 +61,21 @@ export default function Navbar() {
           href="/"
           className="font-serif italic font-bold text-2xl tracking-tight text-foreground hover:opacity-80 transition-opacity"
         >
-          Portfolio.
+          {navbarData.imageUrl ? (
+            <>
+              <img
+                src={navbarData.imageUrl}
+                alt="Profile Preview"
+                className="w-12 h-12 rounded-full object-cover border border-border bg-muted/40 shrink-0"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).style.display = "none";
+                }}
+              />
+              {navbarData.title}
+            </>
+          ) : (
+            navbarData.title
+          )}
         </Link>
 
         <div className="flex items-center gap-4 md:gap-8 ml-auto">
