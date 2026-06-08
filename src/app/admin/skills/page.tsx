@@ -1,27 +1,34 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { GripVertical } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { GripVertical } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-type Skill = { _id?: string; category: string; name: string; level: number; };
+type Skill = { _id?: string; category: string; name: string; level: number };
 
 export default function SkillsAdminPage() {
   const [skills, setSkills] = useState<Skill[]>([]);
-  const [newCategory, setNewCategory] = useState('');
+  const [newCategory, setNewCategory] = useState("");
   const [emptyCategories, setEmptyCategories] = useState<string[]>([]);
   const [categoryNamesOrder, setCategoryNamesOrder] = useState<string[]>([]);
-  const [skillInputs, setSkillInputs] = useState<Record<string, { name: string; level: number }>>({});
+  const [skillInputs, setSkillInputs] = useState<
+    Record<string, { name: string; level: number | "" }>
+  >({});
   const [saving, setSaving] = useState(false);
-  const [toast, setToast] = useState<{ type: 'success' | 'error'; msg: string } | null>(null);
+  const [toast, setToast] = useState<{
+    type: "success" | "error";
+    msg: string;
+  } | null>(null);
   const [draggedSkillId, setDraggedSkillId] = useState<string | null>(null);
-  const [draggedCategoryIndex, setDraggedCategoryIndex] = useState<number | null>(null);
+  const [draggedCategoryIndex, setDraggedCategoryIndex] = useState<
+    number | null
+  >(null);
 
   const fetchSkills = async () => {
-    const res = await fetch('/api/admin/skills');
+    const res = await fetch("/api/admin/skills");
     const data = await res.json();
     setSkills(data);
 
@@ -40,7 +47,9 @@ export default function SkillsAdminPage() {
       return merged;
     });
   };
-  useEffect(() => { fetchSkills(); }, []);
+  useEffect(() => {
+    fetchSkills();
+  }, []);
 
   const handleCreateCategory = (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,26 +57,28 @@ export default function SkillsAdminPage() {
     if (!catName) return;
 
     // Check if category already exists in master order list
-    const exists = categoryNamesOrder.some(c => c.toLowerCase() === catName.toLowerCase());
+    const exists = categoryNamesOrder.some(
+      (c) => c.toLowerCase() === catName.toLowerCase(),
+    );
     if (exists) {
-      setToast({ type: 'error', msg: 'Category already exists.' });
+      setToast({ type: "error", msg: "Category already exists." });
       return;
     }
 
-    setEmptyCategories(p => [...p, catName]);
-    setCategoryNamesOrder(p => [...p, catName]);
-    setNewCategory('');
-    setToast({ type: 'success', msg: `Category "${catName}" created!` });
+    setEmptyCategories((p) => [...p, catName]);
+    setCategoryNamesOrder((p) => [...p, catName]);
+    setNewCategory("");
+    setToast({ type: "success", msg: `Category "${catName}" created!` });
     setTimeout(() => setToast(null), 2000);
   };
 
   const addSubSkill = async (category: string) => {
     const input = skillInputs[category];
     const name = input?.name?.trim();
-    const level = input?.level ?? 80;
+    const level = typeof input?.level === "number" ? input.level : 80;
 
     if (!name) {
-      setToast({ type: 'error', msg: 'Sub-skill name is required.' });
+      setToast({ type: "error", msg: "Sub-skill name is required." });
       return;
     }
 
@@ -77,38 +88,41 @@ export default function SkillsAdminPage() {
     const catSkills = skills.filter((s) => s.category === category);
     const nextOrder = catSkills.length;
 
-    await fetch('/api/admin/skills', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ category, name, level, order: nextOrder })
+    await fetch("/api/admin/skills", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ category, name, level, order: nextOrder }),
     });
 
     // Clear local input
-    setSkillInputs(p => ({
+    setSkillInputs((p) => ({
       ...p,
-      [category]: { name: '', level: 80 }
+      [category]: { name: "", level: 80 },
     }));
 
     // Remove category from emptyCategories since it now exists in database
-    setEmptyCategories(p => p.filter(c => c !== category));
+    setEmptyCategories((p) => p.filter((c) => c !== category));
 
     await fetchSkills();
     setSaving(false);
-    setToast({ type: 'success', msg: 'Sub-skill added!' });
+    setToast({ type: "success", msg: "Sub-skill added!" });
     setTimeout(() => setToast(null), 2000);
   };
 
   const deleteSkill = async (id: string) => {
-    const skillToDelete = skills.find(s => s._id === id);
+    const skillToDelete = skills.find((s) => s._id === id);
     if (!skillToDelete) return;
 
-    await fetch(`/api/admin/skills/${id}`, { method: 'DELETE' });
+    await fetch(`/api/admin/skills/${id}`, { method: "DELETE" });
 
     // If it was the last skill in this category, keep the category in emptyCategories state
-    const siblings = skills.filter(s => s.category === skillToDelete.category && s._id !== id);
+    const siblings = skills.filter(
+      (s) => s.category === skillToDelete.category && s._id !== id,
+    );
     if (siblings.length === 0) {
-      setEmptyCategories(p => {
-        if (!p.includes(skillToDelete.category)) return [...p, skillToDelete.category];
+      setEmptyCategories((p) => {
+        if (!p.includes(skillToDelete.category))
+          return [...p, skillToDelete.category];
         return p;
       });
     }
@@ -141,13 +155,13 @@ export default function SkillsAdminPage() {
     setDraggedSkillId(null);
     try {
       const orders = skills.map((s, idx) => ({ id: s._id, order: idx }));
-      await fetch('/api/admin/skills', {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
+      await fetch("/api/admin/skills", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ orders }),
       });
     } catch (err) {
-      console.error('Failed to save skill order:', err);
+      console.error("Failed to save skill order:", err);
     }
   };
 
@@ -173,18 +187,18 @@ export default function SkillsAdminPage() {
     try {
       const orders: { id: string; categoryOrder: number }[] = [];
       categoryNamesOrder.forEach((catName, catIdx) => {
-        const catSkills = skills.filter(s => s.category === catName);
+        const catSkills = skills.filter((s) => s.category === catName);
         catSkills.forEach((s) => {
           orders.push({ id: s._id!, categoryOrder: catIdx });
         });
       });
-      await fetch('/api/admin/skills', {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
+      await fetch("/api/admin/skills", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ orders }),
       });
     } catch (err) {
-      console.error('Failed to save category order:', err);
+      console.error("Failed to save category order:", err);
     }
   };
 
@@ -215,33 +229,48 @@ export default function SkillsAdminPage() {
   return (
     <div className="space-y-6 max-w-3xl animate-in fade-in duration-300">
       <div>
-        <h1 className="text-3xl font-extrabold tracking-tight text-foreground">Skills</h1>
-        <p className="text-muted-foreground text-sm mt-1">Manage technical skills displayed on the public portfolio (drag cards to reorder categories, drag rows inside to reorder skills)</p>
+        <h1 className="text-3xl font-extrabold tracking-tight text-foreground">
+          Skills
+        </h1>
+        <p className="text-muted-foreground text-sm mt-1">
+          Manage technical skills displayed on the public portfolio (drag cards
+          to reorder categories, drag rows inside to reorder skills)
+        </p>
       </div>
 
       {toast && (
-        <div className={`p-3 rounded-md text-sm border ${
-          toast.type === 'success'
-            ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'
-            : 'bg-destructive/10 border-destructive/30 text-destructive'
-        }`}>
+        <div
+          className={`p-3 rounded-md text-sm border ${
+            toast.type === "success"
+              ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400"
+              : "bg-destructive/10 border-destructive/30 text-destructive"
+          }`}
+        >
           {toast.msg}
         </div>
       )}
 
       <Card className="bg-card border-border shadow-sm">
         <CardHeader>
-          <CardTitle className="text-lg font-bold text-foreground">Create New Category</CardTitle>
+          <CardTitle className="text-lg font-bold text-foreground">
+            Create New Category
+          </CardTitle>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleCreateCategory} className="flex gap-3 items-center">
+          <form
+            onSubmit={handleCreateCategory}
+            className="flex gap-3 items-center"
+          >
             <Input
               value={newCategory}
-              onChange={e => setNewCategory(e.target.value)}
+              onChange={(e) => setNewCategory(e.target.value)}
               placeholder="Category name (e.g. Mobile Development)"
               className="bg-muted/30 border-border focus-visible:ring-violet-500 max-w-md h-9 text-sm"
             />
-            <Button type="submit" className="bg-violet-600 hover:bg-violet-700 text-white font-semibold cursor-pointer shrink-0 h-9 px-4 text-sm">
+            <Button
+              type="submit"
+              className="bg-violet-600 hover:bg-violet-700 text-white font-semibold cursor-pointer shrink-0 h-9 px-4 text-sm"
+            >
               Create Category
             </Button>
           </form>
@@ -258,11 +287,15 @@ export default function SkillsAdminPage() {
             onDragEnd={handleCategoryDragEnd}
             className={cn(
               "bg-card border-border shadow-sm relative group/card cursor-grab active:cursor-grabbing transition-all",
-              draggedCategoryIndex === catIdx ? "opacity-40 border-violet-500 scale-[0.98] duration-100" : "duration-200"
+              draggedCategoryIndex === catIdx
+                ? "opacity-40 border-violet-500 scale-[0.98] duration-100"
+                : "duration-200",
             )}
           >
             <CardHeader className="pb-3 flex flex-row items-center justify-between space-y-0">
-              <CardTitle className="text-base font-bold text-foreground">{category}</CardTitle>
+              <CardTitle className="text-base font-bold text-foreground">
+                {category}
+              </CardTitle>
               <div className="p-1 rounded text-muted-foreground/40 opacity-50 group-hover/card:opacity-100 transition-opacity">
                 <GripVertical className="w-4 h-4" />
               </div>
@@ -286,15 +319,24 @@ export default function SkillsAdminPage() {
                       onDragEnd={handleDragEnd}
                       className={cn(
                         "flex items-center gap-4 p-2 rounded-lg transition-all cursor-grab active:cursor-grabbing hover:bg-muted/30 border border-transparent",
-                        draggedSkillId === skill._id ? "opacity-40 border-dashed border-violet-500/40 bg-violet-500/5 scale-[0.98]" : ""
+                        draggedSkillId === skill._id
+                          ? "opacity-40 border-dashed border-violet-500/40 bg-violet-500/5 scale-[0.98]"
+                          : "",
                       )}
                     >
                       <GripVertical className="w-3.5 h-3.5 text-muted-foreground/40 hover:text-muted-foreground/80 shrink-0" />
-                      <span className="text-sm font-medium text-foreground w-32 truncate">{skill.name}</span>
+                      <span className="text-sm font-medium text-foreground w-32 truncate">
+                        {skill.name}
+                      </span>
                       <div className="flex-grow h-2 bg-muted/60 rounded-full overflow-hidden">
-                        <div style={{ width: `${skill.level}%` }} className="h-full bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-full" />
+                        <div
+                          style={{ width: `${skill.level}%` }}
+                          className="h-full bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-full"
+                        />
                       </div>
-                      <span className="text-xs text-muted-foreground w-9 text-right font-medium">{skill.level}%</span>
+                      <span className="text-xs text-muted-foreground w-9 text-right font-medium">
+                        {skill.level}%
+                      </span>
                       <button
                         onClick={() => deleteSkill(skill._id!)}
                         className="text-muted-foreground hover:text-destructive transition-colors text-base font-semibold cursor-pointer px-1"
@@ -314,15 +356,19 @@ export default function SkillsAdminPage() {
 
               {/* Inline Add Skill Form */}
               <div className="border-t border-border/40 pt-4 mt-2 space-y-3">
-                <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Add Sub-Skill</h4>
+                <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                  Add Sub-Skill
+                </h4>
                 <div className="flex gap-2 items-center">
                   <Input
                     placeholder="Skill Name (e.g. React)"
-                    value={skillInputs[category]?.name || ''}
-                    onChange={(e) => setSkillInputs(p => ({
-                      ...p,
-                      [category]: { ...p[category], name: e.target.value }
-                    }))}
+                    value={skillInputs[category]?.name || ""}
+                    onChange={(e) =>
+                      setSkillInputs((p) => ({
+                        ...p,
+                        [category]: { ...p[category], name: e.target.value },
+                      }))
+                    }
                     className="bg-muted/30 border-border focus-visible:ring-violet-500 h-8 text-xs flex-1"
                     draggable={false}
                     onDragStart={(e) => e.stopPropagation()}
@@ -332,11 +378,17 @@ export default function SkillsAdminPage() {
                     min={0}
                     max={100}
                     placeholder="Level %"
-                    value={skillInputs[category]?.level ?? ''}
-                    onChange={(e) => setSkillInputs(p => ({
-                      ...p,
-                      [category]: { ...p[category], level: e.target.value === '' ? '' : Number(e.target.value) }
-                    }))}
+                    value={skillInputs[category]?.level ?? ""}
+                    onChange={(e) =>
+                      setSkillInputs((p) => ({
+                        ...p,
+                        [category]: {
+                          ...p[category],
+                          level:
+                            e.target.value === "" ? "" : Number(e.target.value),
+                        },
+                      }))
+                    }
                     className="bg-muted/30 border-border focus-visible:ring-violet-500 h-8 text-xs w-24 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                     draggable={false}
                     onDragStart={(e) => e.stopPropagation()}
@@ -357,7 +409,8 @@ export default function SkillsAdminPage() {
 
         {skills.length === 0 && emptyCategories.length === 0 && (
           <div className="text-center py-12 text-muted-foreground text-sm border border-dashed border-border rounded-xl">
-            No categories or skills yet. Create your first category using the form above!
+            No categories or skills yet. Create your first category using the
+            form above!
           </div>
         )}
       </div>
