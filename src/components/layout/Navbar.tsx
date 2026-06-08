@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
+import { usePathname, useRouter } from 'next/navigation';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 
 const links = [
@@ -17,6 +18,8 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
@@ -31,8 +34,12 @@ export default function Navbar() {
 
   const handleScroll = (href: string) => {
     setMenuOpen(false);
-    const el = document.querySelector(href);
-    el?.scrollIntoView({ behavior: 'smooth' });
+    if (pathname !== '/') {
+      router.push('/' + href);
+    } else {
+      const el = document.querySelector(href);
+      el?.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -56,6 +63,9 @@ export default function Navbar() {
                 {l.label}
               </button>
             ))}
+            <Link href="/projects" className="text-xs font-mono uppercase tracking-widest text-foreground/60 hover:text-foreground transition-colors">
+              Projects
+            </Link>
             <Link href="/blog" className="text-xs font-mono uppercase tracking-widest text-foreground/60 hover:text-foreground transition-colors">
               Blog
             </Link>
@@ -109,6 +119,13 @@ export default function Navbar() {
               {l.label}
             </button>
           ))}
+          <Link
+            href="/projects"
+            onClick={() => setMenuOpen(false)}
+            className="py-2 border-b border-foreground/5 text-foreground/75 hover:text-foreground transition-colors"
+          >
+            Projects
+          </Link>
           <Link
             href="/blog"
             onClick={() => setMenuOpen(false)}

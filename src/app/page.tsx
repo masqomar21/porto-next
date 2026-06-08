@@ -34,7 +34,7 @@ export default async function HomePage() {
     About.findOne({}).lean().then(d => d || {}),
     Skill.find({}).sort({ categoryOrder: 1, order: 1 }).lean(),
     Project.find({ featured: true }).sort({ order: 1 }).limit(6).lean(),
-    Post.find({ published: true }).sort({ publishedAt: -1 }).limit(4).select('-content').lean(),
+    Post.find({ published: true }).sort({ publishedAt: -1 }).limit(6).select('-content').lean(),
     Contact.findOne({}).lean().then(d => d || {}),
   ]);
 
@@ -45,7 +45,11 @@ export default async function HomePage() {
     <>
       <Navbar />
       <main>
-        <HeroSection data={serialize(hero)} />
+        <HeroSection 
+          data={serialize(hero)} 
+          socialLinks={serialize(contact?.socialLinks || [])} 
+          skills={serialize(skills)} 
+        />
         <AboutSection data={serialize(about)} name={hero?.name} email={contact?.email} />
         <SkillsSection data={serialize(skills)} />
         <ProjectsSection data={serialize(projects)} />

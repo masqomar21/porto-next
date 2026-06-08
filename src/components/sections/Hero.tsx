@@ -1,7 +1,8 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import Link from 'next/link';
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { DynamicIcon } from "@/components/ui/dynamic-icon";
 
 type HeroData = {
   name?: string;
@@ -14,17 +15,63 @@ type HeroData = {
   imageUrl?: string;
 };
 
-export default function HeroSection({ data }: { data: HeroData }) {
-  const roles = data.roles?.length ? data.roles : ['Full-Stack Developer', 'UI/UX Designer'];
+interface SocialLink {
+  platform: string;
+  url: string;
+  icon: string;
+}
+
+interface Skill {
+  _id?: string;
+  name: string;
+  level?: number;
+}
+
+export default function HeroSection({
+  data,
+  socialLinks = [],
+  skills = [],
+}: {
+  data: HeroData;
+  socialLinks?: SocialLink[];
+  skills?: Skill[];
+}) {
+  const roles = data.roles?.length
+    ? data.roles
+    : ["Full-Stack Developer", "UI/UX Designer"];
+  const displaySkills =
+    skills.length > 0
+      ? skills
+      : [
+          { name: "REACT" },
+          { name: "NEXT.JS" },
+          { name: "TYPESCRIPT" },
+          { name: "TAILWIND" },
+          { name: "MONGODB" },
+        ];
+  const displaySocials =
+    socialLinks.length > 0
+      ? socialLinks
+      : [
+          { platform: "GITHUB", url: "https://github.com", icon: "github" },
+          {
+            platform: "LINKEDIN",
+            url: "https://linkedin.com",
+            icon: "linkedin",
+          },
+          { platform: "TWITTER", url: "https://twitter.com", icon: "twitter" },
+        ];
 
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-background px-6 md:px-12 py-32">
+    <section
+      id="hero"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-background px-6 md:px-12 py-32"
+    >
       {/* Background Subtle Elements */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_20%,rgba(226,232,228,0.4)_0%,transparent_50%)] pointer-events-none" />
       <div className="absolute inset-0 bg-[linear-gradient(rgba(28,28,28,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(28,28,28,0.02)_1px,transparent_1px)] bg-[size:100px_100px] pointer-events-none" />
 
       <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center z-10">
-        
         {/* Left Column: Follow Me Vertical Links */}
         <div className="lg:col-span-2 flex lg:flex-col items-center gap-6 justify-center lg:justify-start lg:pt-10">
           <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-foreground/40 [writing-mode:vertical-lr] rotate-180 hidden lg:inline-block">
@@ -32,15 +79,18 @@ export default function HeroSection({ data }: { data: HeroData }) {
           </span>
           <div className="hidden lg:block w-[1px] h-12 bg-foreground/20" />
           <div className="flex lg:flex-col gap-4 font-mono text-[11px] uppercase tracking-wider text-foreground/60">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-foreground hover:underline transition-all">
-              GITHUB
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-foreground hover:underline transition-all">
-              LINKEDIN
-            </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-foreground hover:underline transition-all">
-              TWITTER
-            </a>
+            {displaySocials.map((l) => (
+              <a
+                key={l.platform}
+                href={l.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-foreground hover:underline flex items-center gap-1.5 transition-all"
+              >
+                <DynamicIcon name={l.icon} className="w-3.5 h-3.5" />
+                {l.platform}
+              </a>
+            ))}
           </div>
         </div>
 
@@ -56,8 +106,13 @@ export default function HeroSection({ data }: { data: HeroData }) {
                   alt={data.name || "Profile"}
                   className="w-full h-full object-cover"
                 />
+              ) : data.name ? (
+                data.name
+                  .split(" ")
+                  .map((n) => n[0])
+                  .join("")
               ) : (
-                data.name ? data.name.split(' ').map(n => n[0]).join('') : 'EL'
+                "EL"
               )}
             </div>
           </div>
@@ -78,39 +133,63 @@ export default function HeroSection({ data }: { data: HeroData }) {
             className="font-mono text-xs md:text-sm uppercase tracking-widest text-foreground/60 flex items-center gap-2 mb-8"
           >
             <span>//</span>
-            <span>{roles.join(' & ')}</span>
+            <span>{roles.join(" & ")}</span>
             <span>//</span>
           </motion.div>
 
           {/* Tools Grid / Horizontal row */}
           <div className="flex gap-4 items-center justify-center flex-wrap opacity-50 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300">
-            <span className="font-mono text-[10px] tracking-wider uppercase border border-foreground/20 px-2.5 py-1 rounded">REACT</span>
-            <span className="font-mono text-[10px] tracking-wider uppercase border border-foreground/20 px-2.5 py-1 rounded">NEXT.JS</span>
-            <span className="font-mono text-[10px] tracking-wider uppercase border border-foreground/20 px-2.5 py-1 rounded">TYPESCRIPT</span>
-            <span className="font-mono text-[10px] tracking-wider uppercase border border-foreground/20 px-2.5 py-1 rounded">TAILWIND</span>
-            <span className="font-mono text-[10px] tracking-wider uppercase border border-foreground/20 px-2.5 py-1 rounded">MONGODB</span>
+            {displaySkills.map((skill, index) => (
+              <span
+                key={skill._id || index}
+                className="font-mono text-[10px] tracking-wider uppercase border border-foreground/20 px-2.5 py-1 rounded"
+              >
+                {skill.name}
+              </span>
+            ))}
           </div>
         </div>
 
         {/* Right Column: Tagline & Circle Arrow Button */}
         <div className="lg:col-span-4 flex flex-col items-center lg:items-start text-center lg:text-left gap-6 md:pl-8">
           <div className="font-mono text-sm leading-relaxed text-foreground/80 max-w-sm border-l-2 border-pastel-teal pl-4 py-1">
-            {data.tagline || 'I build fast, beautiful, and highly scalable web applications, designing interfaces that feel alive and responsive.'}
+            {data.tagline ||
+              "I build fast, beautiful, and highly scalable web applications, designing interfaces that feel alive and responsive."}
           </div>
 
           <div className="flex flex-col items-center lg:items-start gap-2 group mt-2">
             <Link
-              href={data.ctaPrimaryUrl || '#projects'}
+              href={data.ctaPrimaryUrl || "#projects"}
               className="w-16 h-16 rounded-full border border-foreground text-foreground flex items-center justify-center hover:bg-foreground hover:text-background transition-all duration-300"
             >
-              <span className="text-2xl transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 duration-300">↗</span>
+              <span className="text-2xl transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 duration-300">
+                ↗
+              </span>
             </Link>
-            <Link href={data.ctaPrimaryUrl || '#projects'} className="font-mono text-[11px] uppercase tracking-widest text-foreground/60 hover:text-foreground transition-colors">
-              {data.ctaPrimaryLabel || 'VIEW WORKS'}
+            <Link
+              href={data.ctaPrimaryUrl || "#projects"}
+              className="font-mono text-[11px] uppercase tracking-widest text-foreground/60 hover:text-foreground transition-colors"
+            >
+              {data.ctaPrimaryLabel || "VIEW WORKS"}
+            </Link>
+          </div>
+          <div className="flex flex-col items-center lg:items-start gap-2 group mt-2">
+            <Link
+              href={data.ctaSecondaryUrl || "/blog"}
+              className="w-16 h-16 rounded-full border border-foreground text-foreground flex items-center justify-center hover:bg-foreground hover:text-background transition-all duration-300"
+            >
+              <span className="text-2xl transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 duration-300">
+                ↗
+              </span>
+            </Link>
+            <Link
+              href={data.ctaSecondaryUrl || "#blog"}
+              className="font-mono text-[11px] uppercase tracking-widest text-foreground/60 hover:text-foreground transition-colors"
+            >
+              {data.ctaSecondaryLabel || "VIEW BLOG"}
             </Link>
           </div>
         </div>
-
       </div>
 
       {/* Decorative dashed lines or borders */}

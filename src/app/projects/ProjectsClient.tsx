@@ -51,23 +51,23 @@ export default function ProjectsClientPage({ projects }: { projects: Project[] }
   ];
 
   return (
-    <div className="bg-alabaster min-h-screen relative overflow-hidden py-32 px-6 md:px-12">
+    <div className="bg-background min-h-screen relative overflow-hidden py-32 px-6 md:px-12">
       <div className="max-w-6xl mx-auto z-10 relative">
         {/* Page Header */}
         <div className="mb-16">
-          <span className="font-mono text-[10px] uppercase tracking-widest text-charcoal/40 font-bold block mb-2">
+          <span className="font-mono text-[10px] uppercase tracking-widest text-foreground/40 font-bold block mb-2">
             // WORK SHOWCASE
           </span>
-          <h1 className="font-serif text-4xl md:text-6xl font-bold text-charcoal tracking-tight">
+          <h1 className="font-serif text-4xl md:text-6xl font-bold text-foreground tracking-tight">
             Featured Projects
           </h1>
-          <div className="border-b border-dashed border-charcoal/20 mt-6" />
+          <div className="border-b border-dashed border-foreground/20 mt-6" />
         </div>
 
         {/* Filters and Search */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-end mb-16">
           <div className="md:col-span-6 flex flex-col gap-1.5">
-            <label htmlFor="project-search" className="font-mono text-[10px] font-bold text-charcoal/40 uppercase tracking-widest">
+            <label htmlFor="project-search" className="font-mono text-[10px] font-bold text-foreground/40 uppercase tracking-widest">
               Search Projects
             </label>
             <Input
@@ -75,7 +75,7 @@ export default function ProjectsClientPage({ projects }: { projects: Project[] }
               onChange={e => setSearch(e.target.value)}
               placeholder="Type keywords..."
               id="project-search"
-              className="bg-transparent border-0 border-b border-charcoal/20 rounded-none px-0 pb-2 focus:ring-0 focus-visible:ring-0 focus-visible:border-charcoal font-mono text-sm placeholder:text-charcoal/30 text-charcoal shadow-none w-full"
+              className="bg-transparent border-0 border-b border-foreground/20 rounded-none px-0 pb-2 focus:ring-0 focus-visible:ring-0 focus-visible:border-foreground font-mono text-sm placeholder:text-foreground/30 text-foreground shadow-none w-full"
             />
           </div>
 
@@ -85,8 +85,8 @@ export default function ProjectsClientPage({ projects }: { projects: Project[] }
                 onClick={() => setActiveTag('')}
                 className={`px-4 py-1.5 rounded-full text-[10px] font-mono uppercase tracking-widest border transition-all cursor-pointer ${
                   activeTag === ''
-                    ? 'bg-charcoal text-alabaster border-charcoal'
-                    : 'bg-transparent border-charcoal/20 text-charcoal/60 hover:text-charcoal hover:border-charcoal'
+                    ? 'bg-foreground text-background border-foreground'
+                    : 'bg-transparent border-foreground/20 text-foreground/60 hover:text-foreground hover:border-foreground'
                 }`}
               >
                 All
@@ -97,8 +97,8 @@ export default function ProjectsClientPage({ projects }: { projects: Project[] }
                   onClick={() => setActiveTag(t === activeTag ? '' : t)}
                   className={`px-4 py-1.5 rounded-full text-[10px] font-mono uppercase tracking-widest border transition-all cursor-pointer ${
                     activeTag === t
-                      ? 'bg-charcoal text-alabaster border-charcoal'
-                      : 'bg-transparent border-charcoal/20 text-charcoal/60 hover:text-charcoal hover:border-charcoal'
+                      ? 'bg-foreground text-background border-foreground'
+                      : 'bg-transparent border-foreground/20 text-foreground/60 hover:text-foreground hover:border-foreground'
                   }`}
                 >
                   {t}
@@ -109,7 +109,7 @@ export default function ProjectsClientPage({ projects }: { projects: Project[] }
         </div>
 
         {filtered.length === 0 ? (
-          <div className="text-center py-20 font-mono text-xs text-charcoal/50 uppercase tracking-widest">
+          <div className="text-center py-20 font-mono text-xs text-foreground/50 uppercase tracking-widest">
             No projects found matching your query.
           </div>
         ) : (
@@ -125,7 +125,7 @@ export default function ProjectsClientPage({ projects }: { projects: Project[] }
                     <div className={`absolute -inset-1.5 ${style.bgColor} ${style.bgRadius} ${style.translate} transition-transform group-hover:translate-x-0 group-hover:translate-y-0 duration-300`} />
                     
                     <div
-                      className={`w-full h-full border border-charcoal/10 relative z-10 bg-muted/30 overflow-hidden ${style.imgRadius}`}
+                      className={`w-full h-full border border-foreground/10 relative z-10 bg-muted/30 overflow-hidden ${style.imgRadius}`}
                       style={{
                         backgroundImage: p.coverUrl ? `url(${p.coverUrl})` : undefined,
                         backgroundSize: 'cover',
@@ -133,7 +133,7 @@ export default function ProjectsClientPage({ projects }: { projects: Project[] }
                       }}
                     >
                       {!p.coverUrl && (
-                        <div className="w-full h-full flex items-center justify-center text-4xl bg-charcoal/5">
+                        <div className="w-full h-full flex items-center justify-center text-4xl bg-foreground/5">
                           🎨
                         </div>
                       )}
@@ -142,34 +142,34 @@ export default function ProjectsClientPage({ projects }: { projects: Project[] }
 
                   {/* Content details */}
                   <div className="flex flex-col flex-grow">
-                    <div className="flex justify-between items-center mb-3 font-mono text-[10px] uppercase tracking-widest text-charcoal/50">
-                      <span className="font-bold text-charcoal/60">{p.tags[0] || 'DEVELOPMENT'}</span>
+                    <div className="flex justify-between items-center mb-3 font-mono text-[10px] uppercase tracking-widest text-foreground/50">
+                      <span className="font-bold text-foreground/60">{p.tags[0] || 'DEVELOPMENT'}</span>
                       <span>{year}</span>
                     </div>
 
                     <Link href={`/projects/${p.slug}`} className="hover:opacity-85 transition-opacity">
-                      <h3 className="font-serif text-2xl font-bold text-charcoal mb-2">
+                      <h3 className="font-serif text-2xl font-bold text-foreground mb-2">
                         {p.title}
                       </h3>
                     </Link>
 
-                    <p className="font-mono text-xs leading-relaxed text-charcoal/70 mb-4 flex-grow">
+                    <p className="font-mono text-xs leading-relaxed text-foreground/70 mb-4 flex-grow">
                       {p.excerpt}
                     </p>
 
                     {/* Actions Links */}
                     <div className="flex items-center gap-4 mt-auto font-mono text-[11px] font-bold uppercase tracking-wider">
                       {p.liveUrl && (
-                        <a href={p.liveUrl} target="_blank" rel="noopener noreferrer" className="text-charcoal hover:underline flex items-center gap-1">
+                        <a href={p.liveUrl} target="_blank" rel="noopener noreferrer" className="text-foreground hover:underline flex items-center gap-1">
                           LIVE <span>↗</span>
                         </a>
                       )}
                       {p.githubUrl && (
-                        <a href={p.githubUrl} target="_blank" rel="noopener noreferrer" className="text-charcoal/60 hover:text-charcoal hover:underline">
+                        <a href={p.githubUrl} target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-foreground hover:underline">
                           CODE
                         </a>
                       )}
-                      <Link href={`/projects/${p.slug}`} className="ml-auto text-charcoal hover:underline flex items-center gap-0.5">
+                      <Link href={`/projects/${p.slug}`} className="ml-auto text-foreground hover:underline flex items-center gap-0.5">
                         DETAILS <span>→</span>
                       </Link>
                     </div>
@@ -182,8 +182,8 @@ export default function ProjectsClientPage({ projects }: { projects: Project[] }
       </div>
 
       {/* Decorative dashed lines */}
-      <div className="absolute left-6 md:left-12 top-0 bottom-0 w-[1px] border-l border-dashed border-charcoal/10 pointer-events-none" />
-      <div className="absolute right-6 md:right-12 top-0 bottom-0 w-[1px] border-r border-dashed border-charcoal/10 pointer-events-none" />
+      <div className="absolute left-6 md:left-12 top-0 bottom-0 w-[1px] border-l border-dashed border-foreground/10 pointer-events-none" />
+      <div className="absolute right-6 md:right-12 top-0 bottom-0 w-[1px] border-r border-dashed border-foreground/10 pointer-events-none" />
     </div>
   );
 }

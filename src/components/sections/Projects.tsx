@@ -44,9 +44,17 @@ export default function ProjectsSection({ data }: { data: Project[] }) {
     <section id="projects" className="py-24 md:py-36 bg-background px-6 md:px-12 relative border-t border-dashed border-foreground/15">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
-        <div className="mb-16">
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground tracking-tight">Featured Works</h2>
-          <div className="border-b border-dashed border-foreground/20 mt-6" />
+        <div className="mb-16 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+          <div>
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground tracking-tight">Featured Works</h2>
+            <div className="border-b border-dashed border-foreground/20 mt-6" />
+          </div>
+          <Link
+            href="/projects"
+            className="font-mono text-xs font-bold uppercase tracking-widest text-foreground hover:underline mt-2 sm:mt-0 shrink-0 self-start sm:self-auto"
+          >
+            VIEW ALL PROJECTS →
+          </Link>
         </div>
 
         {/* Asymmetric Grid */}
