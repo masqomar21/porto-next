@@ -11,8 +11,6 @@ import SkillsSection from '@/components/sections/Skills';
 import ProjectsSection from '@/components/sections/Projects';
 import BlogSection from '@/components/sections/Blog';
 import ContactSection from '@/components/sections/Contact';
-import Navbar from '@/components/layout/Navbar';
-import Footer from '@/components/layout/Footer';
 import type { Metadata } from 'next';
 
 export const dynamic = 'force-dynamic';
@@ -42,21 +40,17 @@ export default async function HomePage() {
   const serialize = <T,>(data: T): T => JSON.parse(JSON.stringify(data));
 
   return (
-    <>
-      <Navbar />
-      <main>
-        <HeroSection 
-          data={serialize(hero)} 
-          socialLinks={serialize(contact?.socialLinks || [])} 
-          skills={serialize(skills)} 
-        />
-        <AboutSection data={serialize(about)} name={hero?.name} email={contact?.email} />
-        <SkillsSection data={serialize(skills)} />
-        <ProjectsSection data={serialize(projects)} />
-        <BlogSection data={serialize(posts)} />
-        <ContactSection data={serialize(contact)} />
-      </main>
-      <Footer contactData={serialize(contact)} />
-    </>
+    <main>
+      <HeroSection 
+        data={serialize(hero)} 
+        socialLinks={serialize(contact?.socialLinks || [])} 
+        skills={serialize(skills)} 
+      />
+      <AboutSection data={serialize(about)} name={hero?.name} email={contact?.email} />
+      <SkillsSection data={serialize(skills)} />
+      <ProjectsSection data={serialize(projects)} />
+      <BlogSection data={serialize(posts)} />
+      <ContactSection data={serialize(contact)} />
+    </main>
   );
 }

@@ -1,6 +1,10 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
+import Navbar from '@/components/layout/Navbar';
+import Footer from '@/components/layout/Footer';
+import connectDB from '@/lib/mongodb';
+import Contact from '@/models/Contact';
 
 export const metadata: Metadata = {
   title: {
@@ -18,7 +22,18 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  let contactData = {};
+  try {
+    await connectDB();
+    const contact = await Contact.findOne({}).lean();
+    if (contact) {
+      contactData = JSON.parse(JSON.stringify(contact));
+    }
+  } catch (error) {
+    console.error('Failed to fetch contact data for footer:', error);
+  }
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -31,7 +46,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="bg-background text-foreground antialiased min-h-screen flex flex-col font-sans transition-colors duration-300">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
-          {children}
+          <Navbar />
+          <main className="flex-1">
+            {children}
+          </main>
+          <Footer contactData={contactData} />
         </ThemeProvider>
       </body>
     </html>
