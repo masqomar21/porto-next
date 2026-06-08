@@ -1,66 +1,58 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import connectDB from '@/lib/mongodb';
+import Hero from '@/models/Hero';
+import About from '@/models/About';
+import Skill from '@/models/Skill';
+import Project from '@/models/Project';
+import Post from '@/models/Post';
+import Contact from '@/models/Contact';
+import HeroSection from '@/components/sections/Hero';
+import AboutSection from '@/components/sections/About';
+import SkillsSection from '@/components/sections/Skills';
+import ProjectsSection from '@/components/sections/Projects';
+import BlogSection from '@/components/sections/Blog';
+import ContactSection from '@/components/sections/Contact';
+import Navbar from '@/components/layout/Navbar';
+import Footer from '@/components/layout/Footer';
+import type { Metadata } from 'next';
 
-export default function Home() {
+export const dynamic = 'force-dynamic';
+
+export async function generateMetadata(): Promise<Metadata> {
+  await connectDB();
+  const hero = await Hero.findOne({}).lean() as { name?: string; tagline?: string } | null;
+  return {
+    title: hero?.name ? `${hero.name} — Portfolio` : 'Developer Portfolio',
+    description: hero?.tagline || 'Full-stack developer portfolio and blog.',
+  };
+}
+
+export default async function HomePage() {
+  await connectDB();
+
+  const [hero, about, skills, projects, posts, contact] = await Promise.all([
+    Hero.findOne({}).lean().then(d => d || {}),
+    About.findOne({}).lean().then(d => d || {}),
+    Skill.find({}).sort({ categoryOrder: 1, order: 1 }).lean(),
+    Project.find({ featured: true }).sort({ order: 1 }).limit(6).lean(),
+    Post.find({ published: true }).sort({ publishedAt: -1 }).limit(4).select('-content').lean(),
+    Contact.findOne({}).lean().then(d => d || {}),
+  ]);
+
+  // Serialize Mongoose documents to plain objects (removes ObjectId, Date etc.)
+  const serialize = <T,>(data: T): T => JSON.parse(JSON.stringify(data));
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <>
+      <Navbar />
+      <main>
+        <HeroSection data={serialize(hero)} />
+        <AboutSection data={serialize(about)} name={hero?.name} email={contact?.email} />
+        <SkillsSection data={serialize(skills)} />
+        <ProjectsSection data={serialize(projects)} />
+        <BlogSection data={serialize(posts)} />
+        <ContactSection data={serialize(contact)} />
       </main>
-    </div>
+      <Footer contactData={serialize(contact)} />
+    </>
   );
 }

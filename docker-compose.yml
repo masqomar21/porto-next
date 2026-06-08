@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: portfolio-app
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGODB_URI=mongodb://admin:secret@mongodb:27017/portfolio?authSource=admin
+      - SESSION_SECRET=production-secret-key-replace-me-with-something-secure
+      - NEXT_PUBLIC_SITE_URL=http://localhost:3000
+      - RESEND_API_KEY=re_placeholder
+      - RESEND_FROM_EMAIL=noreply@yourdomain.com
+      - CONTACT_TO_EMAIL=admin@yourdomain.com
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:6.0
+    container_name: portfolio-db
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=secret
+    volumes:
+      - mongodb_data:/data/db
+
+volumes:
+  mongodb_data:
