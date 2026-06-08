@@ -39,7 +39,7 @@ export default function HeroSection({
   const roles = data.roles?.length
     ? data.roles
     : ["Full-Stack Developer", "UI/UX Designer"];
-  const displaySkills =
+  let displaySkills =
     skills.length > 0
       ? skills
       : [
@@ -49,6 +49,7 @@ export default function HeroSection({
           { name: "TAILWIND" },
           { name: "MONGODB" },
         ];
+  displaySkills = displaySkills.slice(0, 10);
   const displaySocials =
     socialLinks.length > 0
       ? socialLinks

@@ -49,3 +49,16 @@ export async function PATCH(req: NextRequest) {
   }
   return NextResponse.json({ error: 'Invalid payload' }, { status: 400 });
 }
+
+export async function DELETE(req: NextRequest) {
+  const authErr = await requireAuth();
+  if (authErr) return authErr;
+  await connectDB();
+  const { searchParams } = new URL(req.url);
+  const category = searchParams.get('category');
+  if (!category) {
+    return NextResponse.json({ error: 'Category query parameter is required' }, { status: 400 });
+  }
+  await Skill.deleteMany({ category });
+  return NextResponse.json({ success: true });
+}

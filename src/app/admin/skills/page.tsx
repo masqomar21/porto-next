@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { GripVertical } from "lucide-react";
+import { GripVertical, Trash2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type Skill = { _id?: string; category: string; name: string; level: number };
@@ -128,6 +128,36 @@ export default function SkillsAdminPage() {
     }
 
     fetchSkills();
+  };
+
+  const deleteCategory = async (categoryName: string) => {
+    if (!confirm(`Delete category "${categoryName}" and all of its sub-skills?`)) {
+      return;
+    }
+
+    setSaving(true);
+    try {
+      const res = await fetch(`/api/admin/skills?category=${encodeURIComponent(categoryName)}`, {
+        method: "DELETE",
+      });
+
+      if (!res.ok) {
+        setToast({ type: "error", msg: "Failed to delete category." });
+        return;
+      }
+
+      setEmptyCategories((p) => p.filter((c) => c !== categoryName));
+      setCategoryNamesOrder((p) => p.filter((c) => c !== categoryName));
+      
+      await fetchSkills();
+      setToast({ type: "success", msg: `Category "${categoryName}" deleted!` });
+    } catch (err) {
+      console.error(err);
+      setToast({ type: "error", msg: "Error deleting category." });
+    } finally {
+      setSaving(false);
+      setTimeout(() => setToast(null), 2000);
+    }
   };
 
   const handleDragStart = (id: string) => {
@@ -296,8 +326,22 @@ export default function SkillsAdminPage() {
               <CardTitle className="text-base font-bold text-foreground">
                 {category}
               </CardTitle>
-              <div className="p-1 rounded text-muted-foreground/40 opacity-50 group-hover/card:opacity-100 transition-opacity">
-                <GripVertical className="w-4 h-4" />
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    deleteCategory(category);
+                  }}
+                  className="p-1.5 rounded-md hover:bg-muted text-muted-foreground hover:text-destructive transition-colors cursor-pointer"
+                  title="Delete Category"
+                  draggable={false}
+                  onDragStart={(e) => e.stopPropagation()}
+                >
+                  <Trash2 className="w-4 h-4" />
+                </button>
+                <div className="p-1 rounded text-muted-foreground/40 opacity-50 group-hover/card:opacity-100 transition-opacity">
+                  <GripVertical className="w-4 h-4" />
+                </div>
               </div>
             </CardHeader>
             <CardContent
