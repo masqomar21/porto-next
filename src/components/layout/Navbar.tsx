@@ -8,6 +8,7 @@ import { Sun, Moon, Menu, X } from "lucide-react";
 
 const links = [
   { label: "About", href: "#about", type: "section" },
+  { label: "Experience", href: "#experience", type: "section" },
   { label: "Skills", href: "#skills", type: "section" },
   { label: "Projects", href: "#projects", type: "section" },
   { label: "Contact", href: "#contact", type: "section" },

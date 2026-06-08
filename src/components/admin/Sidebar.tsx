@@ -10,6 +10,7 @@ import {
   User,
   Zap,
   Briefcase,
+  Clock,
   FileText,
   Mail,
   Settings,
@@ -26,6 +27,7 @@ const navItems = [
   { href: "/admin/navbar", label: "Navbar", icon: ListFilter },
 
   { href: "/admin/about", label: "About", icon: User },
+  { href: "/admin/experience", label: "Experience", icon: Clock },
   { href: "/admin/skills", label: "Skills", icon: Zap },
   { href: "/admin/projects", label: "Projects", icon: Briefcase },
   { href: "/admin/blog", label: "Blog Posts", icon: FileText },

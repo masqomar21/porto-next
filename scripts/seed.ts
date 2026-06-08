@@ -18,6 +18,16 @@ async function seed() {
   const SkillSchema = new mongoose.Schema({ category: String, name: String, level: Number, icon: String, order: Number });
   const ProjectSchema = new mongoose.Schema({ title: String, slug: String, excerpt: String, coverUrl: String, content: String, tags: [String], liveUrl: String, githubUrl: String, featured: Boolean, order: Number, publishedAt: Date });
   const PostSchema = new mongoose.Schema({ title: String, slug: String, excerpt: String, coverUrl: String, content: String, tags: [String], published: Boolean, views: Number, publishedAt: Date });
+  const ExperienceSchema = new mongoose.Schema({
+    role: String,
+    company: String,
+    companyUrl: String,
+    duration: String,
+    description: String,
+    tags: [String],
+    links: [{ label: String, url: String }],
+    order: Number
+  });
 
   const User = mongoose.models.User || mongoose.model('User', UserSchema);
   const Hero = mongoose.models.Hero || mongoose.model('Hero', HeroSchema);
@@ -26,6 +36,7 @@ async function seed() {
   const Skill = mongoose.models.Skill || mongoose.model('Skill', SkillSchema);
   const Project = mongoose.models.Project || mongoose.model('Project', ProjectSchema);
   const Post = mongoose.models.Post || mongoose.model('Post', PostSchema);
+  const Experience = mongoose.models.Experience || mongoose.model('Experience', ExperienceSchema);
 
   // Seed admin user
   const email = 'admin@portfolio.dev';
@@ -165,6 +176,46 @@ async function seed() {
     },
   ]);
   console.log('✅ Blog posts seeded.');
+
+  // Seed experiences
+  await Experience.deleteMany({});
+  await Experience.create([
+    {
+      role: 'Senior Frontend Engineer, Accessibility',
+      company: 'Klaviyo',
+      companyUrl: 'https://www.klaviyo.com',
+      duration: '2024 — PRESENT',
+      description: 'Build and maintain critical components used to construct Klaviyo’s frontend, across the whole product. Work closely with cross-functional teams, including developers, designers, and product managers, to implement and advocate for best practices in web accessibility.',
+      tags: ['JavaScript', 'TypeScript', 'React', 'Storybook'],
+      links: [],
+      order: 1
+    },
+    {
+      role: 'Lead Engineer',
+      company: 'Upstatement',
+      companyUrl: 'https://www.upstatement.com',
+      duration: '2018 — 2024',
+      description: 'Build, style, and ship high-quality websites, design systems, mobile apps, and digital experiences for a diverse array of projects for clients including Harvard Business School, Everytown for Gun Safety, Pratt Institute, Koala Health, Vanderbilt University, The 19th News, and more. Provide leadership within engineering department through close collaboration, knowledge shares, and spearheading the development of internal tools.',
+      tags: ['JavaScript', 'TypeScript', 'HTML & SCSS', 'React', 'Next.js', 'React Native', 'WordPress', 'Contentful', 'Node.js', 'PHP'],
+      links: [],
+      order: 2
+    },
+    {
+      role: 'UI Engineer Co-op',
+      company: 'Apple',
+      companyUrl: 'https://www.apple.com',
+      duration: 'JULY — DEC 2017',
+      description: 'Developed and styled interactive web apps for Apple Music, including the user interface of Apple Music’s embeddable web player widget for in-browser user authorization and full song playback.',
+      tags: ['Ember', 'SCSS', 'JavaScript', 'MusicKit.js'],
+      links: [
+        { label: 'MusicKit.js', url: 'https://developer.apple.com/documentation/musickitjs' },
+        { label: '9to5Mac', url: 'https://9to5mac.com' },
+        { label: 'The Verge', url: 'https://theverge.com' }
+      ],
+      order: 3
+    }
+  ]);
+  console.log('✅ Job experiences seeded.');
 
   console.log('\n🚀 Seed complete!');
   console.log('👉 Login at /admin/login');

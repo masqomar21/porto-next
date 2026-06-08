@@ -3,6 +3,7 @@ import connectDB from '@/lib/mongodb';
 import Post from '@/models/Post';
 import Project from '@/models/Project';
 import Skill from '@/models/Skill';
+import Experience from '@/models/Experience';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
@@ -12,7 +13,8 @@ import {
   Eye,
   Sparkles,
   Mail,
-  Globe
+  Globe,
+  Clock
 } from 'lucide-react';
 
 export const metadata: Metadata = { title: 'Dashboard' };
@@ -20,11 +22,12 @@ export const dynamic = 'force-dynamic';
 
 export default async function AdminDashboard() {
   await connectDB();
-  const [totalPosts, publishedPosts, totalProjects, totalSkills] = await Promise.all([
+  const [totalPosts, publishedPosts, totalProjects, totalSkills, totalExperiences] = await Promise.all([
     Post.countDocuments(),
     Post.countDocuments({ published: true }),
     Project.countDocuments(),
     Skill.countDocuments(),
+    Experience.countDocuments(),
   ]);
 
   const totalViews = await Post.aggregate([
@@ -38,7 +41,7 @@ export default async function AdminDashboard() {
         <p className="text-muted-foreground text-sm mt-1">Overview of your portfolio content</p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
         <Card className="bg-card border-border hover:border-violet-500 transition-colors">
           <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
             <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
@@ -62,6 +65,19 @@ export default async function AdminDashboard() {
           <CardContent>
             <div className="text-3xl font-extrabold text-foreground">{totalProjects}</div>
             <p className="text-xs text-muted-foreground mt-1">Showcased works</p>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-card border-border hover:border-violet-500 transition-colors">
+          <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+            <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+              Experience
+            </CardTitle>
+            <Clock className="w-5 h-5 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-3xl font-extrabold text-foreground">{totalExperiences}</div>
+            <p className="text-xs text-muted-foreground mt-1">Timeline roles</p>
           </CardContent>
         </Card>
 
@@ -94,7 +110,7 @@ export default async function AdminDashboard() {
 
       <div>
         <h2 className="text-xl font-bold text-foreground mb-6">Quick Actions</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-4">
           <Link
             href="/admin/blog/new"
             className="flex flex-col items-center justify-center p-6 bg-card border border-border rounded-xl text-center hover:border-violet-500 hover:bg-violet-500/5 hover:-translate-y-0.5 transition-all group"
@@ -108,6 +124,13 @@ export default async function AdminDashboard() {
           >
             <Briefcase className="w-8 h-8 mb-3 text-muted-foreground group-hover:text-violet-500 transition-colors" />
             <span className="text-xs font-semibold text-foreground">New Project</span>
+          </Link>
+          <Link
+            href="/admin/experience"
+            className="flex flex-col items-center justify-center p-6 bg-card border border-border rounded-xl text-center hover:border-violet-500 hover:bg-violet-500/5 hover:-translate-y-0.5 transition-all group"
+          >
+            <Clock className="w-8 h-8 mb-3 text-muted-foreground group-hover:text-violet-500 transition-colors" />
+            <span className="text-xs font-semibold text-foreground">Manage Experience</span>
           </Link>
           <Link
             href="/admin/hero"

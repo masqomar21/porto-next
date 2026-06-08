@@ -1,9 +1,6 @@
 import { notFound } from 'next/navigation';
 import connectDB from '@/lib/mongodb';
 import Post from '@/models/Post';
-import Contact from '@/models/Contact';
-import Navbar from '@/components/layout/Navbar';
-import Footer from '@/components/layout/Footer';
 import ViewCounter from './ViewCounter';
 import Link from 'next/link';
 import type { Metadata } from 'next';
@@ -29,17 +26,13 @@ export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
   await connectDB();
 
-  const [post, contact] = await Promise.all([
-    Post.findOne({ slug, published: true }).lean(),
-    Contact.findOne({}).lean().then(d => d || {}),
-  ]);
+  const post = await Post.findOne({ slug, published: true }).lean();
 
   if (!post) {
     notFound();
   }
 
   const serializedPost = JSON.parse(JSON.stringify(post));
-  const serializedContact = JSON.parse(JSON.stringify(contact));
   const dateStr = new Date(serializedPost.publishedAt).toLocaleDateString('en-US', {
     month: 'long',
     day: 'numeric',
@@ -48,7 +41,6 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <div className="bg-background min-h-screen relative overflow-hidden">
-      <Navbar />
       
       <div className="max-w-3xl mx-auto px-6 md:px-12 py-32 md:py-40 z-10 relative">
         <Link href="/blog" className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-foreground/60 hover:text-foreground mb-8 transition-colors">
@@ -94,8 +86,6 @@ export default async function BlogPostPage({ params }: Props) {
 
         <ViewCounter slug={serializedPost.slug} />
       </div>
-
-      <Footer contactData={serializedContact} />
 
       {/* Decorative dashed lines */}
       <div className="absolute left-6 md:left-12 top-0 bottom-0 w-[1px] border-l border-dashed border-foreground/10 pointer-events-none" />

@@ -1,9 +1,6 @@
 import { notFound } from 'next/navigation';
 import connectDB from '@/lib/mongodb';
 import Project from '@/models/Project';
-import Contact from '@/models/Contact';
-import Navbar from '@/components/layout/Navbar';
-import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
@@ -28,22 +25,17 @@ export default async function ProjectDetailPage({ params }: Props) {
   const { slug } = await params;
   await connectDB();
 
-  const [project, contact] = await Promise.all([
-    Project.findOne({ slug }).lean(),
-    Contact.findOne({}).lean().then(d => d || {}),
-  ]);
+  const project = await Project.findOne({ slug }).lean();
 
   if (!project) {
     notFound();
   }
 
   const serializedProject = JSON.parse(JSON.stringify(project));
-  const serializedContact = JSON.parse(JSON.stringify(contact));
   const year = serializedProject.publishedAt ? new Date(serializedProject.publishedAt).getFullYear() : new Date().getFullYear();
 
   return (
     <div className="bg-background min-h-screen relative overflow-hidden">
-      <Navbar />
       
       <div className="max-w-3xl mx-auto px-6 md:px-12 py-32 md:py-40 z-10 relative">
         <Link href="/projects" className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-foreground/60 hover:text-foreground mb-8 transition-colors">
@@ -111,8 +103,6 @@ export default async function ProjectDetailPage({ params }: Props) {
 
         <article className="prose max-w-none font-mono text-sm leading-relaxed text-foreground/80" dangerouslySetInnerHTML={{ __html: serializedProject.content }} />
       </div>
-
-      <Footer contactData={serializedContact} />
 
       {/* Decorative dashed lines */}
       <div className="absolute left-6 md:left-12 top-0 bottom-0 w-[1px] border-l border-dashed border-foreground/10 pointer-events-none" />

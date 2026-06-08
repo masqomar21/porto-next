@@ -5,8 +5,10 @@ import Skill from '@/models/Skill';
 import Project from '@/models/Project';
 import Post from '@/models/Post';
 import Contact from '@/models/Contact';
+import Experience from '@/models/Experience';
 import HeroSection from '@/components/sections/Hero';
 import AboutSection from '@/components/sections/About';
+import ExperienceSection from '@/components/sections/Experience';
 import SkillsSection from '@/components/sections/Skills';
 import ProjectsSection from '@/components/sections/Projects';
 import BlogSection from '@/components/sections/Blog';
@@ -27,13 +29,14 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function HomePage() {
   await connectDB();
 
-  const [hero, about, skills, projects, posts, contact] = await Promise.all([
+  const [hero, about, skills, projects, posts, contact, experiences] = await Promise.all([
     Hero.findOne({}).lean().then(d => d || {}),
     About.findOne({}).lean().then(d => d || {}),
     Skill.find({}).sort({ categoryOrder: 1, order: 1 }).lean(),
     Project.find({ featured: true }).sort({ order: 1 }).limit(6).lean(),
     Post.find({ published: true }).sort({ publishedAt: -1 }).limit(6).select('-content').lean(),
     Contact.findOne({}).lean().then(d => d || {}),
+    Experience.find({}).sort({ order: 1 }).limit(3).lean(),
   ]);
 
   // Serialize Mongoose documents to plain objects (removes ObjectId, Date etc.)
@@ -47,6 +50,7 @@ export default async function HomePage() {
         skills={serialize(skills)} 
       />
       <AboutSection data={serialize(about)} name={hero?.name} email={contact?.email} />
+      <ExperienceSection data={serialize(experiences)} />
       <SkillsSection data={serialize(skills)} />
       <ProjectsSection data={serialize(projects)} />
       <BlogSection data={serialize(posts)} />
