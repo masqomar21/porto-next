@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { ImageUpload } from '@/components/ui/image-upload';
 
 type HeroData = {
   name: string;
@@ -91,25 +92,12 @@ export default function HeroAdminPage() {
         </div>
 
         <div className="space-y-1.5">
-          <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Profile Image URL</label>
-          <div className="flex gap-4 items-center">
-            {data.imageUrl && (
-              <img
-                src={data.imageUrl}
-                alt="Profile Preview"
-                className="w-12 h-12 rounded-full object-cover border border-border bg-muted/40 shrink-0"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).style.display = 'none';
-                }}
-              />
-            )}
-            <Input
-              value={data.imageUrl}
-              onChange={(e) => setData((p) => ({ ...p, imageUrl: e.target.value }))}
-              placeholder="https://images.unsplash.com/photo-..."
-              className="flex-1 bg-muted/30 border-border focus-visible:ring-violet-500"
-            />
-          </div>
+          <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Profile Image</label>
+          <ImageUpload
+            value={data.imageUrl}
+            onChange={(url) => setData((p) => ({ ...p, imageUrl: url }))}
+            allowedTypes={['image/png', 'image/jpeg', 'image/webp', 'image/gif']}
+          />
         </div>
 
         <div className="space-y-1.5">
