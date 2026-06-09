@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { ImageUpload } from '@/components/ui/image-upload';
+import { FileUpload } from '@/components/ui/file-upload';
 
 type AboutData = {
   bio: string;
@@ -71,25 +72,21 @@ export default function AboutAdminPage() {
         </div>
 
         <div className="space-y-1.5">
-          <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Photo URL</label>
-          <Input
+          <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Photo</label>
+          <ImageUpload
             value={data.photoUrl}
-            onChange={(e) => setData((p) => ({ ...p, photoUrl: e.target.value }))}
-            placeholder="/images/profile.jpg or external HTTPS link"
-            className="bg-muted/30 border-border focus-visible:ring-violet-500"
+            onChange={(url) => setData((p) => ({ ...p, photoUrl: url }))}
+            allowedTypes={['image/png', 'image/jpeg', 'image/webp']}
           />
-          <span className="text-[10px] text-muted-foreground block mt-1">Use a relative file path inside the public folder or an external image URL.</span>
         </div>
 
         <div className="space-y-1.5">
-          <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Resume URL</label>
-          <Input
+          <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Resume File</label>
+          <FileUpload
             value={data.resumeUrl}
-            onChange={(e) => setData((p) => ({ ...p, resumeUrl: e.target.value }))}
-            placeholder="/resume.pdf or Google Drive link"
-            className="bg-muted/30 border-border focus-visible:ring-violet-500"
+            onChange={(url) => setData((p) => ({ ...p, resumeUrl: url }))}
+            allowedTypes={['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']}
           />
-          <span className="text-[10px] text-muted-foreground block mt-1">Provide a direct link to download or view your resume.</span>
         </div>
 
         {toast && (

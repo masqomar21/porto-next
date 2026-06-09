@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getSession } from '@/lib/session';
 import connectDB from '@/lib/mongodb';
 import About from '@/models/About';
+import { deleteFileFromS3 } from '@/lib/s3';
 
 async function requireAuth() {
   const session = await getSession();
@@ -25,6 +26,17 @@ export async function PATCH(req: NextRequest) {
   if (authErr) return authErr;
   await connectDB();
   const body = await req.json();
+
+  const oldAbout = await About.findOne({});
+  if (oldAbout) {
+    if (oldAbout.photoUrl && oldAbout.photoUrl !== body.photoUrl) {
+      await deleteFileFromS3(oldAbout.photoUrl);
+    }
+    if (oldAbout.resumeUrl && oldAbout.resumeUrl !== body.resumeUrl) {
+      await deleteFileFromS3(oldAbout.resumeUrl);
+    }
+  }
+
   const about = await About.findOneAndUpdate({}, body, { new: true, upsert: true });
   return NextResponse.json(about);
 }

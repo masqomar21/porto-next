@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getSession } from '@/lib/session';
 import connectDB from '@/lib/mongodb';
 import Post from '@/models/Post';
+import { deleteFileFromS3 } from '@/lib/s3';
 
 async function requireAuth() {
   const session = await getSession();
@@ -25,6 +26,14 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
   await connectDB();
   const { id } = await params;
   const body = await req.json();
+
+  const oldPost = await Post.findById(id);
+  if (oldPost) {
+    if (oldPost.coverUrl && oldPost.coverUrl !== body.coverUrl) {
+      await deleteFileFromS3(oldPost.coverUrl);
+    }
+  }
+
   const post = await Post.findByIdAndUpdate(id, body, { new: true });
   if (!post) return NextResponse.json({ error: 'Not found' }, { status: 404 });
   return NextResponse.json(post);
@@ -35,6 +44,12 @@ export async function DELETE(_req: NextRequest, { params }: { params: Promise<{ 
   if (authErr) return authErr;
   await connectDB();
   const { id } = await params;
+
+  const oldPost = await Post.findById(id);
+  if (oldPost && oldPost.coverUrl) {
+    await deleteFileFromS3(oldPost.coverUrl);
+  }
+
   await Post.findByIdAndDelete(id);
   return NextResponse.json({ success: true });
 }

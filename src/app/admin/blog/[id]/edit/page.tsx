@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { ImageUpload } from '@/components/ui/image-upload';
 
 const RichTextEditor = dynamic_import(() => import('@/components/admin/RichTextEditor'), { ssr: false });
 
@@ -141,14 +142,13 @@ export default function EditBlogPostPage() {
 
           <Card className="bg-card border-border shadow-sm">
             <CardHeader className="pb-3">
-              <CardTitle className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Cover Image URL</CardTitle>
+              <CardTitle className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Cover Image</CardTitle>
             </CardHeader>
             <CardContent>
-              <Input
+              <ImageUpload
                 value={form.coverUrl}
-                onChange={(e) => set('coverUrl', e.target.value)}
-                placeholder="https://…"
-                className="bg-muted/30 border-border focus-visible:ring-violet-500"
+                onChange={(url) => set('coverUrl', url)}
+                allowedTypes={['image/png', 'image/jpeg', 'image/webp']}
               />
             </CardContent>
           </Card>

@@ -6,7 +6,10 @@ import { useTheme } from "next-themes";
 import { usePathname, useRouter } from "next/navigation";
 import { Sun, Moon, Menu, X } from "lucide-react";
 
-const sectionLinkMap: Record<string, { label: string; href: string; type: string }> = {
+const sectionLinkMap: Record<
+  string,
+  { label: string; href: string; type: string }
+> = {
   about: { label: "About", href: "#about", type: "section" },
   experience: { label: "Experience", href: "#experience", type: "section" },
   skills: { label: "Skills", href: "#skills", type: "section" },
@@ -26,7 +29,15 @@ export default function Navbar({
   const pathname = usePathname();
   const router = useRouter();
 
-  const sectionOrder = navbarData?.sectionOrder || ['hero', 'about', 'experience', 'skills', 'projects', 'blog', 'contact'];
+  const sectionOrder = navbarData?.sectionOrder || [
+    "hero",
+    "about",
+    "experience",
+    "skills",
+    "projects",
+    "blog",
+    "contact",
+  ];
 
   const links: { label: string; href: string; type: string }[] = [];
   sectionOrder.forEach((sectionId) => {
@@ -71,7 +82,7 @@ export default function Navbar({
           className="font-serif italic font-bold text-2xl tracking-tight text-foreground hover:opacity-80 transition-opacity"
         >
           {navbarData.imageUrl ? (
-            <>
+            <div className="flex items-center gap-2">
               <img
                 src={navbarData.imageUrl}
                 alt="Profile Preview"
@@ -81,7 +92,7 @@ export default function Navbar({
                 }}
               />
               {navbarData.title}
-            </>
+            </div>
           ) : (
             navbarData.title
           )}
