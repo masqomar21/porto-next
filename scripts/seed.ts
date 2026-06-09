@@ -166,9 +166,9 @@ async function seed() {
   // Seed about
   await About.deleteMany({});
   await About.create({
-    bio: "During my time in college, I focused heavily on delving into the world of programming, actively engaged in various projects and coding practices to strengthen my understanding and skills in different programming languages and current technologies. I am always enthusiastic about continuously learning and honing my skills in this field.\n\nIn the world of development, I am accustomed to using various programming languages and tools such PHP, JavaScipts, CI, laravel, React, React-Navite, Next.js, Node.js, MySQL, and MongoDB. I am also familiar with TypeScript, Prisma and Squelize. I am always looking to learn new technologies.\n\nWhen I'm not coding, I enjoy playing video games, and watching movies or anime. I also enjoy learning new things. I am currently learning about DevOps",
+    bio: "Hi! I'm a full-stack engineer and designer passionate about crafting high-performance user interfaces and building tools that developers love. I spend my time exploring modern styling technologies, optimizing databases, and deploying clean code architectures.\n\nWhen I'm not pushing pixels or seeding databases, you'll find me writing technical deep dives on my blog, contributing to the Open Source ecosystem, or prototyping side projects.",
     photoUrl: "",
-    resumeUrl: "https://masqomar.com/CV.pdf",
+    resumeUrl: "",
   });
   console.log("✅ About seeded.");
 
@@ -369,8 +369,7 @@ async function seed() {
       slug: "tiketpapa-ticket-booking",
       excerpt:
         "A ticket booking system for a cinema. I was responsible for the front-end development, including the design and implementation of the user interface.",
-      coverUrl:
-        "https://masqomar.com/_next/static/media/corpcomment.3895cd42.png",
+      coverUrl: "",
       content:
         "<h2>About the project</h2><p>TiketPapa is a high-performance cinema ticket booking front-end application. It features an interactive seat selection layout, dynamic pricing calculations, booking history, and responsive layout adjustments.</p><p>Built using React, Next.js, Tailwind, Prisma, Redux, and Redux-Saga to deliver a modern, smooth, and highly responsive user experience.</p>",
       tags: ["React", "Next.js", "Tailwind", "Prisma", "Redux", "Redux-Saga"],
@@ -385,8 +384,7 @@ async function seed() {
       slug: "brainwave-iot-monitoring",
       excerpt:
         "An application for monitoring IOT devices. I was responsible for the front-end and back-end development, including implementation bluetooth connection for IOT device.",
-      coverUrl:
-        "https://masqomar.com/_next/static/media/corpcomment.3895cd42.png",
+      coverUrl: "",
       content:
         "<h2>About the project</h2><p>BrainWave is a comprehensive IoT monitoring mobile/web application designed to connect and read metrics from hardware sensors in real-time. It includes a built-in Bluetooth and WiFi connectivity module to pair seamlessly with hardware controllers like ESP32/Arduino.</p><p>Built using React Native, Expo, and Tailwind to guarantee cross-platform support and a clean, responsive styling system.</p>",
       tags: ["React", "React Native", "Expo", "Tailwind"],

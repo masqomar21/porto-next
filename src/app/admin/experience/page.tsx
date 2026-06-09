@@ -41,7 +41,7 @@ export default function ExperienceAdminPage() {
   const [newLinkUrl, setNewLinkUrl] = useState("");
 
   const [toast, setToast] = useState<{ type: "success" | "error"; msg: string } | null>(null);
-  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+  const [draggedId, setDraggedId] = useState<string | null>(null);
 
   const fetchExperiences = async () => {
     setLoading(true);
@@ -184,25 +184,27 @@ export default function ExperienceAdminPage() {
   };
 
   // Drag and drop handlers for reordering
-  const handleDragStart = (index: number) => {
-    setDraggedIndex(index);
+  const handleDragStart = (id: string) => {
+    setDraggedId(id);
   };
 
-  const handleDragOver = (e: React.DragEvent, index: number) => {
+  const handleDragOver = (e: React.DragEvent, targetId: string) => {
     e.preventDefault();
-    if (draggedIndex === null || draggedIndex === index) return;
+    if (!draggedId || draggedId === targetId) return;
+
+    const draggedIdx = experiences.findIndex((exp) => exp._id === draggedId);
+    const targetIdx = experiences.findIndex((exp) => exp._id === targetId);
+    if (draggedIdx === -1 || targetIdx === -1) return;
 
     const updated = [...experiences];
-    const draggedItem = updated[draggedIndex];
-    updated.splice(draggedIndex, 1);
-    updated.splice(index, 0, draggedItem);
+    const [draggedItem] = updated.splice(draggedIdx, 1);
+    updated.splice(targetIdx, 0, draggedItem);
 
-    setDraggedIndex(index);
     setExperiences(updated);
   };
 
   const handleDragEnd = async () => {
-    setDraggedIndex(null);
+    setDraggedId(null);
     try {
       const orders = experiences.map((exp, idx) => ({ id: exp._id, order: idx }));
       await fetch("/api/admin/experience", {
@@ -416,12 +418,12 @@ export default function ExperienceAdminPage() {
               <Card
                 key={exp._id}
                 draggable
-                onDragStart={() => handleDragStart(idx)}
-                onDragOver={(e) => handleDragOver(e, idx)}
+                onDragStart={() => handleDragStart(exp._id!)}
+                onDragOver={(e) => handleDragOver(e, exp._id!)}
                 onDragEnd={handleDragEnd}
                 className={cn(
                   "bg-card border-border shadow-sm relative group/card cursor-grab active:cursor-grabbing transition-all",
-                  draggedIndex === idx
+                  draggedId === exp._id
                     ? "opacity-40 border-violet-500 scale-[0.98] duration-100"
                     : "duration-200"
                 )}
@@ -434,8 +436,11 @@ export default function ExperienceAdminPage() {
                   <div
                     className="p-1 rounded text-muted-foreground/40 opacity-50 hover:text-muted-foreground/80 cursor-grab active:cursor-grabbing shrink-0 self-center"
                     draggable
-                    onDragStart={() => handleDragStart(idx)}
-                    onDragOver={(e) => handleDragOver(e, idx)}
+                    onDragStart={(e) => {
+                      e.stopPropagation();
+                      handleDragStart(exp._id!);
+                    }}
+                    onDragOver={(e) => handleDragOver(e, exp._id!)}
                     onDragEnd={handleDragEnd}
                   >
                     <GripVertical className="w-4 h-4" />
