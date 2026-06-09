@@ -3,6 +3,8 @@ import { getSession } from '@/lib/session';
 import connectDB from '@/lib/mongodb';
 import Navbar from '@/models/Navbar';
 
+export const dynamic = 'force-dynamic';
+
 async function requireAuth() {
   const session = await getSession();
   if (!session?.userId) {

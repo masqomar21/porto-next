@@ -6,6 +6,7 @@ import Project from '@/models/Project';
 import Post from '@/models/Post';
 import Contact from '@/models/Contact';
 import Experience from '@/models/Experience';
+import NavbarModel from '@/models/Navbar';
 import HeroSection from '@/components/sections/Hero';
 import AboutSection from '@/components/sections/About';
 import ExperienceSection from '@/components/sections/Experience';
@@ -29,7 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function HomePage() {
   await connectDB();
 
-  const [hero, about, skills, projects, posts, contact, experiences] = await Promise.all([
+  const [hero, about, skills, projects, posts, contact, experiences, navbar] = await Promise.all([
     Hero.findOne({}).lean().then(d => d || {}),
     About.findOne({}).lean().then(d => d || {}),
     Skill.find({}).sort({ categoryOrder: 1, order: 1 }).lean(),
@@ -37,24 +38,75 @@ export default async function HomePage() {
     Post.find({ published: true }).sort({ publishedAt: -1 }).limit(6).select('-content').lean(),
     Contact.findOne({}).lean().then(d => d || {}),
     Experience.find({}).sort({ order: 1 }).limit(3).lean(),
+    NavbarModel.findOne({}).lean().then(d => d || {}),
   ]);
 
   // Serialize Mongoose documents to plain objects (removes ObjectId, Date etc.)
   const serialize = <T,>(data: T): T => JSON.parse(JSON.stringify(data));
 
+  const sectionOrder = (navbar as any)?.sectionOrder || ['hero', 'about', 'experience', 'skills', 'projects', 'blog', 'contact'];
+
   return (
     <main>
-      <HeroSection 
-        data={serialize(hero)} 
-        socialLinks={serialize(contact?.socialLinks || [])} 
-        skills={serialize(skills)} 
-      />
-      <AboutSection data={serialize(about)} name={hero?.name} email={contact?.email} />
-      <ExperienceSection data={serialize(experiences)} />
-      <SkillsSection data={serialize(skills)} />
-      <ProjectsSection data={serialize(projects)} />
-      <BlogSection data={serialize(posts)} />
-      <ContactSection data={serialize(contact)} />
+      {sectionOrder.map((sectionId: string) => {
+        switch (sectionId) {
+          case 'hero':
+            return (
+              <HeroSection 
+                key="hero"
+                data={serialize(hero)} 
+                socialLinks={serialize(contact?.socialLinks || [])} 
+                skills={serialize(skills)} 
+              />
+            );
+          case 'about':
+            return (
+              <AboutSection 
+                key="about" 
+                data={serialize(about)} 
+                name={hero?.name} 
+                email={contact?.email} 
+              />
+            );
+          case 'experience':
+            return (
+              <ExperienceSection 
+                key="experience" 
+                data={serialize(experiences)} 
+              />
+            );
+          case 'skills':
+            return (
+              <SkillsSection 
+                key="skills" 
+                data={serialize(skills)} 
+              />
+            );
+          case 'projects':
+            return (
+              <ProjectsSection 
+                key="projects" 
+                data={serialize(projects)} 
+              />
+            );
+          case 'blog':
+            return (
+              <BlogSection 
+                key="blog" 
+                data={serialize(posts)} 
+              />
+            );
+          case 'contact':
+            return (
+              <ContactSection 
+                key="contact" 
+                data={serialize(contact)} 
+              />
+            );
+          default:
+            return null;
+        }
+      })}
     </main>
   );
 }

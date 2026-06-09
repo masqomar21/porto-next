@@ -6,20 +6,18 @@ import { useTheme } from "next-themes";
 import { usePathname, useRouter } from "next/navigation";
 import { Sun, Moon, Menu, X } from "lucide-react";
 
-const links = [
-  { label: "About", href: "#about", type: "section" },
-  { label: "Experience", href: "#experience", type: "section" },
-  { label: "Skills", href: "#skills", type: "section" },
-  { label: "Projects", href: "#projects", type: "section" },
-  { label: "Contact", href: "#contact", type: "section" },
-  // { label: 'Projects', href: '/projects', type: 'page' },
-  { label: "Blog", href: "/blog", type: "page" },
-];
+const sectionLinkMap: Record<string, { label: string; href: string; type: string }> = {
+  about: { label: "About", href: "#about", type: "section" },
+  experience: { label: "Experience", href: "#experience", type: "section" },
+  skills: { label: "Skills", href: "#skills", type: "section" },
+  projects: { label: "Projects", href: "#projects", type: "section" },
+  contact: { label: "Contact", href: "#contact", type: "section" },
+};
 
 export default function Navbar({
   navbarData,
 }: {
-  navbarData: { title?: string; imageUrl?: string };
+  navbarData: { title?: string; imageUrl?: string; sectionOrder?: string[] };
 }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -27,6 +25,16 @@ export default function Navbar({
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
+
+  const sectionOrder = navbarData?.sectionOrder || ['hero', 'about', 'experience', 'skills', 'projects', 'blog', 'contact'];
+
+  const links: { label: string; href: string; type: string }[] = [];
+  sectionOrder.forEach((sectionId) => {
+    if (sectionLinkMap[sectionId]) {
+      links.push(sectionLinkMap[sectionId]);
+    }
+  });
+  links.push({ label: "Blog", href: "/blog", type: "page" });
 
   useEffect(() => {
     setMounted(true);

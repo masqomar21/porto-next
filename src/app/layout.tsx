@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+import LayoutWrapper from "@/components/layout/LayoutWrapper";
 import connectDB from "@/lib/mongodb";
 import Contact from "@/models/Contact";
 import NavbarModel from "@/models/Navbar";
@@ -67,9 +66,9 @@ export default async function RootLayout({
           defaultTheme="light"
           enableSystem={false}
         >
-          <Navbar navbarData={navbarData} />
-          <main className="flex-1">{children}</main>
-          <Footer contactData={contactData} />
+          <LayoutWrapper navbarData={navbarData} contactData={contactData}>
+            {children}
+          </LayoutWrapper>
         </ThemeProvider>
       </body>
     </html>
