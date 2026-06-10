@@ -5,11 +5,14 @@ import { RotateCw, RefreshCw, ZoomIn, Sun, Sliders, Check, X } from 'lucide-reac
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
+type CropRatio = '1:1' | '16:9' | '4:3' | '3:2' | '9:16' | 'original' | 'free';
+
 interface ImageEditorModalProps {
   open: boolean;
   imageSrc: string | null;
   onClose: () => void;
   onSave: (editedBlob: Blob) => void;
+  aspectRatio?: CropRatio;
 }
 
 export function ImageEditorModal({
@@ -17,8 +20,13 @@ export function ImageEditorModal({
   imageSrc,
   onClose,
   onSave,
+  aspectRatio = 'free',
 }: ImageEditorModalProps) {
-  // Image layout properties
+  const isLockedRatio = aspectRatio && aspectRatio !== 'free';
+  const initialRatio = isLockedRatio ? aspectRatio : '1:1';
+
+  // Editor layout properties
+  const [selectedRatio, setSelectedRatio] = useState<Exclude<CropRatio, 'free'>>(initialRatio as any);
   const [scale, setScale] = useState(1);
   const [rotation, setRotation] = useState(0);
   const [offsetX, setOffsetX] = useState(0);
@@ -36,6 +44,7 @@ export function ImageEditorModal({
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const [imgLoaded, setImgLoaded] = useState(false);
+  const [imageNaturalRatio, setImageNaturalRatio] = useState(1);
   const [isProcessing, setIsProcessing] = useState(false);
 
   const imgRef = useRef<HTMLImageElement | null>(null);
@@ -59,8 +68,9 @@ export function ImageEditorModal({
     if (open) {
       resetToDefault();
       setImgLoaded(false);
+      setSelectedRatio(isLockedRatio ? (aspectRatio as any) : '1:1');
     }
-  }, [open, imageSrc]);
+  }, [open, imageSrc, aspectRatio, isLockedRatio]);
 
   if (!open || !imageSrc) return null;
 
@@ -108,6 +118,49 @@ export function ImageEditorModal({
     setRotation((prev) => (prev + 90) % 360);
   };
 
+  // Get numeric aspect ratio based on selected ratio
+  const getRatioValue = (): number => {
+    switch (selectedRatio) {
+      case '1:1': return 1;
+      case '16:9': return 16 / 9;
+      case '4:3': return 4 / 3;
+      case '3:2': return 3 / 2;
+      case '9:16': return 9 / 16;
+      case 'original': return imageNaturalRatio;
+      default: return 1;
+    }
+  };
+
+  const ratioValue = getRatioValue();
+
+  // Determine viewport width and height inside the 300x300 bounding box
+  let viewportWidth = 300;
+  let viewportHeight = 300;
+  
+  if (ratioValue >= 1) {
+    viewportWidth = 300;
+    viewportHeight = 300 / ratioValue;
+  } else {
+    viewportHeight = 300;
+    viewportWidth = 300 * ratioValue;
+  }
+
+  // Determine image dimensions to cover the crop viewport
+  let baseWidth = viewportWidth;
+  let baseHeight = viewportHeight;
+
+  if (imgLoaded) {
+    if (imageNaturalRatio > ratioValue) {
+      // Image is wider than crop viewport, match viewport height
+      baseHeight = viewportHeight;
+      baseWidth = viewportHeight * imageNaturalRatio;
+    } else {
+      // Image is taller than crop viewport, match viewport width
+      baseWidth = viewportWidth;
+      baseHeight = viewportWidth / imageNaturalRatio;
+    }
+  }
+
   // Render canvas & save edited image
   const handleApply = async () => {
     if (!imgRef.current) return;
@@ -116,18 +169,18 @@ export function ImageEditorModal({
     try {
       const img = imgRef.current;
       const canvas = document.createElement('canvas');
-      canvas.width = 600;
-      canvas.height = 600;
+      canvas.width = viewportWidth * 2;
+      canvas.height = viewportHeight * 2;
       const ctx = canvas.getContext('2d');
 
       if (ctx) {
-        ctx.clearRect(0, 0, 600, 600);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         // Apply visual CSS filters to canvas context
         ctx.filter = `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturation}%) grayscale(${grayscale}%) sepia(${sepia}%) blur(${blur}px)`;
 
-        // 1. Translate to center of canvas (600x600 is 2x scale of 300x300 viewport)
-        ctx.translate(300 + offsetX * 2, 300 + offsetY * 2);
+        // 1. Translate to center of canvas (multiplying offset by 2 because canvas is 2x viewport size)
+        ctx.translate(canvas.width / 2 + offsetX * 2, canvas.height / 2 + offsetY * 2);
         
         // 2. Rotate
         ctx.rotate((rotation * Math.PI) / 180);
@@ -135,21 +188,8 @@ export function ImageEditorModal({
         // 3. Scale (multiplying by 2 to account for canvas resolution)
         ctx.scale(scale * 2, scale * 2);
 
-        // Determine base dimensions on screen (similar to stylesheet object-fit math)
-        const imgAspectRatio = img.naturalWidth / img.naturalHeight;
-        let drawWidth = 300;
-        let drawHeight = 300;
-
-        if (imgAspectRatio > 1) {
-          drawHeight = 300;
-          drawWidth = 300 * imgAspectRatio;
-        } else {
-          drawWidth = 300;
-          drawHeight = 300 / imgAspectRatio;
-        }
-
         // Draw image centered on origin
-        ctx.drawImage(img, -drawWidth / 2, -drawHeight / 2, drawWidth, drawHeight);
+        ctx.drawImage(img, -baseWidth / 2, -baseHeight / 2, baseWidth, baseHeight);
 
         // Output to Blob
         canvas.toBlob(
@@ -171,10 +211,6 @@ export function ImageEditorModal({
     }
   };
 
-  // Calculate base width/height aspect ratio classes for loading preview
-  const imgAspectRatio = imgRef.current ? imgRef.current.naturalWidth / imgRef.current.naturalHeight : 1;
-  const isLandscape = imgAspectRatio > 1;
-
   return (
     <div className="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 animate-in fade-in duration-200">
       <div className="bg-card border border-border w-full max-w-4xl rounded-2xl flex flex-col md:flex-row overflow-hidden shadow-2xl h-[90vh] max-h-[700px] animate-in zoom-in-95 duration-300">
@@ -182,12 +218,16 @@ export function ImageEditorModal({
         {/* Left Panel: Crop Editor view */}
         <div className="flex-1 bg-black/40 flex flex-col items-center justify-center p-6 relative select-none">
           <div className="text-xs text-muted-foreground absolute top-4 left-6 font-mono bg-background/50 px-2 py-1 rounded-md">
-            Drag image to reposition inside square
+            Drag image to reposition inside frame
           </div>
 
           <div
             ref={containerRef}
-            className="w-[300px] h-[300px] relative overflow-hidden rounded-xl border border-violet-500/50 shadow-lg bg-muted/10 cursor-grab active:cursor-grabbing flex items-center justify-center"
+            className="relative overflow-hidden rounded-xl border border-violet-500/50 shadow-lg bg-muted/10 cursor-grab active:cursor-grabbing flex items-center justify-center transition-all duration-300"
+            style={{
+              width: `${viewportWidth}px`,
+              height: `${viewportHeight}px`,
+            }}
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
             onMouseUp={handleEndDrag}
@@ -201,7 +241,10 @@ export function ImageEditorModal({
               ref={(el) => {
                 imgRef.current = el;
                 if (el && !imgLoaded) {
-                  el.onload = () => setImgLoaded(true);
+                  el.onload = () => {
+                    setImageNaturalRatio(el.naturalWidth / el.naturalHeight);
+                    setImgLoaded(true);
+                  };
                 }
               }}
               src={imageSrc}
@@ -209,17 +252,18 @@ export function ImageEditorModal({
               draggable={false}
               className={cn(
                 'absolute pointer-events-none transition-opacity duration-300',
-                imgLoaded ? 'opacity-100' : 'opacity-0',
-                isLandscape ? 'h-[300px] max-w-none w-auto' : 'w-[300px] max-h-none h-auto'
+                imgLoaded ? 'opacity-100' : 'opacity-0'
               )}
               style={{
+                width: `${baseWidth}px`,
+                height: `${baseHeight}px`,
                 transform: `translate(${offsetX}px, ${offsetY}px) rotate(${rotation}deg) scale(${scale})`,
                 filter: `brightness(${brightness}%) contrast(${contrast}%) grayscale(${grayscale}%) sepia(${sepia}%) saturate(${saturation}%) blur(${blur}px)`,
                 transformOrigin: 'center center',
               }}
             />
 
-            {/* Square framing border guide */}
+            {/* Framing border guide */}
             <div className="absolute inset-0 border-2 border-dashed border-violet-500/60 pointer-events-none rounded-xl" />
           </div>
 
@@ -248,13 +292,44 @@ export function ImageEditorModal({
           </div>
         </div>
 
-        {/* Right Panel: Adjustment Sliders */}
+        {/* Right Panel: Adjustment Sliders & Aspect Ratio Selector */}
         <div className="w-full md:w-[340px] border-t md:border-t-0 md:border-l border-border flex flex-col justify-between bg-card overflow-hidden">
           <div className="p-6 overflow-y-auto flex-1 space-y-6 max-h-[calc(90vh-140px)] md:max-h-none">
             <h3 className="font-semibold text-lg text-foreground flex items-center gap-2">
               <Sliders className="w-5 h-5 text-violet-500" />
               Adjust Image
             </h3>
+
+            {/* Aspect Ratio Selector (only if not locked) */}
+            {!isLockedRatio && (
+              <div className="space-y-2">
+                <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block">
+                  Crop Aspect Ratio
+                </label>
+                <div className="grid grid-cols-3 gap-1.5">
+                  {(['1:1', '16:9', '4:3', '3:2', '9:16', 'original'] as const).map((r) => (
+                    <Button
+                      key={r}
+                      type="button"
+                      variant={selectedRatio === r ? 'default' : 'outline'}
+                      size="sm"
+                      onClick={() => {
+                        setSelectedRatio(r);
+                        // Reset offsets to prevent image from escaping boundaries after ratio change
+                        setOffsetX(0);
+                        setOffsetY(0);
+                      }}
+                      className={cn(
+                        'text-xs py-1 h-8 cursor-pointer capitalize border-border',
+                        selectedRatio === r ? 'bg-violet-600 hover:bg-violet-700 text-white border-transparent' : ''
+                      )}
+                    >
+                      {r === 'original' ? 'Original' : r}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Zoom Slider */}
             <div className="space-y-2">

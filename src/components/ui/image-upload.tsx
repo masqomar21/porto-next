@@ -12,6 +12,7 @@ interface ImageUploadProps {
   className?: string;
   disabled?: boolean;
   allowedTypes?: string[];
+  aspectRatio?: '1:1' | '16:9' | '4:3' | '3:2' | '9:16' | 'original' | 'free';
 }
 
 export function ImageUpload({
@@ -21,6 +22,7 @@ export function ImageUpload({
   className,
   disabled = false,
   allowedTypes = ['image/png', 'image/jpeg', 'image/webp', 'image/gif'],
+  aspectRatio = 'free',
 }: ImageUploadProps) {
   const [isDragging, setIsDragging] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -295,6 +297,7 @@ export function ImageUpload({
       <ImageEditorModal
         open={editorOpen}
         imageSrc={editorImageSrc}
+        aspectRatio={aspectRatio}
         onClose={() => {
           setEditorOpen(false);
           setPendingFile(null);
