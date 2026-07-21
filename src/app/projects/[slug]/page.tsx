@@ -10,14 +10,31 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   await connectDB();
   const project = await Project.findOne({ slug }).lean() as any;
   if (!project) return { title: 'Project Not Found' };
+  const description = project.excerpt || `${project.title} — a software engineering project.`;
   return {
     title: project.title,
-    description: project.excerpt || 'View this project on our portfolio.',
+    description,
+    alternates: { canonical: `/projects/${slug}` },
+    openGraph: {
+      title: project.title,
+      description,
+      type: 'article',
+      url: `${baseUrl}/projects/${slug}`,
+      ...(project.coverUrl && { images: [{ url: project.coverUrl, width: 1200, height: 630, alt: project.title }] }),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: project.title,
+      description,
+      ...(project.coverUrl && { images: [project.coverUrl] }),
+    },
   };
 }
 
@@ -34,9 +51,24 @@ export default async function ProjectDetailPage({ params }: Props) {
   const serializedProject = JSON.parse(JSON.stringify(project));
   const year = serializedProject.publishedAt ? new Date(serializedProject.publishedAt).getFullYear() : new Date().getFullYear();
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    name: serializedProject.title,
+    description: serializedProject.excerpt || '',
+    ...(serializedProject.coverUrl && { image: serializedProject.coverUrl }),
+    url: `${baseUrl}/projects/${serializedProject.slug}`,
+    ...(serializedProject.tags?.length && { keywords: serializedProject.tags.join(', ') }),
+    ...(serializedProject.liveUrl && { url: serializedProject.liveUrl }),
+    ...(serializedProject.githubUrl && { codeRepository: serializedProject.githubUrl }),
+  };
+
   return (
     <div className="bg-background min-h-screen relative overflow-hidden">
-      
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="max-w-3xl mx-auto px-6 md:px-12 py-32 md:py-40 z-10 relative">
         <Link href="/projects" className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-foreground/60 hover:text-foreground mb-8 transition-colors">
           ← Back to Projects

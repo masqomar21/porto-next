@@ -3,7 +3,16 @@ import Post from '@/models/Post';
 import type { Metadata } from 'next';
 import BlogClientPage from './BlogClient';
 
-export const metadata: Metadata = { title: 'Blog', description: 'Articles, thoughts, and tutorials.' };
+export const metadata: Metadata = {
+  title: 'Blog',
+  description: 'Articles, thoughts, and tutorials on software development.',
+  alternates: { canonical: '/blog' },
+  openGraph: {
+    title: 'Blog',
+    description: 'Articles, thoughts, and tutorials on software development.',
+    type: 'website',
+  },
+};
 export const dynamic = 'force-dynamic';
 
 export default async function BlogPage() {

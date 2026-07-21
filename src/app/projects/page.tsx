@@ -6,6 +6,12 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Projects',
   description: 'A showcase of my software engineering work and projects.',
+  alternates: { canonical: '/projects' },
+  openGraph: {
+    title: 'Projects',
+    description: 'A showcase of my software engineering work and projects.',
+    type: 'website',
+  },
 };
 
 export const dynamic = 'force-dynamic';

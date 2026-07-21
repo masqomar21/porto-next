@@ -11,14 +11,34 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   await connectDB();
   const post = await Post.findOne({ slug, published: true }).lean() as any;
   if (!post) return { title: 'Post Not Found' };
+  const description = post.excerpt || `${post.title} — read this article on our blog.`;
   return {
     title: post.title,
-    description: post.excerpt || 'Read this post on our platform.',
+    description,
+    alternates: { canonical: `/blog/${slug}` },
+    openGraph: {
+      title: post.title,
+      description,
+      type: 'article',
+      url: `${baseUrl}/blog/${slug}`,
+      publishedTime: post.publishedAt,
+      modifiedTime: post.updatedAt,
+      tags: post.tags,
+      ...(post.coverUrl && { images: [{ url: post.coverUrl, width: 1200, height: 630, alt: post.title }] }),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description,
+      ...(post.coverUrl && { images: [post.coverUrl] }),
+    },
   };
 }
 
@@ -39,9 +59,28 @@ export default async function BlogPostPage({ params }: Props) {
     year: 'numeric',
   });
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: serializedPost.title,
+    description: serializedPost.excerpt || '',
+    ...(serializedPost.coverUrl && { image: serializedPost.coverUrl }),
+    datePublished: serializedPost.publishedAt,
+    dateModified: serializedPost.updatedAt || serializedPost.publishedAt,
+    url: `${baseUrl}/blog/${serializedPost.slug}`,
+    ...(serializedPost.tags?.length && { keywords: serializedPost.tags.join(', ') }),
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${baseUrl}/blog/${serializedPost.slug}`,
+    },
+  };
+
   return (
     <div className="bg-background min-h-screen relative overflow-hidden">
-      
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="max-w-3xl mx-auto px-6 md:px-12 py-32 md:py-40 z-10 relative">
         <Link href="/blog" className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-foreground/60 hover:text-foreground mb-8 transition-colors">
           ← Back to Blog

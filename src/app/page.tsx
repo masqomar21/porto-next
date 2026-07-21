@@ -18,12 +18,23 @@ import type { Metadata } from 'next';
 
 export const dynamic = 'force-dynamic';
 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+
 export async function generateMetadata(): Promise<Metadata> {
   await connectDB();
   const hero = await Hero.findOne({}).lean() as { name?: string; tagline?: string } | null;
+  const title = hero?.name ? `${hero.name} — Portfolio` : 'Developer Portfolio';
+  const description = hero?.tagline || 'Full-stack developer portfolio and blog.';
   return {
-    title: hero?.name ? `${hero.name} — Portfolio` : 'Developer Portfolio',
-    description: hero?.tagline || 'Full-stack developer portfolio and blog.',
+    title,
+    description,
+    alternates: { canonical: '/' },
+    openGraph: {
+      title,
+      description,
+      type: 'website',
+      url: baseUrl,
+    },
   };
 }
 
@@ -46,8 +57,35 @@ export default async function HomePage() {
 
   const sectionOrder = (navbar as any)?.sectionOrder || ['hero', 'about', 'experience', 'skills', 'projects', 'blog', 'contact'];
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        name: (hero as any)?.name ? `${(hero as any).name} — Portfolio` : 'Developer Portfolio',
+        url: baseUrl,
+      },
+      {
+        '@type': 'Person',
+        name: (hero as any)?.name || 'Developer',
+        url: baseUrl,
+        ...((hero as any)?.tagline && { description: (hero as any).tagline }),
+        ...((contact as any)?.email && { email: (contact as any).email }),
+        ...((contact as any)?.socialLinks?.length && {
+          sameAs: (contact as any).socialLinks
+            .filter((l: any) => l.url)
+            .map((l: any) => l.url),
+        }),
+      },
+    ],
+  };
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {sectionOrder.map((sectionId: string) => {
         switch (sectionId) {
           case 'hero':

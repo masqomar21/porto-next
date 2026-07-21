@@ -7,6 +7,13 @@ export const metadata: Metadata = {
   title: "Experience Timeline",
   description:
     "A comprehensive timeline of my work experience, software engineering roles, and contributions.",
+  alternates: { canonical: "/experience" },
+  openGraph: {
+    title: "Experience Timeline",
+    description:
+      "A comprehensive timeline of my work experience, software engineering roles, and contributions.",
+    type: "website",
+  },
 };
 
 export const dynamic = "force-dynamic";
