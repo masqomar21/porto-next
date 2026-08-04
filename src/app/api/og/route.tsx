@@ -33,6 +33,40 @@ export async function GET(request: Request) {
       console.error("OG Image: Failed to fetch Hero data", err);
     }
 
+    // Safely handle external image fetching (Satori does not support WebP or missing dimensions)
+    let validImageUrl: string | null = null;
+    if (imageUrl) {
+      try {
+        const isWebpExtension = imageUrl.toLowerCase().endsWith(".webp");
+        if (!isWebpExtension) {
+          const res = await fetch(imageUrl, {
+            headers: {
+              Accept: "image/png,image/jpeg,image/svg+xml,image/gif",
+            },
+          });
+          if (res.ok) {
+            const contentType = (
+              res.headers.get("content-type") || ""
+            ).toLowerCase();
+            const isSupported =
+              contentType.includes("png") ||
+              contentType.includes("jpeg") ||
+              contentType.includes("jpg") ||
+              contentType.includes("gif") ||
+              contentType.includes("svg");
+
+            if (isSupported && !contentType.includes("webp")) {
+              const arrayBuffer = await res.arrayBuffer();
+              const base64 = Buffer.from(arrayBuffer).toString("base64");
+              validImageUrl = `data:${contentType.split(";")[0]};base64,${base64}`;
+            }
+          }
+        }
+      } catch (err) {
+        console.warn("OG Image: External image fetch failed, fallback to graphic", err);
+      }
+    }
+
     const displayTitle = title || `${name} — Portfolio`;
     const displayDescription = description || tagline;
 
@@ -200,8 +234,8 @@ export async function GET(request: Request) {
                 {typeParam === "Blog"
                   ? "Read Article"
                   : typeParam === "Project"
-                    ? "View Project"
-                    : "Explore Portfolio"}
+                  ? "View Project"
+                  : "Explore Portfolio"}
               </div>
             </div>
           </div>
@@ -259,10 +293,12 @@ export async function GET(request: Request) {
                 boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
               }}
             >
-              {imageUrl ? (
+              {validImageUrl ? (
                 <img
-                  src={imageUrl}
+                  src={validImageUrl}
                   alt={displayTitle}
+                  width="400"
+                  height="320"
                   style={{
                     width: "100%",
                     height: "100%",
@@ -405,7 +441,7 @@ export async function GET(request: Request) {
       {
         width: 1200,
         height: 630,
-      },
+      }
     );
   } catch (e: any) {
     console.error("OG Image generation failed:", e);
