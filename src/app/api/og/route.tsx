@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 import connectDB from "@/lib/mongodb";
 import Hero from "@/models/Hero";
+import sharp from "sharp";
 
 export const runtime = "nodejs";
 
@@ -33,37 +34,38 @@ export async function GET(request: Request) {
       console.error("OG Image: Failed to fetch Hero data", err);
     }
 
-    // Safely handle external image fetching (Satori does not support WebP or missing dimensions)
+    // Safely handle external image fetching & WebP conversion to PNG base64 for Satori
     let validImageUrl: string | null = null;
     if (imageUrl) {
       try {
-        const isWebpExtension = imageUrl.toLowerCase().endsWith(".webp");
-        if (!isWebpExtension) {
-          const res = await fetch(imageUrl, {
-            headers: {
-              Accept: "image/png,image/jpeg,image/svg+xml,image/gif",
-            },
-          });
-          if (res.ok) {
-            const contentType = (
-              res.headers.get("content-type") || ""
-            ).toLowerCase();
-            const isSupported =
-              contentType.includes("png") ||
-              contentType.includes("jpeg") ||
-              contentType.includes("jpg") ||
-              contentType.includes("gif") ||
-              contentType.includes("svg");
+        const res = await fetch(imageUrl);
+        if (res.ok) {
+          const arrayBuffer = await res.arrayBuffer();
+          const inputBuffer = Buffer.from(arrayBuffer);
+          const contentType = (
+            res.headers.get("content-type") || ""
+          ).toLowerCase();
 
-            if (isSupported && !contentType.includes("webp")) {
-              const arrayBuffer = await res.arrayBuffer();
-              const base64 = Buffer.from(arrayBuffer).toString("base64");
-              validImageUrl = `data:${contentType.split(";")[0]};base64,${base64}`;
-            }
+          let pngBuffer: Buffer;
+          // If it's WebP or non-PNG/JPEG image, convert to PNG via sharp
+          if (
+            contentType.includes("webp") ||
+            imageUrl.toLowerCase().endsWith(".webp") ||
+            !contentType.includes("png")
+          ) {
+            pngBuffer = await sharp(inputBuffer).toFormat("png").toBuffer();
+          } else {
+            pngBuffer = inputBuffer;
           }
+
+          const base64 = pngBuffer.toString("base64");
+          validImageUrl = `data:image/png;base64,${base64}`;
         }
       } catch (err) {
-        console.warn("OG Image: External image fetch failed, fallback to graphic", err);
+        console.warn(
+          "OG Image: External image fetch or WebP conversion failed, fallback to graphic",
+          err
+        );
       }
     }
 
