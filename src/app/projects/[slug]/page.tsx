@@ -1,26 +1,27 @@
-import { notFound } from 'next/navigation';
-import connectDB from '@/lib/mongodb';
-import Project from '@/models/Project';
-import Link from 'next/link';
-import type { Metadata } from 'next';
+import { notFound } from "next/navigation";
+import connectDB from "@/lib/mongodb";
+import Project from "@/models/Project";
+import Link from "next/link";
+import type { Metadata } from "next";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   await connectDB();
-  const project = await Project.findOne({ slug }).lean() as any;
-  if (!project) return { title: 'Project Not Found' };
-  const description = project.excerpt || `${project.title} — a software engineering project.`;
-  const ogImageUrl = project.coverUrl
-    ? project.coverUrl
-    : `/api/og?title=${encodeURIComponent(project.title)}&description=${encodeURIComponent(description)}&type=Project`;
+  const project = (await Project.findOne({ slug }).lean()) as any;
+  if (!project) return { title: "Project Not Found" };
+  const description =
+    project.excerpt || `${project.title} — a software engineering project.`;
+  const ogImageUrl = `/api/og?title=${encodeURIComponent(
+    project.title,
+  )}&description=${encodeURIComponent(description)}&type=Project&image=${project.coverUrl || ""}`;
 
   return {
     title: project.title,
@@ -29,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: project.title,
       description,
-      type: 'article',
+      type: "article",
       url: `${baseUrl}/projects/${slug}`,
       images: [
         {
@@ -41,7 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ],
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title: project.title,
       description,
       images: [ogImageUrl],
@@ -60,18 +61,24 @@ export default async function ProjectDetailPage({ params }: Props) {
   }
 
   const serializedProject = JSON.parse(JSON.stringify(project));
-  const year = serializedProject.publishedAt ? new Date(serializedProject.publishedAt).getFullYear() : new Date().getFullYear();
+  const year = serializedProject.publishedAt
+    ? new Date(serializedProject.publishedAt).getFullYear()
+    : new Date().getFullYear();
 
   const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'CreativeWork',
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
     name: serializedProject.title,
-    description: serializedProject.excerpt || '',
+    description: serializedProject.excerpt || "",
     ...(serializedProject.coverUrl && { image: serializedProject.coverUrl }),
     url: `${baseUrl}/projects/${serializedProject.slug}`,
-    ...(serializedProject.tags?.length && { keywords: serializedProject.tags.join(', ') }),
+    ...(serializedProject.tags?.length && {
+      keywords: serializedProject.tags.join(", "),
+    }),
     ...(serializedProject.liveUrl && { url: serializedProject.liveUrl }),
-    ...(serializedProject.githubUrl && { codeRepository: serializedProject.githubUrl }),
+    ...(serializedProject.githubUrl && {
+      codeRepository: serializedProject.githubUrl,
+    }),
   };
 
   return (
@@ -81,17 +88,20 @@ export default async function ProjectDetailPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <div className="max-w-3xl mx-auto px-6 md:px-12 py-32 md:py-40 z-10 relative">
-        <Link href="/projects" className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-foreground/60 hover:text-foreground mb-8 transition-colors">
+        <Link
+          href="/projects"
+          className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-foreground/60 hover:text-foreground mb-8 transition-colors"
+        >
           ← Back to Projects
         </Link>
-        
+
         <header className="mb-10">
           <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-foreground/50 mb-4">
             <span>{year}</span>
             <span>•</span>
             <span>PUBLISHED</span>
           </div>
-          
+
           <h1 className="font-serif text-3xl md:text-5xl font-bold tracking-tight mb-6 text-foreground leading-tight">
             {serializedProject.title}
           </h1>
@@ -99,7 +109,10 @@ export default async function ProjectDetailPage({ params }: Props) {
           {serializedProject.tags && serializedProject.tags.length > 0 && (
             <div className="flex flex-wrap gap-2 mb-6">
               {serializedProject.tags.map((tag: string) => (
-                <span key={tag} className="font-mono text-[9px] uppercase tracking-widest bg-foreground/5 text-foreground border border-foreground/20 px-3 py-1 rounded-full">
+                <span
+                  key={tag}
+                  className="font-mono text-[9px] uppercase tracking-widest bg-foreground/5 text-foreground border border-foreground/20 px-3 py-1 rounded-full"
+                >
                   {tag}
                 </span>
               ))}
@@ -137,14 +150,19 @@ export default async function ProjectDetailPage({ params }: Props) {
           <div
             className="w-full h-full rounded-[24px] border border-foreground/10 relative z-10 bg-muted/20"
             style={{
-              backgroundImage: serializedProject.coverUrl ? `url(${serializedProject.coverUrl})` : undefined,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
+              backgroundImage: serializedProject.coverUrl
+                ? `url(${serializedProject.coverUrl})`
+                : undefined,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
             }}
           />
         </div>
 
-        <article className="prose max-w-none font-mono text-sm leading-relaxed text-foreground/80" dangerouslySetInnerHTML={{ __html: serializedProject.content }} />
+        <article
+          className="prose max-w-none font-mono text-sm leading-relaxed text-foreground/80"
+          dangerouslySetInnerHTML={{ __html: serializedProject.content }}
+        />
       </div>
 
       {/* Decorative dashed lines */}
