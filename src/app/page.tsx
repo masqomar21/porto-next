@@ -1,39 +1,64 @@
-import connectDB from '@/lib/mongodb';
-import Hero from '@/models/Hero';
-import About from '@/models/About';
-import Skill from '@/models/Skill';
-import Project from '@/models/Project';
-import Post from '@/models/Post';
-import Contact from '@/models/Contact';
-import Experience from '@/models/Experience';
-import NavbarModel from '@/models/Navbar';
-import HeroSection from '@/components/sections/Hero';
-import AboutSection from '@/components/sections/About';
-import ExperienceSection from '@/components/sections/Experience';
-import SkillsSection from '@/components/sections/Skills';
-import ProjectsSection from '@/components/sections/Projects';
-import BlogSection from '@/components/sections/Blog';
-import ContactSection from '@/components/sections/Contact';
-import type { Metadata } from 'next';
+import connectDB from "@/lib/mongodb";
+import Hero from "@/models/Hero";
+import About from "@/models/About";
+import Skill from "@/models/Skill";
+import Project from "@/models/Project";
+import Post from "@/models/Post";
+import Contact from "@/models/Contact";
+import Experience from "@/models/Experience";
+import NavbarModel from "@/models/Navbar";
+import HeroSection from "@/components/sections/Hero";
+import AboutSection from "@/components/sections/About";
+import ExperienceSection from "@/components/sections/Experience";
+import SkillsSection from "@/components/sections/Skills";
+import ProjectsSection from "@/components/sections/Projects";
+import BlogSection from "@/components/sections/Blog";
+import ContactSection from "@/components/sections/Contact";
+import type { Metadata } from "next";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
 export async function generateMetadata(): Promise<Metadata> {
   await connectDB();
-  const hero = await Hero.findOne({}).lean() as { name?: string; tagline?: string } | null;
-  const title = hero?.name ? `${hero.name} — Portfolio` : 'Developer Portfolio';
-  const description = hero?.tagline || 'Full-stack developer portfolio and blog.';
+  const hero = (await Hero.findOne({}).lean()) as {
+    name?: string;
+    tagline?: string;
+  } | null;
+  const title = hero?.name ? `${hero.name} — Portfolio` : "Developer Portfolio";
+  const description =
+    hero?.tagline || "Full-stack developer portfolio and blog.";
+  const ogImageUrl = `/api/og`;
+
   return {
     title,
     description,
-    alternates: { canonical: '/' },
+    alternates: { canonical: "/" },
     openGraph: {
       title,
       description,
-      type: 'website',
+      type: "website",
       url: baseUrl,
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: "Muhammad Qomarudin Portfolio",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: "Muhammad Qomarudin Portfolio",
+        },
+      ],
     },
   };
 }
@@ -41,33 +66,56 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function HomePage() {
   await connectDB();
 
-  const [hero, about, skills, projects, posts, contact, experiences, navbar] = await Promise.all([
-    Hero.findOne({}).lean().then(d => d || {}),
-    About.findOne({}).lean().then(d => d || {}),
-    Skill.find({}).sort({ categoryOrder: 1, order: 1 }).lean(),
-    Project.find({ featured: true }).sort({ order: 1 }).limit(6).lean(),
-    Post.find({ published: true }).sort({ publishedAt: -1 }).limit(6).select('-content').lean(),
-    Contact.findOne({}).lean().then(d => d || {}),
-    Experience.find({}).sort({ order: 1 }).limit(3).lean(),
-    NavbarModel.findOne({}).lean().then(d => d || {}),
-  ]);
+  const [hero, about, skills, projects, posts, contact, experiences, navbar] =
+    await Promise.all([
+      Hero.findOne({})
+        .lean()
+        .then((d) => d || {}),
+      About.findOne({})
+        .lean()
+        .then((d) => d || {}),
+      Skill.find({}).sort({ categoryOrder: 1, order: 1 }).lean(),
+      Project.find({ featured: true }).sort({ order: 1 }).limit(6).lean(),
+      Post.find({ published: true })
+        .sort({ publishedAt: -1 })
+        .limit(6)
+        .select("-content")
+        .lean(),
+      Contact.findOne({})
+        .lean()
+        .then((d) => d || {}),
+      Experience.find({}).sort({ order: 1 }).limit(3).lean(),
+      NavbarModel.findOne({})
+        .lean()
+        .then((d) => d || {}),
+    ]);
 
   // Serialize Mongoose documents to plain objects (removes ObjectId, Date etc.)
   const serialize = <T,>(data: T): T => JSON.parse(JSON.stringify(data));
 
-  const sectionOrder = (navbar as any)?.sectionOrder || ['hero', 'about', 'experience', 'skills', 'projects', 'blog', 'contact'];
+  const sectionOrder = (navbar as any)?.sectionOrder || [
+    "hero",
+    "about",
+    "experience",
+    "skills",
+    "projects",
+    "blog",
+    "contact",
+  ];
 
   const jsonLd = {
-    '@context': 'https://schema.org',
-    '@graph': [
+    "@context": "https://schema.org",
+    "@graph": [
       {
-        '@type': 'WebSite',
-        name: (hero as any)?.name ? `${(hero as any).name} — Portfolio` : 'Developer Portfolio',
+        "@type": "WebSite",
+        name: (hero as any)?.name
+          ? `${(hero as any).name} — Portfolio`
+          : "Developer Portfolio",
         url: baseUrl,
       },
       {
-        '@type': 'Person',
-        name: (hero as any)?.name || 'Developer',
+        "@type": "Person",
+        name: (hero as any)?.name || "Developer",
         url: baseUrl,
         ...((hero as any)?.tagline && { description: (hero as any).tagline }),
         ...((contact as any)?.email && { email: (contact as any).email }),
@@ -88,59 +136,41 @@ export default async function HomePage() {
       />
       {sectionOrder.map((sectionId: string) => {
         switch (sectionId) {
-          case 'hero':
+          case "hero":
             return (
-              <HeroSection 
+              <HeroSection
                 key="hero"
-                data={serialize(hero)} 
-                socialLinks={serialize(contact?.socialLinks || [])} 
-                skills={serialize(skills)} 
+                data={serialize(hero)}
+                socialLinks={serialize(contact?.socialLinks || [])}
+                skills={serialize(skills)}
               />
             );
-          case 'about':
+          case "about":
             return (
-              <AboutSection 
-                key="about" 
-                data={serialize(about)} 
-                name={hero?.name} 
-                email={contact?.email} 
+              <AboutSection
+                key="about"
+                data={serialize(about)}
+                name={hero?.name}
+                email={contact?.email}
               />
             );
-          case 'experience':
+          case "experience":
             return (
-              <ExperienceSection 
-                key="experience" 
-                data={serialize(experiences)} 
+              <ExperienceSection
+                key="experience"
+                data={serialize(experiences)}
               />
             );
-          case 'skills':
+          case "skills":
+            return <SkillsSection key="skills" data={serialize(skills)} />;
+          case "projects":
             return (
-              <SkillsSection 
-                key="skills" 
-                data={serialize(skills)} 
-              />
+              <ProjectsSection key="projects" data={serialize(projects)} />
             );
-          case 'projects':
-            return (
-              <ProjectsSection 
-                key="projects" 
-                data={serialize(projects)} 
-              />
-            );
-          case 'blog':
-            return (
-              <BlogSection 
-                key="blog" 
-                data={serialize(posts)} 
-              />
-            );
-          case 'contact':
-            return (
-              <ContactSection 
-                key="contact" 
-                data={serialize(contact)} 
-              />
-            );
+          case "blog":
+            return <BlogSection key="blog" data={serialize(posts)} />;
+          case "contact":
+            return <ContactSection key="contact" data={serialize(contact)} />;
           default:
             return null;
         }

@@ -12,6 +12,8 @@ const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
+const ogImageUrl = `${siteUrl}/api/og`;
+
 export const metadata: Metadata = {
   title: {
     template: "%s | Portfolio",
@@ -46,7 +48,7 @@ export const metadata: Metadata = {
     url: siteUrl,
     images: [
       {
-        url: "/api/og",
+        url: ogImageUrl,
         width: 1200,
         height: 630,
         alt: "Muhammad Qomarudin Portfolio",
@@ -57,7 +59,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     images: [
       {
-        url: "/api/og",
+        url: ogImageUrl,
         width: 1200,
         height: 630,
         alt: "Muhammad Qomarudin Portfolio",
