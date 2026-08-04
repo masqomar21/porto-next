@@ -1,27 +1,28 @@
-import { notFound } from 'next/navigation';
-import connectDB from '@/lib/mongodb';
-import Post from '@/models/Post';
-import ViewCounter from './ViewCounter';
-import Link from 'next/link';
-import type { Metadata } from 'next';
+import { notFound } from "next/navigation";
+import connectDB from "@/lib/mongodb";
+import Post from "@/models/Post";
+import ViewCounter from "./ViewCounter";
+import Link from "next/link";
+import type { Metadata } from "next";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   await connectDB();
-  const post = await Post.findOne({ slug, published: true }).lean() as any;
-  if (!post) return { title: 'Post Not Found' };
-  const description = post.excerpt || `${post.title} — read this article on our blog.`;
-  const ogImageUrl = post.coverUrl
-    ? post.coverUrl
-    : `/api/og?title=${encodeURIComponent(post.title)}&description=${encodeURIComponent(description)}&type=Blog`;
+  const post = (await Post.findOne({ slug, published: true }).lean()) as any;
+  if (!post) return { title: "Post Not Found" };
+  const description =
+    post.excerpt || `${post.title} — read this article on our blog.`;
+  const ogImageUrl = `/api/og?title=${encodeURIComponent(
+    post.title,
+  )}&description=${encodeURIComponent(description)}&type=Blog&image=${post.coverUrl || ""}`;
 
   return {
     title: post.title,
@@ -30,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: post.title,
       description,
-      type: 'article',
+      type: "article",
       url: `${baseUrl}/blog/${slug}`,
       publishedTime: post.publishedAt,
       modifiedTime: post.updatedAt,
@@ -45,7 +46,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ],
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title: post.title,
       description,
       images: [ogImageUrl],
@@ -64,25 +65,30 @@ export default async function BlogPostPage({ params }: Props) {
   }
 
   const serializedPost = JSON.parse(JSON.stringify(post));
-  const dateStr = new Date(serializedPost.publishedAt).toLocaleDateString('en-US', {
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-  });
+  const dateStr = new Date(serializedPost.publishedAt).toLocaleDateString(
+    "en-US",
+    {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    },
+  );
 
   const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
     headline: serializedPost.title,
-    description: serializedPost.excerpt || '',
+    description: serializedPost.excerpt || "",
     ...(serializedPost.coverUrl && { image: serializedPost.coverUrl }),
     datePublished: serializedPost.publishedAt,
     dateModified: serializedPost.updatedAt || serializedPost.publishedAt,
     url: `${baseUrl}/blog/${serializedPost.slug}`,
-    ...(serializedPost.tags?.length && { keywords: serializedPost.tags.join(', ') }),
+    ...(serializedPost.tags?.length && {
+      keywords: serializedPost.tags.join(", "),
+    }),
     mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': `${baseUrl}/blog/${serializedPost.slug}`,
+      "@type": "WebPage",
+      "@id": `${baseUrl}/blog/${serializedPost.slug}`,
     },
   };
 
@@ -93,17 +99,20 @@ export default async function BlogPostPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <div className="max-w-3xl mx-auto px-6 md:px-12 py-32 md:py-40 z-10 relative">
-        <Link href="/blog" className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-foreground/60 hover:text-foreground mb-8 transition-colors">
+        <Link
+          href="/blog"
+          className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-foreground/60 hover:text-foreground mb-8 transition-colors"
+        >
           ← Back to Blog
         </Link>
-        
+
         <header className="mb-10">
           <div className="flex items-center gap-4 font-mono text-[10px] uppercase tracking-widest text-foreground/50 mb-4">
             <span>{dateStr}</span>
             <span>•</span>
             <span>👁 {serializedPost.views} views</span>
           </div>
-          
+
           <h1 className="font-serif text-3xl md:text-5xl font-bold tracking-tight mb-6 text-foreground leading-tight">
             {serializedPost.title}
           </h1>
@@ -111,7 +120,10 @@ export default async function BlogPostPage({ params }: Props) {
           {serializedPost.tags && serializedPost.tags.length > 0 && (
             <div className="flex flex-wrap gap-2">
               {serializedPost.tags.map((tag: string) => (
-                <span key={tag} className="font-mono text-[9px] uppercase tracking-widest bg-foreground text-background px-3 py-1 rounded-full border border-foreground">
+                <span
+                  key={tag}
+                  className="font-mono text-[9px] uppercase tracking-widest bg-foreground text-background px-3 py-1 rounded-full border border-foreground"
+                >
                   {tag}
                 </span>
               ))}
@@ -125,14 +137,19 @@ export default async function BlogPostPage({ params }: Props) {
           <div
             className="w-full h-full rounded-[24px] border border-foreground/10 relative z-10 bg-muted/20"
             style={{
-              backgroundImage: serializedPost.coverUrl ? `url(${serializedPost.coverUrl})` : undefined,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
+              backgroundImage: serializedPost.coverUrl
+                ? `url(${serializedPost.coverUrl})`
+                : undefined,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
             }}
           />
         </div>
 
-        <article className="prose max-w-none font-mono text-sm leading-relaxed text-foreground/80" dangerouslySetInnerHTML={{ __html: serializedPost.content }} />
+        <article
+          className="prose max-w-none font-mono text-sm leading-relaxed text-foreground/80"
+          dangerouslySetInnerHTML={{ __html: serializedPost.content }}
+        />
 
         <ViewCounter slug={serializedPost.slug} />
       </div>
