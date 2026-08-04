@@ -18,6 +18,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = await Project.findOne({ slug }).lean() as any;
   if (!project) return { title: 'Project Not Found' };
   const description = project.excerpt || `${project.title} — a software engineering project.`;
+  const ogImageUrl = project.coverUrl
+    ? project.coverUrl
+    : `/api/og?title=${encodeURIComponent(project.title)}&description=${encodeURIComponent(description)}&type=Project`;
+
   return {
     title: project.title,
     description,
@@ -27,13 +31,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       type: 'article',
       url: `${baseUrl}/projects/${slug}`,
-      ...(project.coverUrl && { images: [{ url: project.coverUrl, width: 1200, height: 630, alt: project.title }] }),
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: project.title,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: project.title,
       description,
-      ...(project.coverUrl && { images: [project.coverUrl] }),
+      images: [ogImageUrl],
     },
   };
 }

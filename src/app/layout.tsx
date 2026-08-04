@@ -44,9 +44,25 @@ export const metadata: Metadata = {
     locale: "en_US",
     siteName: "Developer Portfolio",
     url: siteUrl,
+    images: [
+      {
+        url: "/api/og",
+        width: 1200,
+        height: 630,
+        alt: "Muhammad Qomarudin Portfolio",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
+    images: [
+      {
+        url: "/api/og",
+        width: 1200,
+        height: 630,
+        alt: "Muhammad Qomarudin Portfolio",
+      },
+    ],
   },
   robots: {
     index: true,

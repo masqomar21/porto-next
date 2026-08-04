@@ -19,6 +19,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await Post.findOne({ slug, published: true }).lean() as any;
   if (!post) return { title: 'Post Not Found' };
   const description = post.excerpt || `${post.title} — read this article on our blog.`;
+  const ogImageUrl = post.coverUrl
+    ? post.coverUrl
+    : `/api/og?title=${encodeURIComponent(post.title)}&description=${encodeURIComponent(description)}&type=Blog`;
+
   return {
     title: post.title,
     description,
@@ -31,13 +35,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       publishedTime: post.publishedAt,
       modifiedTime: post.updatedAt,
       tags: post.tags,
-      ...(post.coverUrl && { images: [{ url: post.coverUrl, width: 1200, height: 630, alt: post.title }] }),
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: post.title,
       description,
-      ...(post.coverUrl && { images: [post.coverUrl] }),
+      images: [ogImageUrl],
     },
   };
 }
