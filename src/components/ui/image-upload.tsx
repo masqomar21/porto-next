@@ -13,6 +13,7 @@ interface ImageUploadProps {
   disabled?: boolean;
   allowedTypes?: string[];
   aspectRatio?: '1:1' | '16:9' | '4:3' | '3:2' | '9:16' | 'original' | 'free';
+  uncompress?: boolean; // When true, uploads raw uncompressed original file directly without editing/converting
 }
 
 export function ImageUpload({
@@ -23,6 +24,7 @@ export function ImageUpload({
   disabled = false,
   allowedTypes = ['image/png', 'image/jpeg', 'image/webp', 'image/gif'],
   aspectRatio = 'free',
+  uncompress = false,
 }: ImageUploadProps) {
   const [isDragging, setIsDragging] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -38,6 +40,52 @@ export function ImageUpload({
   const triggerFileInput = () => {
     if (disabled || isUploading) return;
     fileInputRef.current?.click();
+  };
+
+  const uploadDirectFile = async (fileToUpload: File) => {
+    setIsUploading(true);
+    setUploadProgress(10);
+    
+    const progressInterval = setInterval(() => {
+      setUploadProgress((prev) => {
+        if (prev >= 85) return prev;
+        return prev + 5;
+      });
+    }, 150);
+
+    try {
+      const formData = new FormData();
+      formData.append('file', fileToUpload);
+
+      const res = await fetch('/api/admin/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      clearInterval(progressInterval);
+
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.error || 'Failed to upload image');
+      }
+
+      setUploadProgress(100);
+      const data = await res.json();
+      
+      setTimeout(() => {
+        setIsUploading(false);
+        onChange(data.url);
+        setPendingFile(null);
+        setEditorImageSrc(null);
+      }, 300);
+
+    } catch (err: any) {
+      clearInterval(progressInterval);
+      setIsUploading(false);
+      setError(err.message || 'An error occurred during upload.');
+      setPendingFile(null);
+      setEditorImageSrc(null);
+    }
   };
 
   const handleFiles = async (files: FileList) => {
@@ -78,6 +126,12 @@ export function ImageUpload({
     // Check size limit
     if (file.size > maxSizeMB * 1024 * 1024) {
       setError(`File is too large. Max size is ${maxSizeMB}MB.`);
+      return;
+    }
+
+    // If uncompress is enabled, bypass crop/compress editor and upload raw file directly
+    if (uncompress) {
+      uploadDirectFile(file);
       return;
     }
 
@@ -279,7 +333,7 @@ export function ImageUpload({
                   Click to upload or drag & drop
                 </p>
                 <p className="text-xs text-muted-foreground">
-                  {allowedExtensionsText} (max. {maxSizeMB}MB)
+                  {allowedExtensionsText} (max. {maxSizeMB}MB) {uncompress && '• Uncompressed Original'}
                 </p>
               </div>
             </>
@@ -293,18 +347,20 @@ export function ImageUpload({
         </div>
       )}
 
-      {/* Interactive Image Editor Modal */}
-      <ImageEditorModal
-        open={editorOpen}
-        imageSrc={editorImageSrc}
-        aspectRatio={aspectRatio}
-        onClose={() => {
-          setEditorOpen(false);
-          setPendingFile(null);
-          setEditorImageSrc(null);
-        }}
-        onSave={handleUploadEdited}
-      />
+      {/* Interactive Image Editor Modal (skipped when uncompress === true) */}
+      {!uncompress && (
+        <ImageEditorModal
+          open={editorOpen}
+          imageSrc={editorImageSrc}
+          aspectRatio={aspectRatio}
+          onClose={() => {
+            setEditorOpen(false);
+            setPendingFile(null);
+            setEditorImageSrc(null);
+          }}
+          onSave={handleUploadEdited}
+        />
+      )}
     </div>
   );
 }
