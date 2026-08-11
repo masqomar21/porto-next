@@ -10,7 +10,7 @@ export default function SettingsPage() {
   const [state, action, pending] = useActionState(changePassword, undefined);
 
   return (
-    <div className="space-y-6 max-w-lg animate-in fade-in duration-300">
+    <div className="space-y-6 w-full animate-in fade-in duration-300">
       <div>
         <h1 className="text-3xl font-extrabold tracking-tight text-foreground">Settings</h1>
         <p className="text-muted-foreground text-sm mt-1">Manage admin settings and security credentials</p>

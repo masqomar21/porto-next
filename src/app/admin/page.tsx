@@ -4,6 +4,8 @@ import Post from '@/models/Post';
 import Project from '@/models/Project';
 import Skill from '@/models/Skill';
 import Experience from '@/models/Experience';
+import InboxMessage from '@/models/InboxMessage';
+import MediaAsset from '@/models/MediaAsset';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
@@ -13,21 +15,35 @@ import {
   Eye,
   Sparkles,
   Mail,
+  Inbox,
+  Image as ImageIcon,
   Globe,
-  Clock
+  Clock,
 } from 'lucide-react';
 
-export const metadata: Metadata = { title: 'Dashboard' };
+export const metadata: Metadata = { title: 'Dashboard - Admin' };
 export const dynamic = 'force-dynamic';
 
 export default async function AdminDashboard() {
   await connectDB();
-  const [totalPosts, publishedPosts, totalProjects, totalSkills, totalExperiences] = await Promise.all([
+  const [
+    totalPosts,
+    publishedPosts,
+    totalProjects,
+    totalSkills,
+    totalExperiences,
+    totalInboxMessages,
+    unreadInboxMessages,
+    totalMediaAssets,
+  ] = await Promise.all([
     Post.countDocuments(),
     Post.countDocuments({ published: true }),
     Project.countDocuments(),
     Skill.countDocuments(),
     Experience.countDocuments(),
+    InboxMessage.countDocuments(),
+    InboxMessage.countDocuments({ read: false }),
+    MediaAsset.countDocuments(),
   ]);
 
   const totalViews = await Post.aggregate([
@@ -35,132 +51,173 @@ export default async function AdminDashboard() {
   ]).then((r) => r[0]?.total ?? 0);
 
   return (
-    <div className="space-y-10 animate-in fade-in duration-300">
+    <div className="space-y-10 animate-in fade-in duration-200">
       <div>
         <h1 className="text-3xl font-extrabold tracking-tight text-foreground">Dashboard</h1>
-        <p className="text-muted-foreground text-sm mt-1">Overview of your portfolio content</p>
+        <p className="text-muted-foreground text-xs font-mono mt-1 uppercase tracking-wider">
+          System Overview & Content Management Metrics
+        </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-        <Card className="bg-card border-border hover:border-violet-500 transition-colors">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Card className="bg-card border-border hover:border-foreground/50 transition-colors shadow-none rounded-md">
           <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-            <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+            <CardTitle className="text-xs font-mono font-semibold text-muted-foreground uppercase tracking-widest">
               Blog Posts
             </CardTitle>
-            <FileText className="w-5 h-5 text-muted-foreground" />
+            <FileText className="w-4 h-4 text-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-extrabold text-foreground">{totalPosts}</div>
-            <p className="text-xs text-muted-foreground mt-1">{publishedPosts} published</p>
+            <div className="text-3xl font-mono font-extrabold text-foreground">{totalPosts}</div>
+            <p className="text-xs text-muted-foreground mt-1 font-sans">{publishedPosts} published</p>
           </CardContent>
         </Card>
 
-        <Card className="bg-card border-border hover:border-violet-500 transition-colors">
+        <Card className="bg-card border-border hover:border-foreground/50 transition-colors shadow-none rounded-md">
           <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-            <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+            <CardTitle className="text-xs font-mono font-semibold text-muted-foreground uppercase tracking-widest">
               Projects
             </CardTitle>
-            <Briefcase className="w-5 h-5 text-muted-foreground" />
+            <Briefcase className="w-4 h-4 text-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-extrabold text-foreground">{totalProjects}</div>
-            <p className="text-xs text-muted-foreground mt-1">Showcased works</p>
+            <div className="text-3xl font-mono font-extrabold text-foreground">{totalProjects}</div>
+            <p className="text-xs text-muted-foreground mt-1 font-sans">Showcased works</p>
           </CardContent>
         </Card>
 
-        <Card className="bg-card border-border hover:border-violet-500 transition-colors">
+        <Card className="bg-card border-border hover:border-foreground/50 transition-colors shadow-none rounded-md">
           <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-            <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+            <CardTitle className="text-xs font-mono font-semibold text-muted-foreground uppercase tracking-widest">
+              Inbox Messages
+            </CardTitle>
+            <Inbox className="w-4 h-4 text-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-3xl font-mono font-extrabold text-foreground">{totalInboxMessages}</div>
+            <p className="text-xs text-muted-foreground mt-1 font-sans">
+              {unreadInboxMessages > 0 ? (
+                <span className="font-semibold text-foreground">{unreadInboxMessages} unread</span>
+              ) : (
+                'All messages read'
+              )}
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-card border-border hover:border-foreground/50 transition-colors shadow-none rounded-md">
+          <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+            <CardTitle className="text-xs font-mono font-semibold text-muted-foreground uppercase tracking-widest">
+              Media Assets
+            </CardTitle>
+            <ImageIcon className="w-4 h-4 text-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-3xl font-mono font-extrabold text-foreground">{totalMediaAssets}</div>
+            <p className="text-xs text-muted-foreground mt-1 font-sans">Uploaded files & images</p>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-card border-border hover:border-foreground/50 transition-colors shadow-none rounded-md">
+          <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+            <CardTitle className="text-xs font-mono font-semibold text-muted-foreground uppercase tracking-widest">
               Experience
             </CardTitle>
-            <Clock className="w-5 h-5 text-muted-foreground" />
+            <Clock className="w-4 h-4 text-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-extrabold text-foreground">{totalExperiences}</div>
-            <p className="text-xs text-muted-foreground mt-1">Timeline roles</p>
+            <div className="text-3xl font-mono font-extrabold text-foreground">{totalExperiences}</div>
+            <p className="text-xs text-muted-foreground mt-1 font-sans">Timeline roles</p>
           </CardContent>
         </Card>
 
-        <Card className="bg-card border-border hover:border-violet-500 transition-colors">
+        <Card className="bg-card border-border hover:border-foreground/50 transition-colors shadow-none rounded-md">
           <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-            <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+            <CardTitle className="text-xs font-mono font-semibold text-muted-foreground uppercase tracking-widest">
               Skills
             </CardTitle>
-            <Zap className="w-5 h-5 text-muted-foreground" />
+            <Zap className="w-4 h-4 text-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-extrabold text-foreground">{totalSkills}</div>
-            <p className="text-xs text-muted-foreground mt-1">Tech capabilities</p>
+            <div className="text-3xl font-mono font-extrabold text-foreground">{totalSkills}</div>
+            <p className="text-xs text-muted-foreground mt-1 font-sans">Tech capabilities</p>
           </CardContent>
         </Card>
 
-        <Card className="bg-card border-border hover:border-violet-500 transition-colors">
+        <Card className="bg-card border-border hover:border-foreground/50 transition-colors shadow-none rounded-md sm:col-span-2">
           <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-            <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+            <CardTitle className="text-xs font-mono font-semibold text-muted-foreground uppercase tracking-widest">
               Blog Views
             </CardTitle>
-            <Eye className="w-5 h-5 text-muted-foreground" />
+            <Eye className="w-4 h-4 text-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-extrabold text-foreground">{totalViews.toLocaleString()}</div>
-            <p className="text-xs text-muted-foreground mt-1">Cumulative views</p>
+            <div className="text-3xl font-mono font-extrabold text-foreground">{totalViews.toLocaleString()}</div>
+            <p className="text-xs text-muted-foreground mt-1 font-sans">Cumulative article views</p>
           </CardContent>
         </Card>
       </div>
 
       <div>
-        <h2 className="text-xl font-bold text-foreground mb-6">Quick Actions</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-4">
+        <h2 className="text-lg font-bold text-foreground mb-4">Quick Actions</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
           <Link
             href="/admin/blog/new"
-            className="flex flex-col items-center justify-center p-6 bg-card border border-border rounded-xl text-center hover:border-violet-500 hover:bg-violet-500/5 hover:-translate-y-0.5 transition-all group"
+            className="flex flex-col items-center justify-center p-4 bg-card border border-border rounded-md text-center hover:border-foreground hover:bg-muted transition-all group"
           >
-            <FileText className="w-8 h-8 mb-3 text-muted-foreground group-hover:text-violet-500 transition-colors" />
-            <span className="text-xs font-semibold text-foreground">New Blog Post</span>
+            <FileText className="w-6 h-6 mb-2 text-foreground group-hover:scale-105 transition-transform" />
+            <span className="text-[11px] font-semibold text-foreground">New Post</span>
           </Link>
           <Link
             href="/admin/projects/new"
-            className="flex flex-col items-center justify-center p-6 bg-card border border-border rounded-xl text-center hover:border-violet-500 hover:bg-violet-500/5 hover:-translate-y-0.5 transition-all group"
+            className="flex flex-col items-center justify-center p-4 bg-card border border-border rounded-md text-center hover:border-foreground hover:bg-muted transition-all group"
           >
-            <Briefcase className="w-8 h-8 mb-3 text-muted-foreground group-hover:text-violet-500 transition-colors" />
-            <span className="text-xs font-semibold text-foreground">New Project</span>
+            <Briefcase className="w-6 h-6 mb-2 text-foreground group-hover:scale-105 transition-transform" />
+            <span className="text-[11px] font-semibold text-foreground">New Project</span>
+          </Link>
+          <Link
+            href="/admin/inbox"
+            className="flex flex-col items-center justify-center p-4 bg-card border border-border rounded-md text-center hover:border-foreground hover:bg-muted transition-all group"
+          >
+            <Inbox className="w-6 h-6 mb-2 text-foreground group-hover:scale-105 transition-transform" />
+            <span className="text-[11px] font-semibold text-foreground">View Inbox</span>
+          </Link>
+          <Link
+            href="/admin/media"
+            className="flex flex-col items-center justify-center p-4 bg-card border border-border rounded-md text-center hover:border-foreground hover:bg-muted transition-all group"
+          >
+            <ImageIcon className="w-6 h-6 mb-2 text-foreground group-hover:scale-105 transition-transform" />
+            <span className="text-[11px] font-semibold text-foreground">Media Library</span>
           </Link>
           <Link
             href="/admin/experience"
-            className="flex flex-col items-center justify-center p-6 bg-card border border-border rounded-xl text-center hover:border-violet-500 hover:bg-violet-500/5 hover:-translate-y-0.5 transition-all group"
+            className="flex flex-col items-center justify-center p-4 bg-card border border-border rounded-md text-center hover:border-foreground hover:bg-muted transition-all group"
           >
-            <Clock className="w-8 h-8 mb-3 text-muted-foreground group-hover:text-violet-500 transition-colors" />
-            <span className="text-xs font-semibold text-foreground">Manage Experience</span>
+            <Clock className="w-6 h-6 mb-2 text-foreground group-hover:scale-105 transition-transform" />
+            <span className="text-[11px] font-semibold text-foreground">Experience</span>
           </Link>
           <Link
             href="/admin/hero"
-            className="flex flex-col items-center justify-center p-6 bg-card border border-border rounded-xl text-center hover:border-violet-500 hover:bg-violet-500/5 hover:-translate-y-0.5 transition-all group"
+            className="flex flex-col items-center justify-center p-4 bg-card border border-border rounded-md text-center hover:border-foreground hover:bg-muted transition-all group"
           >
-            <Sparkles className="w-8 h-8 mb-3 text-muted-foreground group-hover:text-violet-500 transition-colors" />
-            <span className="text-xs font-semibold text-foreground">Edit Hero</span>
+            <Sparkles className="w-6 h-6 mb-2 text-foreground group-hover:scale-105 transition-transform" />
+            <span className="text-[11px] font-semibold text-foreground">Edit Hero</span>
           </Link>
           <Link
             href="/admin/skills"
-            className="flex flex-col items-center justify-center p-6 bg-card border border-border rounded-xl text-center hover:border-violet-500 hover:bg-violet-500/5 hover:-translate-y-0.5 transition-all group"
+            className="flex flex-col items-center justify-center p-4 bg-card border border-border rounded-md text-center hover:border-foreground hover:bg-muted transition-all group"
           >
-            <Zap className="w-8 h-8 mb-3 text-muted-foreground group-hover:text-violet-500 transition-colors" />
-            <span className="text-xs font-semibold text-foreground">Manage Skills</span>
-          </Link>
-          <Link
-            href="/admin/contact"
-            className="flex flex-col items-center justify-center p-6 bg-card border border-border rounded-xl text-center hover:border-violet-500 hover:bg-violet-500/5 hover:-translate-y-0.5 transition-all group"
-          >
-            <Mail className="w-8 h-8 mb-3 text-muted-foreground group-hover:text-violet-500 transition-colors" />
-            <span className="text-xs font-semibold text-foreground">Edit Contact</span>
+            <Zap className="w-6 h-6 mb-2 text-foreground group-hover:scale-105 transition-transform" />
+            <span className="text-[11px] font-semibold text-foreground">Manage Skills</span>
           </Link>
           <a
             href="/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-col items-center justify-center p-6 bg-card border border-border rounded-xl text-center hover:border-violet-500 hover:bg-violet-500/5 hover:-translate-y-0.5 transition-all group"
+            className="flex flex-col items-center justify-center p-4 bg-card border border-border rounded-md text-center hover:border-foreground hover:bg-muted transition-all group"
           >
-            <Globe className="w-8 h-8 mb-3 text-muted-foreground group-hover:text-violet-500 transition-colors" />
-            <span className="text-xs font-semibold text-foreground">View Live Site</span>
+            <Globe className="w-6 h-6 mb-2 text-foreground group-hover:scale-105 transition-transform" />
+            <span className="text-[11px] font-semibold text-foreground">View Site</span>
           </a>
         </div>
       </div>

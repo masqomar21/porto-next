@@ -26,21 +26,21 @@ export default function AdminLayoutClient({
           {/* Mobile hamburger menu button */}
           <button
             onClick={() => setSidebarOpen(true)}
-            className="lg:hidden p-2 rounded-md hover:bg-muted/50 text-foreground transition-colors cursor-pointer"
+            className="lg:hidden p-2 rounded-md hover:bg-muted text-foreground transition-colors cursor-pointer"
             aria-label="Open sidebar"
           >
             <Menu className="w-5 h-5" />
           </button>
 
-          <div className="flex items-center gap-2 px-4 py-1.5 bg-muted/30 border border-border rounded-full">
-            <div className="w-7 h-7 bg-violet-600 rounded-full flex items-center justify-center text-xs font-bold text-white shadow-sm">
+          <div className="flex items-center gap-2 px-3 py-1.5 bg-card border border-border rounded-md shadow-xs">
+            <div className="w-6 h-6 bg-foreground rounded-xs flex items-center justify-center text-[10px] font-bold text-background uppercase">
               {initials}
             </div>
-            <span className="text-sm text-muted-foreground">{email}</span>
+            <span className="text-xs font-mono font-medium text-foreground">{email}</span>
           </div>
         </header>
 
-        <main className="p-6 md:p-12 max-w-6xl w-full mx-auto flex-1">
+        <main className="p-6 md:p-10 w-full max-w-full flex-1">
           {children}
         </main>
       </div>

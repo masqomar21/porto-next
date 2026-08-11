@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import { ImageUpload } from '@/components/ui/image-upload';
 
 type HeroData = {
@@ -74,7 +75,7 @@ export default function HeroAdminPage() {
   };
 
   return (
-    <div className="space-y-6 max-w-2xl animate-in fade-in duration-300">
+    <div className="space-y-6 w-full animate-in fade-in duration-300">
       <div>
         <h1 className="text-3xl font-extrabold tracking-tight text-foreground">Hero Section</h1>
         <p className="text-muted-foreground text-sm mt-1">Manage the hero content of your homepage</p>
@@ -122,11 +123,12 @@ export default function HeroAdminPage() {
 
         <div className="space-y-1.5">
           <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Tagline</label>
-          <Input
+          <Textarea
             value={data.tagline}
             onChange={(e) => setData((p) => ({ ...p, tagline: e.target.value }))}
             placeholder="I build fast, beautiful..."
-            className="bg-muted/30 border-border focus-visible:ring-violet-500"
+            rows={3}
+            className="bg-muted/30 border-border focus-visible:ring-violet-500 min-h-[90px] resize-y"
           />
         </div>
 

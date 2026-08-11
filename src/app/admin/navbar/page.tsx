@@ -108,7 +108,7 @@ export default function NavbarAdminPage() {
   };
 
   return (
-    <div className="space-y-6 max-w-2xl animate-in fade-in duration-300">
+    <div className="space-y-6 w-full animate-in fade-in duration-300">
       <div>
         <h1 className="text-3xl font-extrabold tracking-tight text-foreground">
           NavBar & Ordering

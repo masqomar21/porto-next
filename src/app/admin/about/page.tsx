@@ -52,7 +52,7 @@ export default function AboutAdminPage() {
   };
 
   return (
-    <div className="space-y-6 max-w-2xl animate-in fade-in duration-300">
+    <div className="space-y-6 w-full animate-in fade-in duration-300">
       <div>
         <h1 className="text-3xl font-extrabold tracking-tight text-foreground">About Section</h1>
         <p className="text-muted-foreground text-sm mt-1">Manage the biography and file links on your site</p>

@@ -218,7 +218,7 @@ export default function ExperienceAdminPage() {
   };
 
   return (
-    <div className="space-y-6 max-w-4xl animate-in fade-in duration-300">
+    <div className="space-y-6 w-full animate-in fade-in duration-300">
       <div>
         <h1 className="text-3xl font-extrabold tracking-tight text-foreground">
           Work Experience
