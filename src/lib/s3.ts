@@ -31,9 +31,24 @@ export async function deleteFileFromS3(fileUrl: string) {
       return;
     }
 
-    // Extract the S3 key from the file URL
-    const urlParts = fileUrl.split('/');
-    const fileKey = urlParts[urlParts.length - 1];
+    let fileKey = '';
+    try {
+      const parsedUrl = new URL(fileUrl);
+      let pathname = decodeURIComponent(parsedUrl.pathname);
+      if (pathname.startsWith('/')) {
+        pathname = pathname.substring(1);
+      }
+      // If path style S3 URL contains bucket name as first segment, strip it
+      if (BUCKET_NAME && pathname.startsWith(`${BUCKET_NAME}/`)) {
+        pathname = pathname.substring(BUCKET_NAME.length + 1);
+      }
+      fileKey = pathname;
+    } catch {
+      // Fallback for non-standard URLs
+      const urlParts = fileUrl.split('/');
+      fileKey = urlParts.slice(3).join('/');
+    }
+
     if (!fileKey) return;
 
     const deleteParams = {

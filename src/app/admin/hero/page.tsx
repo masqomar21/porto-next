@@ -125,6 +125,7 @@ export default function HeroAdminPage() {
             PROFILE IMAGE
           </label>
           <ImageUpload
+            folder="hero"
             value={data.imageUrl}
             onChange={(url) => setData((p) => ({ ...p, imageUrl: url }))}
             allowedTypes={[

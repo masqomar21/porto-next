@@ -143,6 +143,7 @@ export default function NewProjectPage() {
             </CardHeader>
             <CardContent>
               <ImageUpload
+                folder="projects"
                 value={form.coverUrl}
                 onChange={(url) => set('coverUrl', url)}
                 allowedTypes={['image/png', 'image/jpeg', 'image/webp']}

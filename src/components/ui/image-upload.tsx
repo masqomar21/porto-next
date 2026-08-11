@@ -14,6 +14,7 @@ interface ImageUploadProps {
   allowedTypes?: string[];
   aspectRatio?: '1:1' | '16:9' | '4:3' | '3:2' | '9:16' | 'original' | 'free';
   uncompress?: boolean; // When true, uploads raw uncompressed original file directly without editing/converting
+  folder?: string;
 }
 
 export function ImageUpload({
@@ -25,6 +26,7 @@ export function ImageUpload({
   allowedTypes = ['image/png', 'image/jpeg', 'image/webp', 'image/gif'],
   aspectRatio = 'free',
   uncompress = false,
+  folder,
 }: ImageUploadProps) {
   const [isDragging, setIsDragging] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -56,6 +58,7 @@ export function ImageUpload({
     try {
       const formData = new FormData();
       formData.append('file', fileToUpload);
+      if (folder) formData.append('folder', folder);
 
       const res = await fetch('/api/admin/upload', {
         method: 'POST',
@@ -165,6 +168,7 @@ export function ImageUpload({
       const originalName = pendingFile.name.substring(0, pendingFile.name.lastIndexOf('.')) || pendingFile.name;
       const editedFile = new File([blob], `${originalName}-edited.webp`, { type: 'image/webp' });
       formData.append('file', editedFile);
+      if (folder) formData.append('folder', folder);
 
       const res = await fetch('/api/admin/upload', {
         method: 'POST',

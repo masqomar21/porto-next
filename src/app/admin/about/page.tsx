@@ -75,6 +75,7 @@ export default function AboutAdminPage() {
         <div className="space-y-1.5">
           <label className="text-[11px] font-mono font-bold text-muted-foreground uppercase tracking-widest block mb-1">PHOTO</label>
           <ImageUpload
+            folder="about"
             value={data.photoUrl}
             onChange={(url) => setData((p) => ({ ...p, photoUrl: url }))}
             allowedTypes={['image/png', 'image/jpeg', 'image/webp']}
@@ -84,6 +85,7 @@ export default function AboutAdminPage() {
         <div className="space-y-1.5">
           <label className="text-[11px] font-mono font-bold text-muted-foreground uppercase tracking-widest block mb-1">RESUME FILE</label>
           <FileUpload
+            folder="documents"
             value={data.resumeUrl}
             onChange={(url) => setData((p) => ({ ...p, resumeUrl: url }))}
             allowedTypes={['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']}

@@ -11,6 +11,7 @@ interface FileUploadProps {
   className?: string;
   disabled?: boolean;
   allowedTypes?: string[];
+  folder?: string;
 }
 
 const getFileIcon = (url: string) => {
@@ -55,6 +56,7 @@ export function FileUpload({
   className,
   disabled = false,
   allowedTypes,
+  folder,
 }: FileUploadProps) {
   const [isDragging, setIsDragging] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -116,6 +118,7 @@ export function FileUpload({
     try {
       const formData = new FormData();
       formData.append('file', file);
+      if (folder) formData.append('folder', folder);
 
       const res = await fetch('/api/admin/upload', {
         method: 'POST',

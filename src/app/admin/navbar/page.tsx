@@ -145,6 +145,7 @@ export default function NavbarAdminPage() {
               Logo Image (Light Mode)
             </label>
             <ImageUpload
+              folder="navbar"
               value={data.imageUrl}
               onChange={(url) => setData((p) => ({ ...p, imageUrl: url }))}
               allowedTypes={['image/png', 'image/jpeg', 'image/webp', 'image/svg+xml']}
@@ -156,6 +157,7 @@ export default function NavbarAdminPage() {
               Logo Image (Dark Mode)
             </label>
             <ImageUpload
+              folder="navbar"
               value={data.darkImageUrl}
               onChange={(url) => setData((p) => ({ ...p, darkImageUrl: url }))}
               allowedTypes={['image/png', 'image/jpeg', 'image/webp', 'image/svg+xml']}

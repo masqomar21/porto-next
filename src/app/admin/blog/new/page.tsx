@@ -140,6 +140,7 @@ export default function NewBlogPostPage() {
             </CardHeader>
             <CardContent>
               <ImageUpload
+                folder="blog"
                 value={form.coverUrl}
                 onChange={(url) => set('coverUrl', url)}
                 allowedTypes={['image/png', 'image/jpeg', 'image/webp']}

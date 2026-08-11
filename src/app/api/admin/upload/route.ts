@@ -24,7 +24,35 @@ export async function POST(req: NextRequest) {
     }
 
     const buffer = Buffer.from(await file.arrayBuffer());
-    const fileKey = `${Date.now()}-${Math.random().toString(36).substring(2, 9)}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`;
+    
+    // Determine target folder (custom param or auto-categorized by type)
+    const rawFolder = (formData.get('folder') as string) || req.nextUrl.searchParams.get('folder') || '';
+    let targetFolder = rawFolder.trim().toLowerCase().replace(/[^a-z0-9_-]/g, '');
+
+    if (!targetFolder) {
+      if (file.type.startsWith('image/')) {
+        targetFolder = 'images';
+      } else if (
+        file.type.includes('pdf') ||
+        file.type.includes('document') ||
+        file.type.includes('word') ||
+        file.type.includes('text') ||
+        file.type.includes('zip') ||
+        file.type.includes('tar') ||
+        file.type.includes('rar')
+      ) {
+        targetFolder = 'documents';
+      } else if (file.type.startsWith('audio/')) {
+        targetFolder = 'audio';
+      } else if (file.type.startsWith('video/')) {
+        targetFolder = 'video';
+      } else {
+        targetFolder = 'others';
+      }
+    }
+
+    const sanitizedFileName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
+    const fileKey = `${targetFolder}/${Date.now()}-${Math.random().toString(36).substring(2, 9)}-${sanitizedFileName}`;
 
     // Upload params
     const uploadParams = {

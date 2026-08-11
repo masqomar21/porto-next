@@ -194,6 +194,7 @@ export default function MediaClientView({
                   UPLOAD ASSET IMAGE (MAX 10MB)
                 </label>
                 <ImageUpload
+                  folder="media"
                   value={url}
                   onChange={(uploadedUrl) => {
                     setUrl(uploadedUrl);
