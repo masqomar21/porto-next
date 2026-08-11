@@ -21,14 +21,25 @@ const sectionLinkMap: Record<
 export default function Navbar({
   navbarData,
 }: {
-  navbarData: { title?: string; imageUrl?: string; sectionOrder?: string[] };
+  navbarData: {
+    title?: string;
+    imageUrl?: string;
+    darkImageUrl?: string;
+    sectionOrder?: string[];
+  };
 }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const { theme, resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
+
+  const activeTheme = mounted ? (resolvedTheme || theme) : "light";
+  const activeLogo =
+    activeTheme === "dark"
+      ? navbarData?.darkImageUrl || navbarData?.imageUrl
+      : navbarData?.imageUrl || navbarData?.darkImageUrl;
 
   const sectionOrder = navbarData?.sectionOrder || [
     "hero",
@@ -57,6 +68,21 @@ export default function Navbar({
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!activeLogo || !mounted) return;
+    const existingLinks = document.querySelectorAll<HTMLLinkElement>("link[rel*='icon']");
+    if (existingLinks.length > 0) {
+      existingLinks.forEach((link) => {
+        link.href = activeLogo;
+      });
+    } else {
+      const newLink = document.createElement("link");
+      newLink.rel = "icon";
+      newLink.href = activeLogo;
+      document.head.appendChild(newLink);
+    }
+  }, [activeLogo, mounted]);
+
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
@@ -84,10 +110,10 @@ export default function Navbar({
           href="/"
           className="font-serif italic font-bold text-2xl tracking-tight text-foreground hover:opacity-80 transition-opacity"
         >
-          {navbarData.imageUrl ? (
+          {activeLogo ? (
             <div className="flex items-center gap-2">
               <img
-                src={navbarData.imageUrl}
+                src={activeLogo}
                 alt="Profile Preview"
                 className="w-12 h-12 rounded-full object-cover border border-border bg-muted/40 shrink-0"
                 onError={(e) => {

@@ -1,9 +1,34 @@
 import { ImageResponse } from "next/og";
 import connectDB from "@/lib/mongodb";
 import Hero from "@/models/Hero";
+import Navbar from "@/models/Navbar";
 import sharp from "sharp";
 
 export const runtime = "nodejs";
+
+async function processImageToBase64(url: string): Promise<string | null> {
+  try {
+    const res = await fetch(url);
+    if (!res.ok) return null;
+    const arrayBuffer = await res.arrayBuffer();
+    const inputBuffer = Buffer.from(arrayBuffer);
+    const contentType = (res.headers.get("content-type") || "").toLowerCase();
+    let pngBuffer: Buffer;
+    if (
+      contentType.includes("webp") ||
+      url.toLowerCase().endsWith(".webp") ||
+      !contentType.includes("png")
+    ) {
+      pngBuffer = await sharp(inputBuffer).toFormat("png").toBuffer();
+    } else {
+      pngBuffer = inputBuffer;
+    }
+    return `data:image/png;base64,${pngBuffer.toString("base64")}`;
+  } catch (err) {
+    console.warn("OG Image: Image fetch/conversion failed for", url, err);
+    return null;
+  }
+}
 
 export async function GET(request: Request) {
   try {
@@ -20,53 +45,34 @@ export async function GET(request: Request) {
     let tagline =
       "I build fast, beautiful, and highly scalable web applications, designing interfaces that feel alive and responsive.";
     let imageUrl = imageParam;
+    let logoUrl: string | null = null;
 
-    // Fetch Hero model from database if info missing
+    // Fetch Hero and Navbar models from database
     try {
       await connectDB();
       const hero = (await Hero.findOne({}).lean()) as any;
+      const navbar = (await Navbar.findOne({}).lean()) as any;
       if (hero) {
         if (hero.name) name = hero.name;
         if (!description && hero.tagline) tagline = hero.tagline;
         if (!imageUrl && hero.imageUrl) imageUrl = hero.imageUrl;
       }
+      if (navbar) {
+        logoUrl = navbar.imageUrl || navbar.darkImageUrl || null;
+      }
     } catch (err) {
-      console.error("OG Image: Failed to fetch Hero data", err);
+      console.error("OG Image: Failed to fetch Hero/Navbar data", err);
     }
 
     // Safely handle external image fetching & WebP conversion to PNG base64 for Satori
     let validImageUrl: string | null = null;
     if (imageUrl) {
-      try {
-        const res = await fetch(imageUrl);
-        if (res.ok) {
-          const arrayBuffer = await res.arrayBuffer();
-          const inputBuffer = Buffer.from(arrayBuffer);
-          const contentType = (
-            res.headers.get("content-type") || ""
-          ).toLowerCase();
+      validImageUrl = await processImageToBase64(imageUrl);
+    }
 
-          let pngBuffer: Buffer;
-          // If it's WebP or non-PNG/JPEG image, convert to PNG via sharp
-          if (
-            contentType.includes("webp") ||
-            imageUrl.toLowerCase().endsWith(".webp") ||
-            !contentType.includes("png")
-          ) {
-            pngBuffer = await sharp(inputBuffer).toFormat("png").toBuffer();
-          } else {
-            pngBuffer = inputBuffer;
-          }
-
-          const base64 = pngBuffer.toString("base64");
-          validImageUrl = `data:image/png;base64,${base64}`;
-        }
-      } catch (err) {
-        console.warn(
-          "OG Image: External image fetch or WebP conversion failed, fallback to graphic",
-          err
-        );
-      }
+    let validLogoUrl: string | null = null;
+    if (logoUrl) {
+      validLogoUrl = await processImageToBase64(logoUrl);
     }
 
     const displayTitle = title || `${name} — Portfolio`;
@@ -134,22 +140,36 @@ export async function GET(request: Request) {
                 gap: "12px",
               }}
             >
-              <div
-                style={{
-                  width: "36px",
-                  height: "36px",
-                  borderRadius: "50%",
-                  backgroundColor: "#000000",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "#ffffff",
-                  fontWeight: 900,
-                  fontSize: "20px",
-                }}
-              >
-                ▲
-              </div>
+              {validLogoUrl ? (
+                <img
+                  src={validLogoUrl}
+                  width="36"
+                  height="36"
+                  style={{
+                    width: "36px",
+                    height: "36px",
+                    borderRadius: "50%",
+                    objectFit: "cover",
+                  }}
+                />
+              ) : (
+                <div
+                  style={{
+                    width: "36px",
+                    height: "36px",
+                    borderRadius: "50%",
+                    backgroundColor: "#000000",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "#ffffff",
+                    fontWeight: 900,
+                    fontSize: "20px",
+                  }}
+                >
+                  ▲
+                </div>
+              )}
               <span
                 style={{
                   fontSize: "22px",
@@ -236,8 +256,8 @@ export async function GET(request: Request) {
                 {typeParam === "Blog"
                   ? "Read Article"
                   : typeParam === "Project"
-                  ? "View Project"
-                  : "Explore Portfolio"}
+                    ? "View Project"
+                    : "Explore Portfolio"}
               </div>
             </div>
           </div>
@@ -443,7 +463,7 @@ export async function GET(request: Request) {
       {
         width: 1200,
         height: 630,
-      }
+      },
     );
   } catch (e: any) {
     console.error("OG Image generation failed:", e);

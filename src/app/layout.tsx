@@ -14,70 +14,100 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
 const ogImageUrl = `${siteUrl}/api/og`;
 
-export const metadata: Metadata = {
-  title: {
-    template: "%s | Portfolio",
-    default: "Muhammad Qomarudin Portfolio",
-  },
-  keywords: [
-    "Muhammad Qomarudin",
-    "Developer Portfolio",
-    "Full-stack developer",
-    "Web Developer",
-    "Frontend Developer",
-    "Backend Developer",
-    "React Developer",
-    "Next.js Developer",
-    "Node.js Developer",
-    "Express.js Developer",
-    "MongoDB Developer",
-    "PostgreSQL Developer",
-    "MySQL Developer",
-    "Portfolio",
-  ],
-  description:
-    "Full-stack developer portfolio showcasing projects, blog articles, and professional experience of Muhammad Qomarudin.",
-  metadataBase: new URL(siteUrl),
-  alternates: {
-    canonical: "/",
-  },
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    siteName: "Developer Portfolio",
-    url: siteUrl,
-    images: [
-      {
-        url: ogImageUrl,
-        width: 1200,
-        height: 630,
-        alt: "Muhammad Qomarudin Portfolio",
-      },
+export async function generateMetadata(): Promise<Metadata> {
+  const icons: any[] = [];
+  try {
+    await connectDB();
+    const navbar = (await NavbarModel.findOne({}).lean()) as any;
+    if (navbar) {
+      if (navbar.imageUrl) {
+        icons.push({
+          url: navbar.imageUrl,
+          media: "(prefers-color-scheme: light)",
+        });
+      }
+      if (navbar.darkImageUrl) {
+        icons.push({
+          url: navbar.darkImageUrl,
+          media: "(prefers-color-scheme: dark)",
+        });
+      }
+      if (!navbar.imageUrl && navbar.darkImageUrl) {
+        icons.push({ url: navbar.darkImageUrl });
+      } else if (navbar.imageUrl && !navbar.darkImageUrl) {
+        icons.push({ url: navbar.imageUrl });
+      }
+    }
+  } catch (error) {
+    console.error("Failed to fetch navbar data for metadata icons:", error);
+  }
+
+  return {
+    title: {
+      template: "%s | Portfolio",
+      default: "Muhammad Qomarudin Portfolio",
+    },
+    keywords: [
+      "Muhammad Qomarudin",
+      "Developer Portfolio",
+      "Full-stack developer",
+      "Web Developer",
+      "Frontend Developer",
+      "Backend Developer",
+      "React Developer",
+      "Next.js Developer",
+      "Node.js Developer",
+      "Express.js Developer",
+      "MongoDB Developer",
+      "PostgreSQL Developer",
+      "MySQL Developer",
+      "Portfolio",
     ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    images: [
-      {
-        url: ogImageUrl,
-        width: 1200,
-        height: 630,
-        alt: "Muhammad Qomarudin Portfolio",
-      },
-    ],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+    description:
+      "Full-stack developer portfolio showcasing projects, blog articles, and professional experience of Muhammad Qomarudin.",
+    metadataBase: new URL(siteUrl),
+    alternates: {
+      canonical: "/",
+    },
+    openGraph: {
+      type: "website",
+      locale: "en_US",
+      siteName: "Developer Portfolio",
+      url: siteUrl,
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: "Muhammad Qomarudin Portfolio",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: "Muhammad Qomarudin Portfolio",
+        },
+      ],
+    },
+    robots: {
       index: true,
       follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
     },
-  },
-};
+    icons: icons.length > 0 ? { icon: icons } : { icon: "/faviconn.ico" },
+  };
+}
 
 export default async function RootLayout({
   children,

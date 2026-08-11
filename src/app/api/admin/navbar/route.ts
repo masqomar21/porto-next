@@ -38,6 +38,9 @@ export async function PATCH(req: NextRequest) {
     if (oldNavbar.imageUrl && oldNavbar.imageUrl !== body.imageUrl) {
       await deleteFileFromS3(oldNavbar.imageUrl);
     }
+    if (oldNavbar.darkImageUrl && oldNavbar.darkImageUrl !== body.darkImageUrl) {
+      await deleteFileFromS3(oldNavbar.darkImageUrl);
+    }
   }
 
   const navbar = await Navbar.findOneAndUpdate({}, body, { new: true, upsert: true });

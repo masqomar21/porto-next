@@ -10,6 +10,7 @@ import { ImageUpload } from "@/components/ui/image-upload";
 type Navdata = {
   title: string;
   imageUrl: string;
+  darkImageUrl: string;
 };
 
 const sectionNames: Record<string, string> = {
@@ -26,6 +27,7 @@ export default function NavbarAdminPage() {
   const [data, setData] = useState<Navdata>({
     title: "",
     imageUrl: "",
+    darkImageUrl: "",
   });
   const [sectionOrder, setSectionOrder] = useState<string[]>([]);
   const [draggedSection, setDraggedSection] = useState<string | null>(null);
@@ -42,6 +44,7 @@ export default function NavbarAdminPage() {
         setData({
           title: d.title || "",
           imageUrl: d.imageUrl || "",
+          darkImageUrl: d.darkImageUrl || "",
         });
         setSectionOrder(
           d.sectionOrder && d.sectionOrder.length > 0
@@ -94,6 +97,7 @@ export default function NavbarAdminPage() {
         body: JSON.stringify({
           title: data.title,
           imageUrl: data.imageUrl,
+          darkImageUrl: data.darkImageUrl,
           sectionOrder,
         }),
       });
@@ -135,15 +139,28 @@ export default function NavbarAdminPage() {
           />
         </div>
 
-        <div className="space-y-1.5">
-          <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-            Logo Image
-          </label>
-          <ImageUpload
-            value={data.imageUrl}
-            onChange={(url) => setData((p) => ({ ...p, imageUrl: url }))}
-            allowedTypes={['image/png', 'image/jpeg', 'image/webp', 'image/svg+xml']}
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-1.5">
+            <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+              Logo Image (Light Mode)
+            </label>
+            <ImageUpload
+              value={data.imageUrl}
+              onChange={(url) => setData((p) => ({ ...p, imageUrl: url }))}
+              allowedTypes={['image/png', 'image/jpeg', 'image/webp', 'image/svg+xml']}
+            />
+          </div>
+
+          <div className="space-y-1.5">
+            <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+              Logo Image (Dark Mode)
+            </label>
+            <ImageUpload
+              value={data.darkImageUrl}
+              onChange={(url) => setData((p) => ({ ...p, darkImageUrl: url }))}
+              allowedTypes={['image/png', 'image/jpeg', 'image/webp', 'image/svg+xml']}
+            />
+          </div>
         </div>
 
         {/* Dynamic Section Ordering */}
