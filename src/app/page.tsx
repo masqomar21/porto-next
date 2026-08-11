@@ -6,6 +6,7 @@ import Project from "@/models/Project";
 import Post from "@/models/Post";
 import Contact from "@/models/Contact";
 import Experience from "@/models/Experience";
+import MediaAsset from "@/models/MediaAsset";
 import NavbarModel from "@/models/Navbar";
 import HeroSection from "@/components/sections/Hero";
 import AboutSection from "@/components/sections/About";
@@ -13,6 +14,7 @@ import ExperienceSection from "@/components/sections/Experience";
 import SkillsSection from "@/components/sections/Skills";
 import ProjectsSection from "@/components/sections/Projects";
 import BlogSection from "@/components/sections/Blog";
+import MediaSection from "@/components/sections/Media";
 import ContactSection from "@/components/sections/Contact";
 import type { Metadata } from "next";
 
@@ -66,7 +68,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function HomePage() {
   await connectDB();
 
-  const [hero, about, skills, projects, posts, contact, experiences, navbar] =
+  const [hero, about, skills, projects, posts, mediaAssets, contact, experiences, navbar] =
     await Promise.all([
       Hero.findOne({})
         .lean()
@@ -80,6 +82,10 @@ export default async function HomePage() {
         .sort({ publishedAt: -1 })
         .limit(6)
         .select("-content")
+        .lean(),
+      MediaAsset.find({})
+        .sort({ createdAt: -1 })
+        .limit(6)
         .lean(),
       Contact.findOne({})
         .lean()
@@ -100,6 +106,7 @@ export default async function HomePage() {
     "skills",
     "projects",
     "blog",
+    "media",
     "contact",
   ];
 
@@ -169,6 +176,8 @@ export default async function HomePage() {
             );
           case "blog":
             return <BlogSection key="blog" data={serialize(posts)} />;
+          case "media":
+            return <MediaSection key="media" data={serialize(mediaAssets) as any} />;
           case "contact":
             return <ContactSection key="contact" data={serialize(contact)} />;
           default:

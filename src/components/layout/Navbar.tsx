@@ -14,6 +14,7 @@ const sectionLinkMap: Record<
   experience: { label: "Experience", href: "#experience", type: "section" },
   skills: { label: "Skills", href: "#skills", type: "section" },
   projects: { label: "Projects", href: "#projects", type: "section" },
+  media: { label: "Media", href: "#media", type: "section" },
   contact: { label: "Contact", href: "#contact", type: "section" },
 };
 
@@ -36,6 +37,7 @@ export default function Navbar({
     "skills",
     "projects",
     "blog",
+    "media",
     "contact",
   ];
 
@@ -46,6 +48,7 @@ export default function Navbar({
     }
   });
   links.push({ label: "Blog", href: "/blog", type: "page" });
+  links.push({ label: "Media", href: "/media", type: "page" });
 
   useEffect(() => {
     setMounted(true);
