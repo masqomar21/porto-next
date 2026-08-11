@@ -11,36 +11,34 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background px-4 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(124,58,237,0.15)_0%,transparent_60%)] pointer-events-none" />
-      <Card className="w-full max-w-[420px] bg-card border-border shadow-2xl relative z-10 animate-in fade-in slide-in-from-bottom-5 duration-300">
+      <Card className="w-full max-w-[420px] bg-card border border-border shadow-xs relative z-10 animate-in fade-in slide-in-from-bottom-5 duration-300 rounded-md">
         <CardHeader className="text-center space-y-1 pb-6">
-          <div className="w-12 h-12 bg-violet-600 rounded-xl flex items-center justify-center text-xl text-white shadow-md mx-auto mb-4">
+          <div className="w-10 h-10 bg-foreground rounded-md flex items-center justify-center text-lg text-background shadow-xs mx-auto mb-4 font-bold font-mono">
             🛡️
           </div>
-          <CardTitle className="text-2xl font-bold text-foreground">Admin CMS</CardTitle>
-          <CardDescription className="text-muted-foreground text-sm">
+          <CardTitle className="text-2xl font-extrabold text-foreground tracking-tight">Admin CMS</CardTitle>
+          <CardDescription className="text-muted-foreground text-xs font-mono uppercase tracking-wider">
             Sign in to manage your portfolio
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form action={action} className="space-y-4">
             <div className="space-y-1.5">
-              <label htmlFor="email" className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                Email Address
+              <label htmlFor="email" className="text-[11px] font-mono font-bold text-muted-foreground uppercase tracking-widest block mb-1">
+                EMAIL ADDRESS
               </label>
               <Input
                 id="email"
                 type="email"
                 name="email"
-                placeholder="admin@example.com"
+                placeholder="hello@domain.com"
                 required
                 autoComplete="email"
-                className="bg-muted/30 border-border focus-visible:ring-violet-500"
               />
             </div>
             <div className="space-y-1.5">
-              <label htmlFor="password" className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                Password
+              <label htmlFor="password" className="text-[11px] font-mono font-bold text-muted-foreground uppercase tracking-widest block mb-1">
+                PASSWORD
               </label>
               <Input
                 id="password"
@@ -49,12 +47,11 @@ export default function LoginPage() {
                 placeholder="••••••••"
                 required
                 autoComplete="current-password"
-                className="bg-muted/30 border-border focus-visible:ring-violet-500"
               />
             </div>
 
             {state?.error && (
-              <div className="bg-destructive/10 border border-destructive/30 rounded-md p-3 text-sm text-destructive font-medium animate-in fade-in duration-200">
+              <div className="bg-destructive/10 border border-destructive/30 rounded-none p-3 text-xs font-mono text-destructive animate-in fade-in duration-200">
                 {state.error}
               </div>
             )}
@@ -62,9 +59,9 @@ export default function LoginPage() {
             <Button
               type="submit"
               disabled={pending}
-              className="w-full py-5 bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-md hover:translate-y-[-1px] transition-all hover:shadow-[0_4px_20px_rgba(124,58,237,0.2)] disabled:opacity-60 cursor-pointer"
+              className="w-full bg-foreground text-background text-xs font-mono font-bold hover:opacity-90 transition-opacity cursor-pointer rounded-none px-6 py-2.5 mt-2"
             >
-              {pending ? 'Signing in…' : 'Sign in'}
+              {pending ? 'SIGNING IN…' : 'SIGN IN'}
             </Button>
           </form>
         </CardContent>

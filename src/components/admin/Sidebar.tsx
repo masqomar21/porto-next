@@ -33,7 +33,7 @@ const navItems = [
   { href: "/admin/projects", label: "Projects", icon: Briefcase },
   { href: "/admin/blog", label: "Blog Posts", icon: FileText },
   { href: "/admin/contact", label: "Contact", icon: Mail },
-  { href: "/admin/inbox", label: "Inbox Messages", icon: Inbox },
+  // { href: "/admin/inbox", label: "Inbox Messages", icon: Inbox },
   { href: "/admin/media", label: "Media Library", icon: Image },
   { href: "/admin/settings", label: "Settings", icon: Settings },
 ];
@@ -75,7 +75,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                 Admin CMS
               </h2>
               <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-mono">
-                Minimal Monokrom
+                masqomar.com
               </p>
             </div>
           </Link>

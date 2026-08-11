@@ -55,24 +55,25 @@ export default function AboutAdminPage() {
     <div className="space-y-6 w-full animate-in fade-in duration-300">
       <div>
         <h1 className="text-3xl font-extrabold tracking-tight text-foreground">About Section</h1>
-        <p className="text-muted-foreground text-sm mt-1">Manage the biography and file links on your site</p>
+        <p className="text-muted-foreground text-xs font-mono mt-1 uppercase tracking-wider">
+          Manage the biography and file links on your site
+        </p>
       </div>
 
-      <form onSubmit={handleSave} className="space-y-6 bg-card border border-border p-6 rounded-xl shadow-sm">
+      <form onSubmit={handleSave} className="space-y-6 bg-card border border-border p-6 rounded-md shadow-xs">
         <div className="space-y-1.5">
-          <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Biography</label>
+          <label className="text-[11px] font-mono font-bold text-muted-foreground uppercase tracking-widest block mb-1">BIOGRAPHY</label>
           <Textarea
             value={data.bio}
             onChange={(e) => setData((p) => ({ ...p, bio: e.target.value }))}
-            placeholder="Introduce yourself, your experience, and your passion..."
+            placeholder="Share the details..."
             rows={6}
-            className="bg-muted/30 border-border focus-visible:ring-violet-500"
           />
-          <span className="text-[10px] text-muted-foreground block mt-1">Supports simple paragraphs and formatting.</span>
+          <span className="text-[10px] font-mono text-muted-foreground block mt-1">Supports simple paragraphs and formatting.</span>
         </div>
 
         <div className="space-y-1.5">
-          <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Photo</label>
+          <label className="text-[11px] font-mono font-bold text-muted-foreground uppercase tracking-widest block mb-1">PHOTO</label>
           <ImageUpload
             value={data.photoUrl}
             onChange={(url) => setData((p) => ({ ...p, photoUrl: url }))}
@@ -81,7 +82,7 @@ export default function AboutAdminPage() {
         </div>
 
         <div className="space-y-1.5">
-          <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Resume File</label>
+          <label className="text-[11px] font-mono font-bold text-muted-foreground uppercase tracking-widest block mb-1">RESUME FILE</label>
           <FileUpload
             value={data.resumeUrl}
             onChange={(url) => setData((p) => ({ ...p, resumeUrl: url }))}
@@ -90,7 +91,7 @@ export default function AboutAdminPage() {
         </div>
 
         {toast && (
-          <div className={`p-3 rounded-md text-sm border ${
+          <div className={`p-3 rounded-none font-mono text-xs border ${
             toast.type === 'success'
               ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'
               : 'bg-destructive/10 border-destructive/30 text-destructive'
@@ -102,9 +103,9 @@ export default function AboutAdminPage() {
         <Button
           type="submit"
           disabled={saving}
-          className="px-6 py-2 bg-violet-600 hover:bg-violet-700 text-white font-semibold rounded-md shadow-sm hover:translate-y-[-1px] transition-all cursor-pointer"
+          className="bg-foreground text-background text-xs font-mono font-bold hover:opacity-90 transition-opacity cursor-pointer rounded-none px-6"
         >
-          {saving ? 'Saving…' : 'Save About'}
+          {saving ? 'SAVING...' : 'SAVE ABOUT'}
         </Button>
       </form>
     </div>

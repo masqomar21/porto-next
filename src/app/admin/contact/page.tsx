@@ -54,11 +54,11 @@ export default function ContactAdminPage() {
     <div className="space-y-6 w-full animate-in fade-in duration-300">
       <div>
         <h1 className="text-3xl font-extrabold tracking-tight text-foreground">Contact & Social Links</h1>
-        <p className="text-muted-foreground text-sm mt-1">Manage contact email and social profile links</p>
+        <p className="text-muted-foreground text-xs font-mono mt-1 uppercase tracking-wider">Manage contact email and social profile links</p>
       </div>
 
       {toast && (
-        <div className={`p-3 rounded-md text-sm border ${
+        <div className={`p-3 rounded-none font-mono text-xs border ${
           toast.type === 'success'
             ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'
             : 'bg-destructive/10 border-destructive/30 text-destructive'
@@ -68,32 +68,31 @@ export default function ContactAdminPage() {
       )}
 
       <div className="space-y-6">
-        <Card className="bg-card border-border shadow-sm">
+        <Card className="bg-card border-border shadow-xs rounded-md">
           <CardHeader>
             <CardTitle className="text-lg font-bold text-foreground">Contact Email</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Email Address</label>
+              <label className="text-[11px] font-mono font-bold text-muted-foreground uppercase tracking-widest block mb-1">EMAIL ADDRESS</label>
               <Input
                 value={data.email}
                 onChange={e => setData(p => ({ ...p, email: e.target.value }))}
-                placeholder="you@example.com"
-                className="bg-muted/30 border-border focus-visible:ring-violet-500"
+                placeholder="hello@domain.com"
               />
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-card border-border shadow-sm">
+        <Card className="bg-card border-border shadow-xs rounded-md">
           <CardHeader>
             <CardTitle className="text-lg font-bold text-foreground">Social Links</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-[1fr_1fr_1fr_auto] gap-2 items-center mb-1">
-              <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">Platform</span>
-              <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">URL</span>
-              <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">Icon</span>
+              <span className="text-[10px] font-mono font-bold text-muted-foreground uppercase tracking-widest">Platform</span>
+              <span className="text-[10px] font-mono font-bold text-muted-foreground uppercase tracking-widest">URL</span>
+              <span className="text-[10px] font-mono font-bold text-muted-foreground uppercase tracking-widest">Icon</span>
               <span />
             </div>
 
@@ -103,18 +102,16 @@ export default function ContactAdminPage() {
                   value={link.platform}
                   onChange={e => updateLink(i, 'platform', e.target.value)}
                   placeholder="GitHub"
-                  className="bg-muted/30 border-border focus-visible:ring-violet-500 h-9"
                 />
                 <Input
                   value={link.url}
                   onChange={e => updateLink(i, 'url', e.target.value)}
                   placeholder="https://github.com/…"
-                  className="bg-muted/30 border-border focus-visible:ring-violet-500 h-9"
                 />
                 <select
                   value={link.icon}
                   onChange={e => updateLink(i, 'icon', e.target.value)}
-                  className="flex h-9 w-full rounded-md border border-input bg-muted/30 px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring text-foreground cursor-pointer"
+                  className="flex h-10 w-full rounded-none border-0 border-b border-border/60 bg-muted/40 px-3.5 py-2.5 text-xs font-mono text-foreground focus:border-b-2 focus:border-foreground focus:bg-muted/60 outline-hidden transition-colors cursor-pointer"
                 >
                   <option value="" disabled>Select Icon</option>
                   <option value="github">Github</option>
@@ -128,17 +125,17 @@ export default function ContactAdminPage() {
                 </select>
                 <Button
                   onClick={() => removeLink(i)}
-                  variant="destructive"
+                  variant="outline"
                   size="icon"
-                  className="h-9 w-9 bg-destructive/10 text-destructive border-transparent hover:bg-destructive hover:text-white cursor-pointer"
+                  className="h-10 w-10 border-border text-foreground hover:bg-destructive hover:text-destructive-foreground transition-colors cursor-pointer rounded-none"
                 >
                   ✕
                 </Button>
               </div>
             ))}
 
-            <Button onClick={addLink} variant="outline" className="border-border text-sm font-semibold hover:border-violet-500 hover:text-violet-400 cursor-pointer mt-2">
-              + Add Link
+            <Button onClick={addLink} variant="outline" className="border-border text-xs font-mono font-bold hover:bg-muted cursor-pointer mt-2 rounded-none">
+              + ADD LINK
             </Button>
           </CardContent>
         </Card>
@@ -146,9 +143,9 @@ export default function ContactAdminPage() {
         <Button
           onClick={save}
           disabled={saving}
-          className="px-6 py-2 bg-violet-600 hover:bg-violet-700 text-white font-semibold rounded-md shadow-sm hover:translate-y-[-1px] transition-all cursor-pointer"
+          className="bg-foreground text-background text-xs font-mono font-bold hover:opacity-90 transition-opacity cursor-pointer rounded-none px-6"
         >
-          {saving ? 'Saving…' : 'Save Contact'}
+          {saving ? 'SAVING...' : 'SAVE CONTACT'}
         </Button>
       </div>
     </div>

@@ -31,43 +31,53 @@ export default function HeroAdminPage() {
   useEffect(() => {
     fetch('/api/admin/hero')
       .then((r) => r.json())
-      .then((d) => setData({
-        name: d.name || '',
-        roles: d.roles || [],
-        tagline: d.tagline || '',
-        ctaPrimaryLabel: d.ctaPrimaryLabel || '',
-        ctaPrimaryUrl: d.ctaPrimaryUrl || '',
-        ctaSecondaryLabel: d.ctaSecondaryLabel || '',
-        ctaSecondaryUrl: d.ctaSecondaryUrl || '',
-        imageUrl: d.imageUrl || '',
-      }));
+      .then((d) => {
+        if (d && !d.error) {
+          setData({
+            name: d.name || '',
+            roles: d.roles || [],
+            tagline: d.tagline || '',
+            ctaPrimaryLabel: d.ctaPrimaryLabel || '',
+            ctaPrimaryUrl: d.ctaPrimaryUrl || '',
+            ctaSecondaryLabel: d.ctaSecondaryLabel || '',
+            ctaSecondaryUrl: d.ctaSecondaryUrl || '',
+            imageUrl: d.imageUrl || '',
+          });
+        }
+      })
+      .catch(console.error);
   }, []);
 
   const addRole = () => {
-    const v = roleInput.trim();
-    if (v && !data.roles.includes(v)) {
-      setData((p) => ({ ...p, roles: [...p.roles, v] }));
+    const trimmed = roleInput.trim();
+    if (trimmed && !data.roles.includes(trimmed)) {
+      setData((p) => ({ ...p, roles: [...p.roles, trimmed] }));
       setRoleInput('');
     }
   };
 
-  const removeRole = (r: string) => {
-    setData((p) => ({ ...p, roles: p.roles.filter((x) => x !== r) }));
+  const removeRole = (role: string) => {
+    setData((p) => ({ ...p, roles: p.roles.filter((r) => r !== role) }));
   };
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     setSaving(true);
+    setToast(null);
     try {
       const res = await fetch('/api/admin/hero', {
-        method: 'PATCH',
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
-      if (res.ok) setToast({ type: 'success', msg: 'Hero section saved!' });
-      else setToast({ type: 'error', msg: 'Failed to save.' });
+      const result = await res.json();
+      if (res.ok) {
+        setToast({ type: 'success', msg: 'Hero section updated successfully!' });
+      } else {
+        setToast({ type: 'error', msg: result.error || 'Failed to update' });
+      }
     } catch {
-      setToast({ type: 'error', msg: 'Network error.' });
+      setToast({ type: 'error', msg: 'Network error. Try again.' });
     } finally {
       setSaving(false);
       setTimeout(() => setToast(null), 3000);
@@ -78,22 +88,23 @@ export default function HeroAdminPage() {
     <div className="space-y-6 w-full animate-in fade-in duration-300">
       <div>
         <h1 className="text-3xl font-extrabold tracking-tight text-foreground">Hero Section</h1>
-        <p className="text-muted-foreground text-sm mt-1">Manage the hero content of your homepage</p>
+        <p className="text-muted-foreground text-xs font-mono mt-1 uppercase tracking-wider">
+          Manage the hero content of your homepage
+        </p>
       </div>
 
-      <form onSubmit={handleSave} className="space-y-6 bg-card border border-border p-6 rounded-xl shadow-sm">
+      <form onSubmit={handleSave} className="space-y-6 bg-card border border-border p-6 rounded-md shadow-xs">
         <div className="space-y-1.5">
-          <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Your Name</label>
+          <label className="text-[11px] font-mono font-bold text-muted-foreground uppercase tracking-widest block mb-1">YOUR NAME</label>
           <Input
             value={data.name}
             onChange={(e) => setData((p) => ({ ...p, name: e.target.value }))}
-            placeholder="John Doe"
-            className="bg-muted/30 border-border focus-visible:ring-violet-500"
+            placeholder="Your name"
           />
         </div>
 
         <div className="space-y-1.5">
-          <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Profile Image</label>
+          <label className="text-[11px] font-mono font-bold text-muted-foreground uppercase tracking-widest block mb-1">PROFILE IMAGE</label>
           <ImageUpload
             value={data.imageUrl}
             onChange={(url) => setData((p) => ({ ...p, imageUrl: url }))}
@@ -102,12 +113,12 @@ export default function HeroAdminPage() {
         </div>
 
         <div className="space-y-1.5">
-          <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Typewriter Roles</label>
-          <div className="flex flex-wrap gap-2 p-3 bg-muted/30 border border-border rounded-md min-h-[48px] items-center">
+          <label className="text-[11px] font-mono font-bold text-muted-foreground uppercase tracking-widest block mb-1">TYPEWRITER ROLES</label>
+          <div className="flex flex-wrap gap-2 p-3 bg-muted/40 border-0 border-b border-border/60 rounded-none min-h-[48px] items-center">
             {data.roles.map((r) => (
-              <span key={r} className="inline-flex items-center gap-1.5 px-3 py-1 bg-violet-500/10 border border-violet-500/30 text-violet-400 rounded-full text-xs font-medium">
+              <span key={r} className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-foreground text-background font-mono rounded-xs text-xs font-semibold">
                 {r}
-                <button type="button" onClick={() => removeRole(r)} className="text-muted-foreground hover:text-destructive transition-colors text-xs font-semibold">✕</button>
+                <button type="button" onClick={() => removeRole(r)} className="hover:opacity-80 transition-opacity text-xs font-bold">✕</button>
               </span>
             ))}
             <input
@@ -115,67 +126,62 @@ export default function HeroAdminPage() {
               onChange={(e) => setRoleInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addRole())}
               placeholder="Add role, press Enter…"
-              className="flex-1 bg-transparent border-none outline-none text-sm text-foreground min-w-[150px] placeholder:text-muted-foreground"
+              className="flex-1 bg-transparent border-none outline-none font-mono text-sm text-foreground min-w-[150px] placeholder:text-muted-foreground/50 placeholder:font-mono"
             />
           </div>
-          <span className="text-[10px] text-muted-foreground block mt-1">Press Enter to add each role. These cycle in the homepage typewriter animation.</span>
+          <span className="text-[10px] font-mono text-muted-foreground block mt-1">Press Enter to add each role. These cycle in the homepage typewriter animation.</span>
         </div>
 
         <div className="space-y-1.5">
-          <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Tagline</label>
+          <label className="text-[11px] font-mono font-bold text-muted-foreground uppercase tracking-widest block mb-1">TAGLINE</label>
           <Textarea
             value={data.tagline}
             onChange={(e) => setData((p) => ({ ...p, tagline: e.target.value }))}
-            placeholder="I build fast, beautiful..."
+            placeholder="Share the details..."
             rows={3}
-            className="bg-muted/30 border-border focus-visible:ring-violet-500 min-h-[90px] resize-y"
           />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Primary CTA Label</label>
+            <label className="text-[11px] font-mono font-bold text-muted-foreground uppercase tracking-widest block mb-1">PRIMARY CTA LABEL</label>
             <Input
               value={data.ctaPrimaryLabel}
               onChange={(e) => setData((p) => ({ ...p, ctaPrimaryLabel: e.target.value }))}
               placeholder="View Projects"
-              className="bg-muted/30 border-border focus-visible:ring-violet-500"
             />
           </div>
           <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Primary CTA URL</label>
+            <label className="text-[11px] font-mono font-bold text-muted-foreground uppercase tracking-widest block mb-1">PRIMARY CTA URL</label>
             <Input
               value={data.ctaPrimaryUrl}
               onChange={(e) => setData((p) => ({ ...p, ctaPrimaryUrl: e.target.value }))}
               placeholder="#projects"
-              className="bg-muted/30 border-border focus-visible:ring-violet-500"
             />
           </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Secondary CTA Label</label>
+            <label className="text-[11px] font-mono font-bold text-muted-foreground uppercase tracking-widest block mb-1">SECONDARY CTA LABEL</label>
             <Input
               value={data.ctaSecondaryLabel}
               onChange={(e) => setData((p) => ({ ...p, ctaSecondaryLabel: e.target.value }))}
               placeholder="Read Blog"
-              className="bg-muted/30 border-border focus-visible:ring-violet-500"
             />
           </div>
           <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Secondary CTA URL</label>
+            <label className="text-[11px] font-mono font-bold text-muted-foreground uppercase tracking-widest block mb-1">SECONDARY CTA URL</label>
             <Input
               value={data.ctaSecondaryUrl}
               onChange={(e) => setData((p) => ({ ...p, ctaSecondaryUrl: e.target.value }))}
               placeholder="/blog"
-              className="bg-muted/30 border-border focus-visible:ring-violet-500"
             />
           </div>
         </div>
 
         {toast && (
-          <div className={`p-3 rounded-md text-sm border ${
+          <div className={`p-3 rounded-none font-mono text-xs border ${
             toast.type === 'success'
               ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'
               : 'bg-destructive/10 border-destructive/30 text-destructive'
@@ -187,9 +193,9 @@ export default function HeroAdminPage() {
         <Button
           type="submit"
           disabled={saving}
-          className="px-6 py-2 bg-violet-600 hover:bg-violet-700 text-white font-semibold rounded-md shadow-sm hover:translate-y-[-1px] transition-all cursor-pointer"
+          className="bg-foreground text-background text-xs font-mono font-bold hover:opacity-90 transition-opacity cursor-pointer rounded-none px-6"
         >
-          {saving ? 'Saving…' : 'Save Hero'}
+          {saving ? 'SAVING...' : 'SAVE CHANGES'}
         </Button>
       </form>
     </div>
