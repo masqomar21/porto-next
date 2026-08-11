@@ -18,7 +18,7 @@ interface ImageUploadProps {
 export function ImageUpload({
   value,
   onChange,
-  maxSizeMB = 5,
+  maxSizeMB = 10,
   className,
   disabled = false,
   allowedTypes = ['image/png', 'image/jpeg', 'image/webp', 'image/gif'],

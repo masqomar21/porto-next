@@ -33,7 +33,7 @@ const navItems = [
   { href: "/admin/projects", label: "Projects", icon: Briefcase },
   { href: "/admin/blog", label: "Blog Posts", icon: FileText },
   { href: "/admin/contact", label: "Contact", icon: Mail },
-  // { href: "/admin/inbox", label: "Inbox Messages", icon: Inbox },
+  { href: "/admin/inbox", label: "Inbox Messages", icon: Inbox },
   { href: "/admin/media", label: "Media Library", icon: Image },
   { href: "/admin/settings", label: "Settings", icon: Settings },
 ];
