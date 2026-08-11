@@ -44,7 +44,7 @@ export function ImageEditorModal({
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const [imgLoaded, setImgLoaded] = useState(false);
-  const [imageNaturalRatio, setImageNaturalRatio] = useState(1);
+  const [naturalDim, setNaturalDim] = useState<{ width: number; height: number } | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
 
   const imgRef = useRef<HTMLImageElement | null>(null);
@@ -64,11 +64,24 @@ export function ImageEditorModal({
     setBlur(0);
   };
 
+  // Pre-load natural image dimensions immediately on mount/src change
   useEffect(() => {
-    if (open) {
+    if (open && imageSrc) {
       resetToDefault();
       setImgLoaded(false);
       setSelectedRatio(isLockedRatio ? (aspectRatio as any) : '1:1');
+
+      const img = new Image();
+      img.src = imageSrc;
+      if (img.complete && img.naturalWidth && img.naturalHeight) {
+        setNaturalDim({ width: img.naturalWidth, height: img.naturalHeight });
+        setImgLoaded(true);
+      } else {
+        img.onload = () => {
+          setNaturalDim({ width: img.naturalWidth, height: img.naturalHeight });
+          setImgLoaded(true);
+        };
+      }
     }
   }, [open, imageSrc, aspectRatio, isLockedRatio]);
 
@@ -118,7 +131,9 @@ export function ImageEditorModal({
     setRotation((prev) => (prev + 90) % 360);
   };
 
-  // Get numeric aspect ratio based on selected ratio
+  const imageNaturalRatio = naturalDim && naturalDim.height ? naturalDim.width / naturalDim.height : 1;
+
+  // Get numeric aspect ratio based on selected crop ratio
   const getRatioValue = (): number => {
     switch (selectedRatio) {
       case '1:1': return 1;
@@ -133,35 +148,37 @@ export function ImageEditorModal({
 
   const ratioValue = getRatioValue();
 
-  // Determine viewport width and height inside the 300x300 bounding box
-  let viewportWidth = 300;
-  let viewportHeight = 300;
+  // Maximum dimension box for the crop viewport frame
+  const MAX_BOX = 320;
+  let viewportWidth = MAX_BOX;
+  let viewportHeight = MAX_BOX;
   
   if (ratioValue >= 1) {
-    viewportWidth = 300;
-    viewportHeight = 300 / ratioValue;
+    viewportWidth = MAX_BOX;
+    viewportHeight = MAX_BOX / ratioValue;
   } else {
-    viewportHeight = 300;
-    viewportWidth = 300 * ratioValue;
+    viewportHeight = MAX_BOX;
+    viewportWidth = MAX_BOX * ratioValue;
   }
 
-  // Determine image dimensions to cover the crop viewport
+  // Cover crop calculation: Image maintains natural ratio without stretching
   let baseWidth = viewportWidth;
   let baseHeight = viewportHeight;
 
-  if (imgLoaded) {
-    if (imageNaturalRatio > ratioValue) {
-      // Image is wider than crop viewport, match viewport height
+  if (naturalDim && naturalDim.width && naturalDim.height) {
+    const imgRatio = naturalDim.width / naturalDim.height;
+    if (imgRatio > ratioValue) {
+      // Image is wider than crop viewport: match height, scale width proportionally
       baseHeight = viewportHeight;
-      baseWidth = viewportHeight * imageNaturalRatio;
+      baseWidth = viewportHeight * imgRatio;
     } else {
-      // Image is taller than crop viewport, match viewport width
+      // Image is taller than crop viewport: match width, scale height proportionally
       baseWidth = viewportWidth;
-      baseHeight = viewportWidth / imageNaturalRatio;
+      baseHeight = viewportWidth / imgRatio;
     }
   }
 
-  // Render canvas & save edited image
+  // Render canvas & save cropped image
   const handleApply = async () => {
     if (!imgRef.current) return;
     setIsProcessing(true);
@@ -169,8 +186,10 @@ export function ImageEditorModal({
     try {
       const img = imgRef.current;
       const canvas = document.createElement('canvas');
-      canvas.width = viewportWidth * 2;
-      canvas.height = viewportHeight * 2;
+      const targetCanvasWidth = Math.round(viewportWidth * 3);
+      const targetCanvasHeight = Math.round(viewportHeight * 3);
+      canvas.width = targetCanvasWidth;
+      canvas.height = targetCanvasHeight;
       const ctx = canvas.getContext('2d');
 
       if (ctx) {
@@ -179,17 +198,25 @@ export function ImageEditorModal({
         // Apply visual CSS filters to canvas context
         ctx.filter = `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturation}%) grayscale(${grayscale}%) sepia(${sepia}%) blur(${blur}px)`;
 
-        // 1. Translate to center of canvas (multiplying offset by 2 because canvas is 2x viewport size)
-        ctx.translate(canvas.width / 2 + offsetX * 2, canvas.height / 2 + offsetY * 2);
+        const scaleFactor = targetCanvasWidth / viewportWidth;
+
+        // 1. Translate to center of canvas
+        ctx.translate(canvas.width / 2 + offsetX * scaleFactor, canvas.height / 2 + offsetY * scaleFactor);
         
         // 2. Rotate
         ctx.rotate((rotation * Math.PI) / 180);
         
-        // 3. Scale (multiplying by 2 to account for canvas resolution)
-        ctx.scale(scale * 2, scale * 2);
+        // 3. Scale
+        ctx.scale(scale, scale);
 
-        // Draw image centered on origin
-        ctx.drawImage(img, -baseWidth / 2, -baseHeight / 2, baseWidth, baseHeight);
+        // Draw image centered on origin maintaining proportions
+        ctx.drawImage(
+          img,
+          (-baseWidth * scaleFactor) / 2,
+          (-baseHeight * scaleFactor) / 2,
+          baseWidth * scaleFactor,
+          baseHeight * scaleFactor
+        );
 
         // Output to Blob
         canvas.toBlob(
@@ -202,7 +229,7 @@ export function ImageEditorModal({
             }
           },
           'image/webp',
-          0.85
+          0.9
         );
       }
     } catch (err) {
@@ -217,13 +244,13 @@ export function ImageEditorModal({
         
         {/* Left Panel: Crop Editor view */}
         <div className="flex-1 bg-black/40 flex flex-col items-center justify-center p-6 relative select-none">
-          <div className="text-xs text-muted-foreground absolute top-4 left-6 font-mono bg-background/50 px-2 py-1 rounded-md">
+          <div className="text-xs text-muted-foreground absolute top-4 left-6 font-mono bg-background/50 px-2.5 py-1 rounded-md">
             Drag image to reposition inside frame
           </div>
 
           <div
             ref={containerRef}
-            className="relative overflow-hidden rounded-xl border border-violet-500/50 shadow-lg bg-muted/10 cursor-grab active:cursor-grabbing flex items-center justify-center transition-all duration-300"
+            className="relative overflow-hidden rounded-xl border-2 border-violet-500/70 shadow-2xl bg-muted/20 cursor-grab active:cursor-grabbing flex items-center justify-center transition-all duration-300"
             style={{
               width: `${viewportWidth}px`,
               height: `${viewportHeight}px`,
@@ -238,33 +265,27 @@ export function ImageEditorModal({
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              ref={(el) => {
-                imgRef.current = el;
-                if (el && !imgLoaded) {
-                  el.onload = () => {
-                    setImageNaturalRatio(el.naturalWidth / el.naturalHeight);
-                    setImgLoaded(true);
-                  };
-                }
-              }}
+              ref={imgRef}
               src={imageSrc}
               alt="Source editor"
               draggable={false}
               className={cn(
-                'absolute pointer-events-none transition-opacity duration-300',
+                'absolute pointer-events-none transition-opacity duration-300 max-none',
                 imgLoaded ? 'opacity-100' : 'opacity-0'
               )}
               style={{
                 width: `${baseWidth}px`,
                 height: `${baseHeight}px`,
+                maxWidth: 'none',
+                maxHeight: 'none',
                 transform: `translate(${offsetX}px, ${offsetY}px) rotate(${rotation}deg) scale(${scale})`,
                 filter: `brightness(${brightness}%) contrast(${contrast}%) grayscale(${grayscale}%) sepia(${sepia}%) saturate(${saturation}%) blur(${blur}px)`,
                 transformOrigin: 'center center',
               }}
             />
 
-            {/* Framing border guide */}
-            <div className="absolute inset-0 border-2 border-dashed border-violet-500/60 pointer-events-none rounded-xl" />
+            {/* Framing border guide overlay */}
+            <div className="absolute inset-0 border border-white/30 pointer-events-none rounded-lg" />
           </div>
 
           {/* Quick Toolbar */}
@@ -315,7 +336,6 @@ export function ImageEditorModal({
                       size="sm"
                       onClick={() => {
                         setSelectedRatio(r);
-                        // Reset offsets to prevent image from escaping boundaries after ratio change
                         setOffsetX(0);
                         setOffsetY(0);
                       }}
