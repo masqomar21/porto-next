@@ -7,14 +7,14 @@ import User from '@/models/User';
 import { createSession, deleteSession } from '@/lib/session';
 
 export async function login(
-  state: { error?: string } | undefined,
+  state: { error?: string; email?: string } | undefined,
   formData: FormData
-): Promise<{ error?: string }> {
-  const email = formData.get('email') as string;
-  const password = formData.get('password') as string;
+): Promise<{ error?: string; email?: string }> {
+  const email = (formData.get('email') as string) || '';
+  const password = (formData.get('password') as string) || '';
 
   if (!email || !password) {
-    return { error: 'Email and password are required.' };
+    return { error: 'Email and password are required.', email };
   }
 
   try {
@@ -22,18 +22,18 @@ export async function login(
     const user = await User.findOne({ email: email.toLowerCase().trim() });
 
     if (!user) {
-      return { error: 'Invalid email or password.' };
+      return { error: 'Invalid email or password.', email };
     }
 
     const isValid = await user.comparePassword(password);
     if (!isValid) {
-      return { error: 'Invalid email or password.' };
+      return { error: 'Invalid email or password.', email };
     }
 
     await createSession(user._id.toString(), user.email);
   } catch (error) {
     console.error('Login error:', error);
-    return { error: 'An unexpected error occurred. Please try again.' };
+    return { error: 'An unexpected error occurred. Please try again.', email };
   }
 
   redirect('/admin');
