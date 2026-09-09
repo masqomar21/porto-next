@@ -1,0 +1,30 @@
+- generic [ref=f3e7]:
+  - link "Unsplash Home" [ref=f3e9] [cursor=pointer]:
+    - /url: /
+    - img "Unsplash Home" [ref=f3e10]
+  - generic [ref=f3e13]:
+    - heading "Page not found" [level=1] [ref=f3e14]:
+      - generic [ref=f3e15]:
+        - generic [ref=f3e16]: P
+        - generic [ref=f3e17]: a
+        - generic [ref=f3e18]: g
+        - generic [ref=f3e19]: e
+      - generic [ref=f3e20]:
+        - generic [ref=f3e21]: "n"
+        - generic [ref=f3e22]: o
+        - generic [ref=f3e23]: t
+      - generic [ref=f3e24]:
+        - generic [ref=f3e25]: f
+        - generic [ref=f3e26]: o
+        - generic [ref=f3e27]: u
+        - generic [ref=f3e28]: "n"
+        - generic [ref=f3e29]: d
+    - paragraph [ref=f3e30]: Hmm, the page you were looking for doesn’t seem to exist anymore.
+    - link "Back to Unsplash" [ref=f3e32] [cursor=pointer]:
+      - /url: /
+  - contentinfo [ref=f3e33]:
+    - generic [ref=f3e34]:
+      - text: Photo by
+      - link "@gwendal" [ref=f3e35] [cursor=pointer]:
+        - /url: /@gwendal
+    - generic [ref=f3e36]: "404"

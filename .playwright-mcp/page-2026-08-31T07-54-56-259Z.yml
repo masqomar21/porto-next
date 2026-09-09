@@ -1,0 +1,238 @@
+- generic [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - complementary [ref=f1e3]:
+      - link [ref=f1e5] [cursor=pointer]:
+        - /url: /admin
+        - generic [ref=f1e9]:
+          - heading "Admin CMS" [level=2] [ref=f1e10]
+          - paragraph [ref=f1e11]: masqomar.com
+      - navigation [ref=f1e12]:
+        - link "Dashboard" [ref=f1e13] [cursor=pointer]:
+          - /url: /admin
+        - link "Hero Section" [ref=f1e20] [cursor=pointer]:
+          - /url: /admin/hero
+        - link "Navbar" [ref=f1e25] [cursor=pointer]:
+          - /url: /admin/navbar
+        - link "About" [ref=f1e28] [cursor=pointer]:
+          - /url: /admin/about
+        - link "Experience" [ref=f1e33] [cursor=pointer]:
+          - /url: /admin/experience
+        - link "Skills" [ref=f1e38] [cursor=pointer]:
+          - /url: /admin/skills
+        - link "Projects" [ref=f1e42] [cursor=pointer]:
+          - /url: /admin/projects
+        - link "Blog Posts" [ref=f1e47] [cursor=pointer]:
+          - /url: /admin/blog
+        - link "Contact" [ref=f1e52] [cursor=pointer]:
+          - /url: /admin/contact
+        - link "Inbox Messages" [ref=f1e57] [cursor=pointer]:
+          - /url: /admin/inbox
+        - link "Media Library" [ref=f1e62] [cursor=pointer]:
+          - /url: /admin/media
+        - link "Settings" [ref=f1e68] [cursor=pointer]:
+          - /url: /admin/settings
+      - generic [ref=f1e73]:
+        - link "View Site" [ref=f1e74] [cursor=pointer]:
+          - /url: /
+        - button "Sign Out" [ref=f1e79] [cursor=pointer]
+    - generic [ref=f1e80]:
+      - banner [ref=f1e81]:
+        - generic [ref=f1e82]:
+          - generic [ref=f1e83]: AD
+          - generic [ref=f1e84]: admin@app.dev
+      - main [ref=f1e85]:
+        - generic [ref=f1e726]:
+          - generic [ref=f1e727]:
+            - heading "Edit Post" [level=1] [ref=f1e728]
+            - paragraph [ref=f1e729]: Modify your blog article details
+          - generic [ref=f1e730]:
+            - generic [ref=f1e731]:
+              - textbox "Post title…" [ref=f1e732]: Cara Cetak Struk ESC/POS Langsung dari Browser Tanpa Aplikasi Desktop
+              - generic [ref=f1e733]:
+                - generic [ref=f1e734]:
+                  - button "Bold" [ref=f1e735] [cursor=pointer]
+                  - button "Italic" [ref=f1e738] [cursor=pointer]
+                  - button "Strike" [ref=f1e741] [cursor=pointer]
+                  - button "Inline Code" [ref=f1e745] [cursor=pointer]
+                  - button "Heading 1" [ref=f1e749] [cursor=pointer]
+                  - button "Heading 2" [ref=f1e752] [cursor=pointer]
+                  - button "Heading 3" [ref=f1e755] [cursor=pointer]
+                  - button "Bullet List" [ref=f1e759] [cursor=pointer]
+                  - button "Ordered List" [ref=f1e761] [cursor=pointer]
+                  - button "Blockquote" [ref=f1e765] [cursor=pointer]
+                  - button "Code Block" [ref=f1e769] [cursor=pointer]
+                  - button "Horizontal Rule" [ref=f1e772] [cursor=pointer]
+                  - button "Insert Link" [ref=f1e774] [cursor=pointer]
+                  - button "Insert Image" [ref=f1e778] [cursor=pointer]
+                  - button "Undo" [ref=f1e783] [cursor=pointer]
+                  - button "Redo" [ref=f1e787] [cursor=pointer]
+                - generic [ref=f1e793]:
+                  - paragraph [ref=f1e794]: Mencetak struk belanja menggunakan printer thermal biasanya mengharuskan kita memasang driver desktop native atau aplikasi pembantu khusus seperti QZ Tray atau print server lokal. Namun, teknologi web modern sekarang memungkinkan komunikasi langsung dari browser ke perangkat keras tanpa software perantara apa pun.
+                  - paragraph [ref=f1e795]
+                  - paragraph [ref=f1e796]: "### WebUSB vs Web Serial untuk Printer Thermal"
+                  - paragraph [ref=f1e797]: "Terdapat dua opsi API utama di browser untuk berkomunikasi dengan printer thermal:"
+                  - paragraph [ref=f1e798]: "- **WebUSB**: Menyediakan akses tingkat rendah ke perangkat USB. Direkomendasikan untuk printer thermal USB standar yang terhubung langsung menggunakan kabel data USB. API ini lebih aman dan standar untuk perangkat POS (Point of Sale) modern."
+                  - paragraph [ref=f1e799]: "- **Web Serial**: Menyediakan akses ke serial port komunikasi. Sangat berguna jika Anda menggunakan printer thermal model lama yang memakai interface serial/RS-232, atau jika Anda menghubungkannya melalui modul adapter Bluetooth/Serial ke mikrokontroler."
+                  - paragraph [ref=f1e800]
+                  - paragraph [ref=f1e801]: Secara umum, WebUSB lebih sering digunakan karena mayoritas printer thermal modern saat ini menggunakan konektor USB.
+                  - paragraph [ref=f1e802]
+                  - paragraph [ref=f1e803]: "### Bagaimana WebUSB Berinteraksi dengan Perangkat Keras?"
+                  - paragraph [ref=f1e804]: "WebUSB bekerja dengan mengirimkan transfer data USB langsung ke endpoint interface perangkat. Protokol ini membutuhkan beberapa tahapan:"
+                  - paragraph [ref=f1e805]: "1. **Request Device**: Meminta izin user melalui dialog sistem browser untuk memilih perangkat USB yang terdeteksi."
+                  - paragraph [ref=f1e806]: "2. **Open Session**: Membuka koneksi ke perangkat."
+                  - paragraph [ref=f1e807]: "3. **Select Configuration**: Memilih konfigurasi aktif perangkat USB (biasanya indeks `1`)."
+                  - paragraph [ref=f1e808]: "4. **Claim Interface**: Meminta kendali eksklusif atas interface printer (biasanya indeks `0`)."
+                  - paragraph [ref=f1e809]: "5. **Transfer Out**: Mengirim byte data ke endpoint keluar (USB bulk transfer out)."
+                  - paragraph [ref=f1e810]
+                  - paragraph [ref=f1e811]: "### Memahami Perintah ESC/POS"
+                  - paragraph [ref=f1e812]: Printer thermal tidak menerima teks biasa atau HTML. Printer ini berkomunikasi menggunakan command set **ESC/POS** (Escape/Point of Sale) yang dikembangkan oleh Epson. Untuk mencetak struk, kita harus merancang struk menggunakan kode perintah biner tertentu lalu mengirimkannya.
+                  - paragraph [ref=f1e813]
+                  - paragraph [ref=f1e814]: "Contoh perintah dasar ESC/POS:"
+                  - paragraph [ref=f1e815]: "- **Inisialisasi Printer**: `ESC @` (Hex `1B 40`) - Digunakan untuk mereset buffer dan seting printer ke mode awal."
+                  - paragraph [ref=f1e816]: "- **Perataan Teks (Alignment)**: `ESC a n` (Hex `1B 61 n`) - Di mana `n` bernilai `0` untuk rata kiri, `1` tengah, dan `2` rata kanan."
+                  - paragraph [ref=f1e817]: "- **Cetak & Ganti Baris**: `LF` (Hex `0A`) - Menginstrukan printer untuk mencetak baris teks saat ini dan memajukan kertas satu baris."
+                  - paragraph [ref=f1e818]: "- **Potong Kertas (Cut)**: `GS V m n` (Hex `1D 56 m n`) - Menginstruksikan printer yang mendukung auto-cutter untuk memotong kertas."
+                  - paragraph [ref=f1e819]
+                  - paragraph [ref=f1e820]: Menyusun byte biner ini satu per satu secara manual sangat melelahkan dan rawan bug.
+                  - paragraph [ref=f1e821]
+                  - paragraph [ref=f1e822]: "### Solusi Praktis: Library `web-thermal-printer`"
+                  - paragraph [ref=f1e823]: "Untuk mempermudah pembuatan format struk belanja tanpa harus pusing memikirkan konversi byte biner ESC/POS secara manual, kita dapat menggunakan library open-source [`web-thermal-printer`](https://github.com/masqomar21/web-thermal-printer). Library ini menyediakan API chainable yang intuitif untuk menghasilkan bytecode ESC/POS yang siap dikirim langsung ke printer."
+                  - paragraph [ref=f1e824]
+                  - paragraph [ref=f1e825]: "#### Cara Instalasi"
+                  - paragraph [ref=f1e826]: "Cukup jalankan perintah berikut di proyek React atau project JavaScript Anda:"
+                  - paragraph [ref=f1e827]: "```bash"
+                  - paragraph [ref=f1e828]: npm install web-thermal-printer
+                  - paragraph [ref=f1e829]: "```"
+                  - paragraph [ref=f1e830]
+                  - paragraph [ref=f1e831]: "#### Contoh Penerapan Lengkap di React"
+                  - paragraph [ref=f1e832]: "Berikut adalah contoh implementasi lengkap pembuatan struk belanja dan proses pengiriman datanya langsung ke printer menggunakan React:"
+                  - paragraph [ref=f1e833]
+                  - paragraph [ref=f1e834]: "```javascript"
+                  - paragraph [ref=f1e835]: "import React, { useState } from 'react';"
+                  - paragraph [ref=f1e836]: "import { WebThermalPrinter } from 'web-thermal-printer';"
+                  - paragraph [ref=f1e837]
+                  - paragraph [ref=f1e838]: "export default function CetakStruk() {"
+                  - paragraph [ref=f1e839]: const [status, setStatus] = useState('');
+                  - paragraph [ref=f1e840]
+                  - paragraph [ref=f1e841]: "const handlePrint = async () => {"
+                  - paragraph [ref=f1e842]: "try {"
+                  - paragraph [ref=f1e843]: setStatus('Menghubungkan ke printer...');
+                  - paragraph [ref=f1e844]: // 1. Minta izin akses USB device dari user
+                  - paragraph [ref=f1e845]: "const device = await navigator.usb.requestDevice({ filters: [] });"
+                  - paragraph [ref=f1e846]
+                  - paragraph [ref=f1e847]: setStatus('Menyusun struk belanja...');
+                  - paragraph [ref=f1e848]: const printer = new WebThermalPrinter();
+                  - paragraph [ref=f1e849]
+                  - paragraph [ref=f1e850]: // 2. Tulis struk dengan method chainable yang intuitif
+                  - paragraph [ref=f1e851]: const data = printer
+                  - paragraph [ref=f1e852]: .init()
+                  - paragraph [ref=f1e853]: .align('center')
+                  - paragraph [ref=f1e854]: .text('TOKO KELONTONG MODERN\n')
+                  - paragraph [ref=f1e855]: .text('Jl. Raya IT No. 10, Jakarta\n')
+                  - paragraph [ref=f1e856]: ".text('Telp: 021-123456\\n')"
+                  - paragraph [ref=f1e857]: .line() // Membuat garis pembatas otomatis
+                  - paragraph [ref=f1e858]: .align('left')
+                  - paragraph [ref=f1e859]: .text('Kopi Susu Caramel 1x 15.000\n')
+                  - paragraph [ref=f1e860]: .text('Roti Bakar Cokelat 2x 20.000\n')
+                  - paragraph [ref=f1e861]: .text('Air Mineral 1x 5.000\n')
+                  - paragraph [ref=f1e862]: .line()
+                  - paragraph [ref=f1e863]: .align('right')
+                  - paragraph [ref=f1e864]: ".text('Subtotal: 40.000\\n')"
+                  - paragraph [ref=f1e865]: ".text('Pajak (10%): 4.000\\n')"
+                  - paragraph [ref=f1e866]: ".text('TOTAL: 44.000\\n')"
+                  - paragraph [ref=f1e867]: .line()
+                  - paragraph [ref=f1e868]: .align('center')
+                  - paragraph [ref=f1e869]: .text('Terima Kasih Atas Kunjungan Anda\n')
+                  - paragraph [ref=f1e870]: .text('Barang yang sudah dibeli tidak dapat ditukar\n')
+                  - paragraph [ref=f1e871]: .feed(3) // Naikkan kertas 3 baris sebelum memotong
+                  - paragraph [ref=f1e872]: .cut() // Perintah potong kertas otomatis
+                  - paragraph [ref=f1e873]: .getData(); // Mengembalikan data dalam bentuk Uint8Array
+                  - paragraph [ref=f1e874]
+                  - paragraph [ref=f1e875]: // 3. Membuka koneksi dan mengirimkan data biner ke printer thermal
+                  - paragraph [ref=f1e876]: await device.open();
+                  - paragraph [ref=f1e877]: await device.selectConfiguration(1);
+                  - paragraph [ref=f1e878]: await device.claimInterface(0);
+                  - paragraph [ref=f1e879]
+                  - paragraph [ref=f1e880]: // Mengirim transfer bulk ke endpoint USB printer
+                  - paragraph [ref=f1e881]: // Endpoint out biasanya berindeks 1, 2, atau 3 tergantung merk printer
+                  - paragraph [ref=f1e882]: await device.transferOut(1, data);
+                  - paragraph [ref=f1e883]
+                  - paragraph [ref=f1e884]: await device.close();
+                  - paragraph [ref=f1e885]: setStatus('Cetak struk belanja berhasil!');
+                  - paragraph [ref=f1e886]: "} catch (error) {"
+                  - paragraph [ref=f1e887]: console.error(error);
+                  - paragraph [ref=f1e888]: "setStatus(`Gagal: ${error.message}`);"
+                  - paragraph [ref=f1e889]: "}"
+                  - paragraph [ref=f1e890]: "};"
+                  - paragraph [ref=f1e891]
+                  - paragraph [ref=f1e892]: return (
+                  - paragraph [ref=f1e893]: "<div style={{ padding: '20px', fontFamily: 'sans-serif' }}>"
+                  - paragraph [ref=f1e894]: <h2>POS Web Printer Test</h2>
+                  - paragraph [ref=f1e895]: <button
+                  - paragraph [ref=f1e896]: "onClick={handlePrint}"
+                  - paragraph [ref=f1e897]: "style={{"
+                  - paragraph [ref=f1e898]: "padding: '10px 20px',"
+                  - paragraph [ref=f1e899]: "backgroundColor: '#0070f3',"
+                  - paragraph [ref=f1e900]: "color: '#fff',"
+                  - paragraph [ref=f1e901]: "border: 'none',"
+                  - paragraph [ref=f1e902]: "borderRadius: '5px',"
+                  - paragraph [ref=f1e903]: "cursor: 'pointer'"
+                  - paragraph [ref=f1e904]: "}}"
+                  - paragraph [ref=f1e905]: ">"
+                  - paragraph [ref=f1e906]: Cetak Struk Belanja
+                  - paragraph [ref=f1e907]: </button>
+                  - paragraph [ref=f1e908]: "<p style={{ marginTop: '10px', color: '#666' }}>Status: {status}</p>"
+                  - paragraph [ref=f1e909]: </div>
+                  - paragraph [ref=f1e910]: );
+                  - paragraph [ref=f1e911]: "}"
+                  - paragraph [ref=f1e912]: "```"
+                  - paragraph [ref=f1e913]
+                  - paragraph [ref=f1e914]: "### Tips Tambahan saat Menggunakan WebUSB"
+                  - paragraph [ref=f1e915]: "1. **Keamanan (HTTPS)**: WebUSB API hanya aktif pada environment secure context (HTTPS) atau `localhost` selama proses development."
+                  - paragraph [ref=f1e916]: "2. **Koneksi Endpoint**: Setiap printer thermal memiliki alamat endpoint USB transfer out yang berbeda. Jika pengiriman gagal di endpoint `1`, coba ganti indeks target transfer out Anda (misal `2` atau `3`)."
+                  - paragraph [ref=f1e917]: "3. **Karakter Non-ASCII**: Pastikan encoding printer sesuai sebelum mengirim karakter khusus atau simbol mata uang non-standar."
+            - generic [ref=f1e918]:
+              - generic [ref=f1e919]:
+                - generic [ref=f1e920]: Publish
+                - generic [ref=f1e922]:
+                  - generic [ref=f1e923] [cursor=pointer]:
+                    - checkbox "Published" [checked] [ref=f1e924]
+                    - text: Published
+                  - button "💾 Save" [ref=f1e925] [cursor=pointer]
+              - generic [ref=f1e926]:
+                - generic [ref=f1e927]: Slug
+                - textbox "url-slug" [ref=f1e930]: cara-cetak-struk-esc-pos-langsung-dari-browser-tanpa-aplikasi-desktop
+              - generic [ref=f1e931]:
+                - generic [ref=f1e932]: Excerpt
+                - textbox "Short description for the post listing…" [ref=f1e935]: Pelajari cara mengirim perintah ESC/POS langsung ke printer thermal dari browser menggunakan WebUSB dan library web-thermal-printer.
+              - generic [ref=f1e936]:
+                - generic [ref=f1e937]: Cover Image
+                - generic [ref=f1e946] [cursor=pointer]:
+                  - paragraph [ref=f1e947]: Click to upload or drag & drop
+                  - paragraph [ref=f1e948]: PNG, JPG, WEBP (max. 10MB)
+              - generic [ref=f1e949]:
+                - generic [ref=f1e950]: Tags
+                - generic [ref=f1e953]:
+                  - generic [ref=f1e954]:
+                    - text: webusb
+                    - button "✕" [ref=f1e955]
+                  - generic [ref=f1e956]:
+                    - text: react
+                    - button "✕" [ref=f1e957]
+                  - generic [ref=f1e958]:
+                    - text: esc-pos
+                    - button "✕" [ref=f1e959]
+                  - generic [ref=f1e960]:
+                    - text: javascript
+                    - button "✕" [ref=f1e961]
+                  - generic [ref=f1e962]:
+                    - text: web-serial
+                    - button "✕" [ref=f1e963]
+                  - generic [ref=f1e964]:
+                    - text: thermal-printer
+                    - button "✕" [ref=f1e965]
+                  - generic [ref=f1e966]:
+                    - text: nextjs
+                    - button "✕" [ref=f1e967]
+                  - textbox "Add tag…" [active] [ref=f1e968]
+  - alert [ref=f1e283]: Muhammad Qomarudin Portfolio

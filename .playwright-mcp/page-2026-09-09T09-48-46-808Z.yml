@@ -1,0 +1,87 @@
+- generic [ref=f3e2]:
+  - main [ref=f3e3]:
+    - article [ref=f3e5]:
+      - generic [ref=f3e6]:
+        - heading "Paco Coursey" [level=1] [ref=f3e7]
+        - paragraph [ref=f3e8]:
+          - emphasis [ref=f3e9]: Crafting interfaces
+          - text: . Building polished software and web experiences. Experimenting with magical details in user interfaces. Webmaster at
+          - link "Linear" [ref=f3e10] [cursor=pointer]:
+            - /url: https://linear.app
+          - text: .
+        - paragraph [ref=f3e11]:
+          - text: In the past I’ve developed the
+          - link "Vercel" [ref=f3e12] [cursor=pointer]:
+            - /url: https://vercel.com
+          - text: design system, website, and dashboard.
+      - generic [ref=f3e14]:
+        - generic [ref=f3e15]:
+          - heading "Building" [level=2] [ref=f3e16]
+          - generic [ref=f3e18]:
+            - link "Craft" [ref=f3e21] [cursor=pointer]:
+              - /url: /craft
+            - paragraph [ref=f3e22]: Implementing interfaces and interactions.
+        - generic [ref=f3e23]:
+          - heading "Projects" [level=2] [ref=f3e24]
+          - generic [ref=f3e25]:
+            - generic [ref=f3e26]:
+              - generic [ref=f3e27]:
+                - link "⌘K" [ref=f3e29] [cursor=pointer]:
+                  - /url: https://github.com/pacocoursey/cmdk
+                - img "arrow-up-right icon" [ref=f3e30]
+              - paragraph [ref=f3e31]: Composable command menu React component.
+            - generic [ref=f3e32]:
+              - generic [ref=f3e33]:
+                - link "Writer" [ref=f3e35] [cursor=pointer]:
+                  - /url: https://github.com/pacocoursey/writer
+                - img "arrow-up-right icon" [ref=f3e36]
+              - paragraph [ref=f3e37]: Plain text editor with a focus on performance.
+            - generic [ref=f3e38]:
+              - generic [ref=f3e39]:
+                - link "Next Themes" [ref=f3e41] [cursor=pointer]:
+                  - /url: https://github.com/pacocoursey/next-themes
+                - img "arrow-up-right icon" [ref=f3e42]
+              - paragraph [ref=f3e43]: Perfect dark mode in Next.js apps.
+        - generic [ref=f3e44]:
+          - heading "Writing" [level=2] [ref=f3e45]
+          - generic [ref=f3e46]:
+            - generic [ref=f3e47]:
+              - link "React Hook Getter Pattern" [ref=f3e50] [cursor=pointer]:
+                - /url: /writing/hook-getter
+              - paragraph [ref=f3e51]: Simple, efficient React state hook in 50 lines.
+            - generic [ref=f3e52]:
+              - link "Redesign 2021" [ref=f3e55] [cursor=pointer]:
+                - /url: /writing/redesign-2021
+              - paragraph [ref=f3e56]: Return to simplicity.
+            - generic [ref=f3e57]:
+              - link "All writing" [ref=f3e60] [cursor=pointer]:
+                - /url: /writing
+              - paragraph [ref=f3e61]: Infrequent thoughts on design and code.
+      - generic [ref=f3e62]:
+        - heading "Now" [level=2] [ref=f3e63]
+        - paragraph [ref=f3e64]:
+          - text: Developing skill through doing, guiltlessly exploring passion and interests, imbuing quality. Mindful that
+          - emphasis [ref=f3e65]: everything around me is someone’s life work.
+        - paragraph [ref=f3e66]: All I want to do is build websites. Typography, motion design, copywriting, performance—the web is an endless medium of opportunity and creativity of which I’ve only scratched the surface.
+        - paragraph [ref=f3e67]:
+          - text: "Enjoying deep, dark, boring dance music: songs that set the pace in the first ten seconds and maintain it for the next ten minutes."
+          - link "Deep" [ref=f3e68] [cursor=pointer]:
+            - /url: https://www.youtube.com/playlist?list=PLosoS0uWFKCsILMfLRRzAqasL_72xHmir
+          - text: is a curation of my favorites. Soothed by the inherent energy of drum and bass—
+          - link "Drum" [ref=f3e69] [cursor=pointer]:
+            - /url: https://www.youtube.com/playlist?list=PLosoS0uWFKCurdaIuYnBDgpoX7lZzt1E8
+          - text: has my favorites.
+      - generic [ref=f3e70]:
+        - heading "Connect" [level=2] [ref=f3e71]
+        - paragraph [ref=f3e72]:
+          - text: Reach me at
+          - link "@pacocoursey" [ref=f3e73] [cursor=pointer]:
+            - /url: https://twitter.com/pacocoursey
+          - text: or
+          - link "p@paco.me" [ref=f3e74] [cursor=pointer]:
+            - /url: mailto:p@paco.me
+          - text: .
+  - contentinfo [ref=f3e75]:
+    - generic [ref=f3e76]:
+      - generic [ref=f3e77]: Pray at the altar of hard work.
+      - generic [ref=f3e78]: "2025"

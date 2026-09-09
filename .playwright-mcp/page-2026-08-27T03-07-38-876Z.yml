@@ -1,0 +1,184 @@
+- generic [active] [ref=f1e1]:
+  - alert [ref=f1e21]: Muhammad Qomarudin Portfolio
+  - generic [ref=f1e22]:
+    - complementary [ref=f1e23]:
+      - link [ref=f1e25] [cursor=pointer]:
+        - /url: /admin
+        - generic [ref=f1e29]:
+          - heading "Admin CMS" [level=2] [ref=f1e30]
+          - paragraph [ref=f1e31]: masqomar.com
+      - navigation [ref=f1e32]:
+        - link "Dashboard" [ref=f1e33] [cursor=pointer]:
+          - /url: /admin
+        - link "Hero Section" [ref=f1e40] [cursor=pointer]:
+          - /url: /admin/hero
+        - link "Navbar" [ref=f1e45] [cursor=pointer]:
+          - /url: /admin/navbar
+        - link "About" [ref=f1e48] [cursor=pointer]:
+          - /url: /admin/about
+        - link "Experience" [ref=f1e53] [cursor=pointer]:
+          - /url: /admin/experience
+        - link "Skills" [ref=f1e58] [cursor=pointer]:
+          - /url: /admin/skills
+        - link "Projects" [ref=f1e62] [cursor=pointer]:
+          - /url: /admin/projects
+        - link "Blog Posts" [ref=f1e67] [cursor=pointer]:
+          - /url: /admin/blog
+        - link "Contact" [ref=f1e72] [cursor=pointer]:
+          - /url: /admin/contact
+        - link "Inbox Messages" [ref=f1e77] [cursor=pointer]:
+          - /url: /admin/inbox
+        - link "Media Library" [ref=f1e82] [cursor=pointer]:
+          - /url: /admin/media
+        - link "Settings" [ref=f1e88] [cursor=pointer]:
+          - /url: /admin/settings
+      - generic [ref=f1e93]:
+        - link "View Site" [ref=f1e94] [cursor=pointer]:
+          - /url: /
+        - button "Sign Out" [ref=f1e99] [cursor=pointer]
+    - generic [ref=f1e100]:
+      - banner [ref=f1e101]:
+        - generic [ref=f1e102]:
+          - generic [ref=f1e103]: AD
+          - generic [ref=f1e104]: admin@app.dev
+      - main [ref=f1e105]:
+        - generic [ref=f1e392]:
+          - generic [ref=f1e393]:
+            - heading "Edit Post" [level=1] [ref=f1e394]
+            - paragraph [ref=f1e395]: Modify your blog article details
+          - generic [ref=f1e396]:
+            - generic [ref=f1e397]:
+              - textbox "Post title…" [ref=f1e398]: "Universal WebAssembly Thermal Printer SDK: web-thermal-printer"
+              - generic [ref=f1e399]:
+                - generic [ref=f1e400]:
+                  - button "Bold" [ref=f1e401] [cursor=pointer]
+                  - button "Italic" [ref=f1e404] [cursor=pointer]
+                  - button "Strike" [ref=f1e407] [cursor=pointer]
+                  - button "Inline Code" [ref=f1e411] [cursor=pointer]
+                  - button "Heading 1" [ref=f1e415] [cursor=pointer]
+                  - button "Heading 2" [ref=f1e418] [cursor=pointer]
+                  - button "Heading 3" [ref=f1e421] [cursor=pointer]
+                  - button "Bullet List" [ref=f1e425] [cursor=pointer]
+                  - button "Ordered List" [ref=f1e427] [cursor=pointer]
+                  - button "Blockquote" [ref=f1e431] [cursor=pointer]
+                  - button "Code Block" [ref=f1e435] [cursor=pointer]
+                  - button "Horizontal Rule" [ref=f1e438] [cursor=pointer]
+                  - button "Insert Link" [ref=f1e440] [cursor=pointer]
+                  - button "Insert Image" [ref=f1e444] [cursor=pointer]
+                  - button "Undo" [ref=f1e449] [cursor=pointer]
+                  - button "Redo" [ref=f1e453] [cursor=pointer]
+                - generic [ref=f1e459]:
+                  - heading "Introduction" [level=2] [ref=f1e460]
+                  - paragraph [ref=f1e461]:
+                    - strong [ref=f1e462]: web-thermal-printer
+                    - text: is a lightweight, zero-configuration WebAssembly SDK that connects your web applications (React, Vue, Next.js, Angular, Svelte, or plain JS/TS) directly to ESC/POS Thermal Receipt Printers via Web USB or Web Serial API. No background desktop software installation is required on client machines!
+                  - heading "Key Features" [level=2] [ref=f1e463]
+                  - list [ref=f1e464]:
+                    - listitem [ref=f1e465]:
+                      - paragraph [ref=f1e466]:
+                        - strong [ref=f1e467]: Zero-Config Embedded WASM
+                        - text: ":"
+                        - code [ref=f1e468]: printer.wasm
+                        - text: is Base64 embedded inside the npm bundle. Call
+                        - code [ref=f1e469]: await printer.init()
+                        - text: without copying
+                        - code [ref=f1e470]: .wasm
+                        - text: files or configuring bundlers (Vite, Next.js, Webpack, etc.).
+                    - listitem [ref=f1e471]:
+                      - paragraph [ref=f1e472]:
+                        - strong [ref=f1e473]: 100% TypeScript Ready
+                        - text: ": Includes strict TypeScript type declarations ("
+                        - code [ref=f1e474]: dist/index.d.ts
+                        - text: ) out-of-the-box.
+                    - listitem [ref=f1e475]:
+                      - paragraph [ref=f1e476]:
+                        - strong [ref=f1e477]: Native Browser Drivers
+                        - text: ": Supports both Web USB API ("
+                        - code [ref=f1e478]: navigator.usb
+                        - text: ) and Web Serial API (
+                        - code [ref=f1e479]: navigator.serial
+                        - text: ).
+                    - listitem [ref=f1e480]:
+                      - paragraph [ref=f1e481]:
+                        - strong [ref=f1e482]: 3 Print Modes
+                        - text: ":"
+                      - list [ref=f1e483]:
+                        - listitem [ref=f1e484]:
+                          - paragraph [ref=f1e485]: "Custom Formatted Text: Multiline text with alignment, bold font, line feeding, and paper cutting."
+                        - listitem [ref=f1e486]:
+                          - paragraph [ref=f1e487]: "Graphic Image / Canvas: Print HTML5 Canvas elements or Base64 images as high-precision thermal raster bitmaps."
+                        - listitem [ref=f1e488]:
+                          - paragraph [ref=f1e489]:
+                            - text: "Raw ESC/POS Bytes: Pass raw"
+                            - code [ref=f1e490]: Uint8Array
+                            - text: command bytes directly to the printer.
+                  - heading "Installation" [level=2] [ref=f1e491]
+                  - code [ref=f1e493]: npm install web-thermal-printer
+                  - heading "Quick Start" [level=2] [ref=f1e494]
+                  - paragraph [ref=f1e495]: "Here is how you can quickly start printing with Web USB in a React/Vite TypeScript environment:"
+                  - code [ref=f1e497]: "import { ThermalPrinterSDK, PrintPayload } from 'web-thermal-printer'; // 1. Instantiate SDK const printer = new ThermalPrinterSDK(); async function printReceipt() { // 2. Initialize WASM engine (Zero-config embedded WASM) await printer.init(); // 3. Connect via Web USB (Requires user gesture/button click in browser) await printer.connectUSB(1); // 4. Send Print Payload const payload: PrintPayload = { type: 'text', text: `TOKO UTAMA JAYA\\nJl. Mawar No. 88, Jakarta\\n--------------------------------\\nNo Nota : TRX-2026-001\\nKasir : Budi\\n--------------------------------\\nKopi Latte 2x @20.000 = 40.000\\nRoti Toast 1x @15.000 = 15.000\\n--------------------------------\\nTotal = 55.000\\n================================\\nTerima Kasih atas Kunjungan Anda!`, align: 'center', bold: true, cut: true, feed: 3, }; const bytesSent = await printer.print(payload); console.log(`Print successful! Sent ${bytesSent} bytes.`); }"
+                  - heading "Supported Drivers & Connection Guide" [level=2] [ref=f1e498]
+                  - paragraph [ref=f1e499]:
+                    - text: DriverBrowser APITarget DevicesWhen to Use
+                    - strong [ref=f1e500]: Web USB
+                    - code [ref=f1e501]: navigator.usb
+                    - text: Pure USB Thermal PrintersRecommended for standard USB thermal receipt printers.
+                    - strong [ref=f1e502]: Web Serial
+                    - code [ref=f1e503]: navigator.serial
+                    - text: Virtual COM / Serial Ports (e.g.
+                    - code [ref=f1e504]: /dev/cu.usbserial
+                    - text: ","
+                    - code [ref=f1e505]: COM3
+                    - text: )For printers connected via RS232 Serial cable or Serial-to-USB converters (CH340, FTDI).
+                  - heading "Browser Security Policies & Local testing" [level=2] [ref=f1e506]
+                  - paragraph [ref=f1e507]:
+                    - text: Both Web USB and Web Serial APIs require a
+                    - strong [ref=f1e508]: Secure Context (HTTPS or localhost)
+                    - text: . If you are testing over local IP networks (HTTP), you must enable Chrome flag
+                    - code [ref=f1e509]: chrome://flags/#unsafely-treat-insecure-origin-as-secure
+                    - text: and add your origin to the allowlist.
+                  - heading "Links" [level=2] [ref=f1e510]
+                  - list [ref=f1e511]:
+                    - listitem [ref=f1e512]:
+                      - paragraph [ref=f1e513]:
+                        - text: "GitHub:"
+                        - link "https://github.com/masqomar21/web-thermal-printer" [ref=f1e514]:
+                          - /url: https://github.com/masqomar21/web-thermal-printer
+                    - listitem [ref=f1e515]:
+                      - paragraph [ref=f1e516]:
+                        - text: "NPM Package:"
+                        - link "https://www.npmjs.com/package/web-thermal-printer" [ref=f1e517]:
+                          - /url: https://www.npmjs.com/package/web-thermal-printer
+                  - paragraph [ref=f1e518]
+            - generic [ref=f1e519]:
+              - generic [ref=f1e520]:
+                - generic [ref=f1e521]: Publish
+                - generic [ref=f1e523]:
+                  - generic [ref=f1e524] [cursor=pointer]:
+                    - checkbox "Published" [checked] [ref=f1e525]
+                    - text: Published
+                  - button "💾 Save" [ref=f1e526] [cursor=pointer]
+              - generic [ref=f1e527]:
+                - generic [ref=f1e528]: Slug
+                - textbox "url-slug" [ref=f1e531]: web-thermal-printer-wasm-sdk
+              - generic [ref=f1e532]:
+                - generic [ref=f1e533]: Excerpt
+                - textbox "Short description for the post listing…" [ref=f1e536]: web-thermal-printer is a lightweight, zero-configuration WebAssembly SDK that connects your web applications directly to ESC/POS Thermal Receipt Printers via Web USB or Web Serial API.
+              - generic [ref=f1e537]:
+                - generic [ref=f1e538]: Cover Image
+                - generic [ref=f1e547] [cursor=pointer]:
+                  - paragraph [ref=f1e548]: Click to upload or drag & drop
+                  - paragraph [ref=f1e549]: PNG, JPG, WEBP (max. 10MB)
+              - generic [ref=f1e550]:
+                - generic [ref=f1e551]: Tags
+                - generic [ref=f1e554]:
+                  - generic [ref=f1e555]:
+                    - text: npmweb-thermal-printer
+                    - button "✕" [ref=f1e556]
+                  - generic [ref=f1e557]:
+                    - text: wasm
+                    - button "✕" [ref=f1e558]
+                  - generic [ref=f1e559]:
+                    - text: typescript
+                    - button "✕" [ref=f1e560]
+                  - textbox "Add tag…" [ref=f1e561]

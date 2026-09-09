@@ -82,36 +82,40 @@ export default async function ProjectDetailPage({ params }: Props) {
   };
 
   return (
-    <div className="bg-background min-h-screen relative overflow-hidden">
+    <div className="bg-background min-h-screen py-28 md:py-36 px-6">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="max-w-3xl mx-auto px-6 md:px-12 py-32 md:py-40 z-10 relative">
+      <div className="max-w-4xl mx-auto flex flex-col gap-10">
         <Link
           href="/projects"
-          className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-foreground/60 hover:text-foreground mb-8 transition-colors"
+          className="inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground hover:text-foreground transition-colors w-fit"
         >
-          ← Back to Projects
+          <span>← Back to Projects</span>
         </Link>
 
-        <header className="mb-10">
-          <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-foreground/50 mb-4">
+        <header className="flex flex-col gap-4 pb-8 border-b border-border/60">
+          <div className="flex items-center gap-2 font-mono text-xs text-muted-foreground">
             <span>{year}</span>
             <span>•</span>
-            <span>PUBLISHED</span>
+            <span className="text-primary font-medium">FEATURED PROJECT</span>
           </div>
 
-          <h1 className="font-serif text-3xl md:text-5xl font-bold tracking-tight mb-6 text-foreground leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-foreground leading-tight">
             {serializedProject.title}
           </h1>
 
+          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+            {serializedProject.excerpt}
+          </p>
+
           {serializedProject.tags && serializedProject.tags.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-6">
+            <div className="flex flex-wrap gap-2 pt-1">
               {serializedProject.tags.map((tag: string) => (
                 <span
                   key={tag}
-                  className="font-mono text-[9px] uppercase tracking-widest bg-foreground/5 text-foreground border border-foreground/20 px-3 py-1 rounded-full"
+                  className="font-mono text-xs px-3 py-1 rounded-full bg-secondary/80 text-foreground/80 font-medium"
                 >
                   {tag}
                 </span>
@@ -120,15 +124,16 @@ export default async function ProjectDetailPage({ params }: Props) {
           )}
 
           {/* Action Links */}
-          <div className="flex flex-wrap gap-4 mt-6">
+          <div className="flex flex-wrap gap-3 pt-4">
             {serializedProject.liveUrl && (
               <a
                 href={serializedProject.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-2.5 bg-foreground text-background hover:opacity-90 rounded-full font-mono text-xs uppercase tracking-widest transition-all"
+                className="px-5 py-2.5 bg-foreground text-background hover:opacity-90 rounded-full font-mono text-xs font-medium transition-opacity inline-flex items-center gap-1.5"
               >
-                Live Preview ↗
+                <span>Live Preview</span>
+                <span>↗</span>
               </a>
             )}
             {serializedProject.githubUrl && (
@@ -136,7 +141,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                 href={serializedProject.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-2.5 bg-transparent text-foreground border border-foreground/35 hover:border-foreground hover:bg-foreground/5 rounded-full font-mono text-xs uppercase tracking-widest transition-all"
+                className="px-5 py-2.5 bg-card border border-border text-foreground hover:bg-secondary rounded-full font-mono text-xs font-medium transition-colors"
               >
                 Source Code
               </a>
@@ -144,30 +149,22 @@ export default async function ProjectDetailPage({ params }: Props) {
           </div>
         </header>
 
-        {/* Cover Image styled w/ offset dashed frame */}
-        <div className="relative w-full h-60 md:h-[400px] mb-12 group">
-          <div className="absolute -inset-1 border-2 border-dashed border-pastel-teal rounded-[24px] pointer-events-none opacity-50" />
-          <div
-            className="w-full h-full rounded-[24px] border border-foreground/10 relative z-10 bg-muted/20"
-            style={{
-              backgroundImage: serializedProject.coverUrl
-                ? `url(${serializedProject.coverUrl})`
-                : undefined,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          />
-        </div>
+        {/* Cover Image Container */}
+        {serializedProject.coverUrl && (
+          <div className="relative w-full aspect-[16/9] rounded-3xl overflow-hidden border border-border/70 bg-muted/40 shadow-xs">
+            <div
+              className="w-full h-full bg-cover bg-center"
+              style={{ backgroundImage: `url(${serializedProject.coverUrl})` }}
+            />
+          </div>
+        )}
 
+        {/* Article Body */}
         <article
-          className="prose max-w-none font-mono text-sm leading-relaxed text-foreground/80"
+          className="prose dark:prose-invert max-w-none font-sans text-sm sm:text-base leading-relaxed text-foreground/85 pt-4"
           dangerouslySetInnerHTML={{ __html: serializedProject.content }}
         />
       </div>
-
-      {/* Decorative dashed lines */}
-      <div className="absolute left-6 md:left-12 top-0 bottom-0 w-[1px] border-l border-dashed border-foreground/10 pointer-events-none" />
-      <div className="absolute right-6 md:right-12 top-0 bottom-0 w-[1px] border-r border-dashed border-foreground/10 pointer-events-none" />
     </div>
   );
 }

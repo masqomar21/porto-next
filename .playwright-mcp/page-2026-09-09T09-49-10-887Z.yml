@@ -1,0 +1,18 @@
+- generic [active] [ref=f5e1]:
+  - main [ref=f5e2]:
+    - link [ref=f5e3] [cursor=pointer]:
+      - /url: /
+    - generic [ref=f5e10]:
+      - heading "Linus Rogge" [level=1] [ref=f5e11]
+      - paragraph [ref=f5e12]:
+        - text: Design Engineer at
+        - link "SPACING" [ref=f5e13] [cursor=pointer]:
+          - /url: https://spacing.co
+      - list [ref=f5e14]:
+        - listitem [ref=f5e15]:
+          - link "Cosmos" [ref=f5e16] [cursor=pointer]:
+            - /url: https://cosmos.so/linusrogge
+        - listitem [ref=f5e17]:
+          - link "Email" [ref=f5e18] [cursor=pointer]:
+            - /url: mailto:linus@linusrogge.com
+  - button "[i]" [ref=f5e19] [cursor=pointer]

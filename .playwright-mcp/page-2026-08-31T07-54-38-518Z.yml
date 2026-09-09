@@ -1,0 +1,155 @@
+- generic [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - complementary [ref=f1e3]:
+      - link [ref=f1e5] [cursor=pointer]:
+        - /url: /admin
+        - generic [ref=f1e9]:
+          - heading "Admin CMS" [level=2] [ref=f1e10]
+          - paragraph [ref=f1e11]: masqomar.com
+      - navigation [ref=f1e12]:
+        - link "Dashboard" [ref=f1e13] [cursor=pointer]:
+          - /url: /admin
+        - link "Hero Section" [ref=f1e20] [cursor=pointer]:
+          - /url: /admin/hero
+        - link "Navbar" [ref=f1e25] [cursor=pointer]:
+          - /url: /admin/navbar
+        - link "About" [ref=f1e28] [cursor=pointer]:
+          - /url: /admin/about
+        - link "Experience" [ref=f1e33] [cursor=pointer]:
+          - /url: /admin/experience
+        - link "Skills" [ref=f1e38] [cursor=pointer]:
+          - /url: /admin/skills
+        - link "Projects" [ref=f1e42] [cursor=pointer]:
+          - /url: /admin/projects
+        - link "Blog Posts" [active] [ref=f1e47] [cursor=pointer]:
+          - /url: /admin/blog
+        - link "Contact" [ref=f1e52] [cursor=pointer]:
+          - /url: /admin/contact
+        - link "Inbox Messages" [ref=f1e57] [cursor=pointer]:
+          - /url: /admin/inbox
+        - link "Media Library" [ref=f1e62] [cursor=pointer]:
+          - /url: /admin/media
+        - link "Settings" [ref=f1e68] [cursor=pointer]:
+          - /url: /admin/settings
+      - generic [ref=f1e73]:
+        - link "View Site" [ref=f1e74] [cursor=pointer]:
+          - /url: /
+        - button "Sign Out" [ref=f1e79] [cursor=pointer]
+    - generic [ref=f1e80]:
+      - banner [ref=f1e81]:
+        - generic [ref=f1e82]:
+          - generic [ref=f1e83]: AD
+          - generic [ref=f1e84]: admin@app.dev
+      - main [ref=f1e85]:
+        - generic [ref=f1e578]:
+          - generic [ref=f1e579]:
+            - generic [ref=f1e580]:
+              - heading "Blog Posts" [level=1] [ref=f1e581]
+              - paragraph [ref=f1e582]: Manage articles and thoughts
+            - link "+ New Post" [ref=f1e583] [cursor=pointer]:
+              - /url: /admin/blog/new
+          - table [ref=f1e586]:
+            - rowgroup [ref=f1e587]:
+              - row [ref=f1e588]:
+                - columnheader "Title" [ref=f1e589]
+                - columnheader "Status" [ref=f1e590]
+                - columnheader "Views" [ref=f1e591]
+                - columnheader "Actions" [ref=f1e592]
+            - rowgroup [ref=f1e593]:
+              - row [ref=f1e594]:
+                - cell "Cara Cetak Struk ESC/POS Langsung dari Browser Tanpa Aplikasi Desktop" [ref=f1e595]
+                - cell "Published" [ref=f1e596]
+                - cell "0" [ref=f1e598]
+                - cell [ref=f1e602]:
+                  - link "Edit" [ref=f1e603] [cursor=pointer]:
+                    - /url: /admin/blog/6a953187f1300fd73f965981/edit
+                  - button "Delete" [ref=f1e604] [cursor=pointer]
+              - row [ref=f1e605]:
+                - 'cell "Universal WebAssembly Thermal Printer SDK: web-thermal-printer" [ref=f1e606]'
+                - cell "Published" [ref=f1e607]
+                - cell "11" [ref=f1e609]
+                - cell [ref=f1e613]:
+                  - link "Edit" [ref=f1e614] [cursor=pointer]:
+                    - /url: /admin/blog/6a8fa9f5f1300fd73f965973/edit
+                  - button "Delete" [ref=f1e615] [cursor=pointer]
+              - row [ref=f1e616]:
+                - cell "Mengelola Monorepo Modern dengan Turborepo" [ref=f1e617]
+                - cell "Published" [ref=f1e618]
+                - cell "9" [ref=f1e620]
+                - cell [ref=f1e624]:
+                  - link "Edit" [ref=f1e625] [cursor=pointer]:
+                    - /url: /admin/blog/6a7ecc94f1300fd73f965971/edit
+                  - button "Delete" [ref=f1e626] [cursor=pointer]
+              - row [ref=f1e627]:
+                - 'cell "Authentication Modern: Passkeys vs Password — Masa Depan Login Tanpa Password" [ref=f1e628]'
+                - cell "Published" [ref=f1e629]
+                - cell "11" [ref=f1e631]
+                - cell [ref=f1e635]:
+                  - link "Edit" [ref=f1e636] [cursor=pointer]:
+                    - /url: /admin/blog/6a633a95a7c1f25a486a8b1a/edit
+                  - button "Delete" [ref=f1e637] [cursor=pointer]
+              - row [ref=f1e638]:
+                - cell "Monorepo dengan Turborepo — Setup dari Nol hingga Production" [ref=f1e639]
+                - cell "Published" [ref=f1e640]
+                - cell "14" [ref=f1e642]
+                - cell [ref=f1e646]:
+                  - link "Edit" [ref=f1e647] [cursor=pointer]:
+                    - /url: /admin/blog/6a63364ea7c1f25a486a8b19/edit
+                  - button "Delete" [ref=f1e648] [cursor=pointer]
+              - row [ref=f1e649]:
+                - cell "Membangun API dengan Hono.js — Framework Ultra-Ringan untuk Edge Computing" [ref=f1e650]
+                - cell "Published" [ref=f1e651]
+                - cell "6" [ref=f1e653]
+                - cell [ref=f1e657]:
+                  - link "Edit" [ref=f1e658] [cursor=pointer]:
+                    - /url: /admin/blog/6a6335d4a7c1f25a486a8b18/edit
+                  - button "Delete" [ref=f1e659] [cursor=pointer]
+              - row [ref=f1e660]:
+                - cell "React 19 Server Components — Panduan Lengkap untuk Developer" [ref=f1e661]
+                - cell "Published" [ref=f1e662]
+                - cell "6" [ref=f1e664]
+                - cell [ref=f1e668]:
+                  - link "Edit" [ref=f1e669] [cursor=pointer]:
+                    - /url: /admin/blog/6a633570a7c1f25a486a8b17/edit
+                  - button "Delete" [ref=f1e670] [cursor=pointer]
+              - row [ref=f1e671]:
+                - cell "Bun 2.0 — Runtime JavaScript yang Siap Gantikan Node.js?" [ref=f1e672]
+                - cell "Published" [ref=f1e673]
+                - cell "5" [ref=f1e675]
+                - cell [ref=f1e679]:
+                  - link "Edit" [ref=f1e680] [cursor=pointer]:
+                    - /url: /admin/blog/6a6334dda7c1f25a486a8b16/edit
+                  - button "Delete" [ref=f1e681] [cursor=pointer]
+              - row [ref=f1e682]:
+                - 'cell "HTTP Punya Metode Baru: QUERY — Pengganti GET untuk Request dengan Body" [ref=f1e683]'
+                - cell "Published" [ref=f1e684]
+                - cell "44" [ref=f1e686]
+                - cell [ref=f1e690]:
+                  - link "Edit" [ref=f1e691] [cursor=pointer]:
+                    - /url: /admin/blog/6a633323a7c1f25a486a8b15/edit
+                  - button "Delete" [ref=f1e692] [cursor=pointer]
+              - row [ref=f1e693]:
+                - 'cell "TypeScript 7: Fitur Baru dan Perubahan Penting yang Harus Kamu Tahu" [ref=f1e694]'
+                - cell "Published" [ref=f1e695]
+                - cell "12" [ref=f1e697]
+                - cell [ref=f1e701]:
+                  - link "Edit" [ref=f1e702] [cursor=pointer]:
+                    - /url: /admin/blog/6a632396dd0b6470872fb5e1/edit
+                  - button "Delete" [ref=f1e703] [cursor=pointer]
+              - row [ref=f1e704]:
+                - 'cell "Tailwind CSS v4: What''s New?" [ref=f1e705]'
+                - cell "Published" [ref=f1e706]
+                - cell "115" [ref=f1e708]
+                - cell [ref=f1e712]:
+                  - link "Edit" [ref=f1e713] [cursor=pointer]:
+                    - /url: /admin/blog/6a278d71cefa4de9a71a5214/edit
+                  - button "Delete" [ref=f1e714] [cursor=pointer]
+              - row [ref=f1e715]:
+                - cell "Mastering Next.js Server Components" [ref=f1e716]
+                - cell "Published" [ref=f1e717]
+                - cell "147" [ref=f1e719]
+                - cell [ref=f1e723]:
+                  - link "Edit" [ref=f1e724] [cursor=pointer]:
+                    - /url: /admin/blog/6a278d71cefa4de9a71a5213/edit
+                  - button "Delete" [ref=f1e725] [cursor=pointer]
+  - alert [ref=f1e283]: Muhammad Qomarudin Portfolio

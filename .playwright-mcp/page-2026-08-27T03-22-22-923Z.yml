@@ -1,0 +1,77 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - link [ref=e5] [cursor=pointer]:
+        - /url: /admin
+        - generic [ref=e9]:
+          - heading "Admin CMS" [level=2] [ref=e10]
+          - paragraph [ref=e11]: masqomar.com
+      - navigation [ref=e12]:
+        - link "Dashboard" [ref=e13] [cursor=pointer]:
+          - /url: /admin
+        - link "Hero Section" [ref=e20] [cursor=pointer]:
+          - /url: /admin/hero
+        - link "Navbar" [ref=e25] [cursor=pointer]:
+          - /url: /admin/navbar
+        - link "About" [ref=e28] [cursor=pointer]:
+          - /url: /admin/about
+        - link "Experience" [ref=e33] [cursor=pointer]:
+          - /url: /admin/experience
+        - link "Skills" [ref=e38] [cursor=pointer]:
+          - /url: /admin/skills
+        - link "Projects" [ref=e42] [cursor=pointer]:
+          - /url: /admin/projects
+        - link "Blog Posts" [ref=e47] [cursor=pointer]:
+          - /url: /admin/blog
+        - link "Contact" [ref=e52] [cursor=pointer]:
+          - /url: /admin/contact
+        - link "Inbox Messages" [ref=e57] [cursor=pointer]:
+          - /url: /admin/inbox
+        - link "Media Library" [ref=e62] [cursor=pointer]:
+          - /url: /admin/media
+        - link "Settings" [ref=e68] [cursor=pointer]:
+          - /url: /admin/settings
+      - generic [ref=e73]:
+        - link "View Site" [ref=e74] [cursor=pointer]:
+          - /url: /
+        - button "Sign Out" [ref=e79] [cursor=pointer]
+    - generic [ref=e80]:
+      - banner [ref=e81]:
+        - generic [ref=e82]:
+          - generic [ref=e83]: AD
+          - generic [ref=e84]: admin@app.dev
+      - main [ref=e85]:
+        - generic [ref=e86]:
+          - generic [ref=e87]:
+            - heading "New Project" [level=1] [ref=e88]
+            - paragraph [ref=e89]: Create a new project showcase item
+          - generic [ref=e90]:
+            - textbox "Project title…" [ref=e92]
+            - generic [ref=e93]:
+              - generic [ref=e94]:
+                - generic [ref=e95]: Options
+                - generic [ref=e97]:
+                  - generic [ref=e98] [cursor=pointer]:
+                    - checkbox "Featured project" [ref=e99]
+                    - text: Featured project
+                  - button "💾 Save Project" [ref=e100] [cursor=pointer]
+              - generic [ref=e101]:
+                - generic [ref=e102]: Slug
+                - textbox "project-slug" [ref=e105]
+              - generic [ref=e106]:
+                - generic [ref=e107]: Excerpt
+                - textbox "Brief summary..." [ref=e110]
+              - generic [ref=e111]:
+                - generic [ref=e112]: Cover Image
+                - generic [ref=e121] [cursor=pointer]:
+                  - paragraph [ref=e122]: Click to upload or drag & drop
+                  - paragraph [ref=e123]: PNG, JPG, WEBP (max. 10MB)
+              - generic [ref=e124]:
+                - generic [ref=e125]: Links
+                - generic [ref=e127]:
+                  - textbox "Live URL" [ref=e128]
+                  - textbox "GitHub URL" [ref=e129]
+              - generic [ref=e130]:
+                - generic [ref=e131]: Tags
+                - textbox "Add tag…" [ref=e135]
+  - alert [ref=e136]

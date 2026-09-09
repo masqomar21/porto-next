@@ -23,23 +23,22 @@ export default async function PublicMediaPage() {
   }));
 
   return (
-    <div className="min-h-screen bg-background text-foreground py-24 md:py-36 px-6 md:px-12 relative border-t border-dashed border-foreground/15">
-      <div className="max-w-6xl mx-auto space-y-12">
-        <div className="border-b border-dashed border-foreground/20 pb-8">
-          <h1 className="font-serif text-4xl md:text-6xl font-bold tracking-tight text-foreground">
+    <div className="min-h-screen bg-background text-foreground py-28 md:py-36 px-6">
+      <div className="max-w-5xl mx-auto flex flex-col gap-10">
+        <div className="flex flex-col gap-3 pb-8 border-b border-border/60">
+          <span className="text-xs font-mono font-semibold text-primary uppercase tracking-widest">
+            Visual Assets
+          </span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-foreground">
             Media Gallery
           </h1>
-          <p className="font-mono text-xs uppercase tracking-widest text-foreground/60 mt-3">
+          <p className="text-xs sm:text-sm text-muted-foreground">
             Collection of visual assets, screenshots, and media highlights ({assets.length} items)
           </p>
         </div>
 
         <MediaGalleryClient initialAssets={assets} />
       </div>
-
-      {/* Decorative dashed lines */}
-      <div className="absolute left-6 md:left-12 top-0 bottom-0 w-[1px] border-l border-dashed border-foreground/10 pointer-events-none" />
-      <div className="absolute right-6 md:right-12 top-0 bottom-0 w-[1px] border-r border-dashed border-foreground/10 pointer-events-none" />
     </div>
   );
 }

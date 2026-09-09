@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { Mail, Send, MessageSquare, ArrowUpRight } from 'lucide-react';
 import { DynamicIcon } from '@/components/ui/dynamic-icon';
 
 type ContactData = {
@@ -43,126 +44,115 @@ export default function ContactSection({ data }: { data: ContactData }) {
   };
 
   return (
-    <section id="contact" className="py-24 md:py-36 bg-background px-6 md:px-12 relative border-t border-dashed border-foreground/15">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20">
-        
-        {/* Left Column: CTA Headline & Socials */}
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="lg:col-span-5 flex flex-col justify-between"
-        >
-          <div>
-            <span className="font-mono text-[10px] uppercase tracking-widest text-foreground/40 font-bold block mb-4">
-              // LET'S COLLABORATE
+    <section id="contact" className="py-20 md:py-28 px-6 max-w-5xl mx-auto border-t border-border/40">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+
+        {/* Left Column: Direct Info & Social Bento Card (5 cols) */}
+        <div className="md:col-span-5 flex flex-col gap-5">
+          <div className="flex flex-col gap-2">
+            <span className="text-xs font-mono font-semibold text-primary uppercase tracking-widest flex items-center gap-1.5">
+              <MessageSquare className="w-3.5 h-3.5" />
+              Collaboration
             </span>
-            <h2 className="font-serif text-4xl md:text-5xl font-bold leading-tight text-foreground mb-6">
-              Let's turn your creative ideas into stunning realities!
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight leading-snug">
+              Let’s build something exceptional together.
             </h2>
-            <div className="border-b border-dashed border-foreground/20 my-6" />
+            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mt-1">
+              Currently available for consulting, freelance software projects, and high-impact engineering roles.
+            </p>
           </div>
 
-          <div className="flex flex-col gap-6">
-            {data.email && (
-              <div>
-                <span className="font-mono text-[10px] uppercase tracking-widest text-foreground/40 font-bold block mb-1">
-                  WRITE ME
-                </span>
-                <a
-                  href={`mailto:${data.email}`}
-                  className="font-mono text-sm font-bold text-foreground hover:underline"
-                >
-                  {data.email}
-                </a>
-              </div>
-            )}
-            
-            {data.socialLinks && data.socialLinks.length > 0 && (
-              <div>
-                <span className="font-mono text-[10px] uppercase tracking-widest text-foreground/40 font-bold block mb-2">
-                  STAY CONNECTED
-                </span>
-                <div className="flex flex-wrap gap-x-6 gap-y-2">
-                  {data.socialLinks.map((link) => (
-                    <a
-                      key={link.platform}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-mono text-xs uppercase tracking-wider text-foreground/60 hover:text-foreground hover:underline flex items-center gap-1.5 transition-all"
-                    >
-                      <DynamicIcon name={link.icon} className="w-3.5 h-3.5" />
-                      {link.platform}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-        </motion.div>
+          {/* Email Bento Tile */}
+          {data.email && (
+            <div className="p-5 rounded-3xl bg-card border border-border/80 flex flex-col gap-1.5 shadow-2xs">
+              <span className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground">
+                Direct Contact
+              </span>
+              <a
+                href={`mailto:${data.email}`}
+                className="text-sm font-bold font-mono text-foreground hover:underline flex items-center gap-1.5"
+              >
+                <Mail className="w-4 h-4 text-primary" />
+                <span>{data.email}</span>
+              </a>
+            </div>
+          )}
 
-        {/* Right Column: Form */}
+          {/* Social Links Bento Tile */}
+          {data.socialLinks && data.socialLinks.length > 0 && (
+            <div className="p-5 rounded-3xl bg-card border border-border/80 flex flex-col gap-3 shadow-2xs">
+              <span className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground">
+                Online Profiles
+              </span>
+              <div className="flex flex-wrap gap-2">
+                {data.socialLinks.map((s) => (
+                  <a
+                    key={s.platform}
+                    href={s.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-1.5 rounded-full border border-border/60 bg-secondary/60 hover:bg-secondary text-foreground text-xs font-mono flex items-center gap-1.5 transition-colors"
+                  >
+                    <DynamicIcon name={s.icon} className="w-3.5 h-3.5" />
+                    <span>{s.platform}</span>
+                    <ArrowUpRight className="w-3 h-3 text-muted-foreground" />
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Right Column: Interactive Form Bento Card (7 cols) */}
         <motion.form
           onSubmit={handleSubmit}
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="lg:col-span-7 flex flex-col gap-8 bg-background relative p-6 sm:p-10 border border-foreground/10 rounded-[24px]"
+          transition={{ duration: 0.4 }}
+          className="md:col-span-7 p-7 sm:p-8 rounded-3xl bg-card border border-border/80 shadow-xs flex flex-col gap-4"
         >
-          {/* Dashed outer border */}
-          <div className="absolute -inset-[1px] border border-dashed border-foreground/20 rounded-[24px] pointer-events-none opacity-40" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="flex flex-col gap-1.5">
+              <label className="text-xs font-mono font-medium text-muted-foreground">Your Name</label>
+              <Input
+                value={form.name}
+                onChange={e => set('name', e.target.value)}
+                placeholder="John Doe"
+                required
+                className="bg-background/60 border-border/70 rounded-xl px-4 py-2.5 text-xs font-sans text-foreground"
+              />
+            </div>
 
-          <div className="flex flex-col gap-1.5 relative z-10">
-            <label htmlFor="contact-name" className="font-mono text-[10px] font-bold text-foreground/40 uppercase tracking-widest">
-              Name
-            </label>
-            <Input
-              id="contact-name"
-              value={form.name}
-              onChange={e => set('name', e.target.value)}
-              placeholder="Your name"
-              required
-              className="bg-transparent border-0 border-b border-foreground/20 rounded-none px-0 pb-2 focus:ring-0 focus-visible:ring-0 focus-visible:border-foreground font-mono text-sm placeholder:text-foreground/30 text-foreground shadow-none"
-            />
+            <div className="flex flex-col gap-1.5">
+              <label className="text-xs font-mono font-medium text-muted-foreground">Email Address</label>
+              <Input
+                type="email"
+                value={form.email}
+                onChange={e => set('email', e.target.value)}
+                placeholder="john@example.com"
+                required
+                className="bg-background/60 border-border/70 rounded-xl px-4 py-2.5 text-xs font-sans text-foreground"
+              />
+            </div>
           </div>
 
-          <div className="flex flex-col gap-1.5 relative z-10">
-            <label htmlFor="contact-email" className="font-mono text-[10px] font-bold text-foreground/40 uppercase tracking-widest">
-              Email Address
-            </label>
-            <Input
-              id="contact-email"
-              type="email"
-              value={form.email}
-              onChange={e => set('email', e.target.value)}
-              placeholder="hello@domain.com"
-              required
-              className="bg-transparent border-0 border-b border-foreground/20 rounded-none px-0 pb-2 focus:ring-0 focus-visible:ring-0 focus-visible:border-foreground font-mono text-sm placeholder:text-foreground/30 text-foreground shadow-none"
-            />
-          </div>
-
-          <div className="flex flex-col gap-1.5 relative z-10">
-            <label htmlFor="contact-message" className="font-mono text-[10px] font-bold text-foreground/40 uppercase tracking-widest">
-              Tell me about your project
-            </label>
+          <div className="flex flex-col gap-1.5">
+            <label className="text-xs font-mono font-medium text-muted-foreground">Message / Project Scope</label>
             <Textarea
-              id="contact-message"
               value={form.message}
               onChange={e => set('message', e.target.value)}
-              placeholder="Share the details..."
+              placeholder="Tell me about your timeline, ideas, or goals..."
               rows={4}
               required
-              className="bg-transparent border-0 border-b border-foreground/20 rounded-none px-0 pb-2 focus:ring-0 focus-visible:ring-0 focus-visible:border-foreground font-mono text-sm placeholder:text-foreground/30 text-foreground shadow-none resize-none min-h-[100px]"
+              className="bg-background/60 border-border/70 rounded-xl px-4 py-3 text-xs font-sans text-foreground resize-none min-h-[110px]"
             />
           </div>
 
           {toast && (
-            <div className={`p-4 rounded-xl text-xs font-mono border relative z-10 ${
+            <div className={`p-3.5 rounded-xl text-xs font-mono border ${
               toast.type === 'success'
-                ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-600'
+                ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-600 dark:text-emerald-400'
                 : 'bg-destructive/10 border-destructive/20 text-destructive'
             }`}>
               {toast.msg}
@@ -172,16 +162,14 @@ export default function ContactSection({ data }: { data: ContactData }) {
           <Button
             type="submit"
             disabled={sending}
-            className="w-full sm:w-fit px-8 py-3.5 bg-foreground text-background hover:opacity-90 rounded-full font-mono text-xs uppercase tracking-widest transition-all relative z-10 disabled:opacity-60 disabled:cursor-not-allowed shadow-none"
+            className="w-fit px-6 py-2.5 bg-foreground text-background hover:opacity-90 rounded-full font-mono text-xs font-medium transition-opacity disabled:opacity-50 inline-flex items-center gap-2 self-start mt-2"
           >
-            {sending ? 'Sending…' : 'Send Message'}
+            <span>{sending ? 'Sending…' : 'Send Message'}</span>
+            <Send className="w-3.5 h-3.5" />
           </Button>
         </motion.form>
-      </div>
 
-      {/* Decorative dashed lines */}
-      <div className="absolute left-6 md:left-12 top-0 bottom-0 w-[1px] border-l border-dashed border-foreground/10 pointer-events-none" />
-      <div className="absolute right-6 md:right-12 top-0 bottom-0 w-[1px] border-r border-dashed border-foreground/10 pointer-events-none" />
+      </div>
     </section>
   );
 }

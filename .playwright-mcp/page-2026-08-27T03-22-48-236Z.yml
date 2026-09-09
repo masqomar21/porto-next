@@ -1,0 +1,115 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - link [ref=e5] [cursor=pointer]:
+        - /url: /admin
+        - generic [ref=e9]:
+          - heading "Admin CMS" [level=2] [ref=e10]
+          - paragraph [ref=e11]: masqomar.com
+      - navigation [ref=e12]:
+        - link "Dashboard" [ref=e13] [cursor=pointer]:
+          - /url: /admin
+        - link "Hero Section" [ref=e20] [cursor=pointer]:
+          - /url: /admin/hero
+        - link "Navbar" [ref=e25] [cursor=pointer]:
+          - /url: /admin/navbar
+        - link "About" [ref=e28] [cursor=pointer]:
+          - /url: /admin/about
+        - link "Experience" [ref=e33] [cursor=pointer]:
+          - /url: /admin/experience
+        - link "Skills" [ref=e38] [cursor=pointer]:
+          - /url: /admin/skills
+        - link "Projects" [ref=e42] [cursor=pointer]:
+          - /url: /admin/projects
+        - link "Blog Posts" [ref=e47] [cursor=pointer]:
+          - /url: /admin/blog
+        - link "Contact" [ref=e52] [cursor=pointer]:
+          - /url: /admin/contact
+        - link "Inbox Messages" [ref=e57] [cursor=pointer]:
+          - /url: /admin/inbox
+        - link "Media Library" [ref=e62] [cursor=pointer]:
+          - /url: /admin/media
+        - link "Settings" [ref=e68] [cursor=pointer]:
+          - /url: /admin/settings
+      - generic [ref=e73]:
+        - link "View Site" [ref=e74] [cursor=pointer]:
+          - /url: /
+        - button "Sign Out" [ref=e79] [cursor=pointer]
+    - generic [ref=e80]:
+      - banner [ref=e81]:
+        - generic [ref=e82]:
+          - generic [ref=e83]: AD
+          - generic [ref=e84]: admin@app.dev
+      - main [ref=e85]:
+        - generic [ref=e86]:
+          - generic [ref=e87]:
+            - heading "New Project" [level=1] [ref=e88]
+            - paragraph [ref=e89]: Create a new project showcase item
+          - generic [ref=e90]:
+            - generic [ref=e91]:
+              - textbox "Project title…" [ref=e92]: web-thermal-printer
+              - generic [ref=e137]:
+                - generic [ref=e138]:
+                  - button "Bold" [ref=e139] [cursor=pointer]
+                  - button "Italic" [ref=e142] [cursor=pointer]
+                  - button "Strike" [ref=e145] [cursor=pointer]
+                  - button "Inline Code" [ref=e149] [cursor=pointer]
+                  - button "Heading 1" [ref=e153] [cursor=pointer]
+                  - button "Heading 2" [ref=e156] [cursor=pointer]
+                  - button "Heading 3" [ref=e159] [cursor=pointer]
+                  - button "Bullet List" [ref=e163] [cursor=pointer]
+                  - button "Ordered List" [ref=e165] [cursor=pointer]
+                  - button "Blockquote" [ref=e169] [cursor=pointer]
+                  - button "Code Block" [ref=e173] [cursor=pointer]
+                  - button "Horizontal Rule" [ref=e176] [cursor=pointer]
+                  - button "Insert Link" [ref=e178] [cursor=pointer]
+                  - button "Insert Image" [ref=e182] [cursor=pointer]
+                  - button "Undo" [ref=e187] [cursor=pointer]
+                  - button "Redo" [ref=e191] [cursor=pointer]
+                - generic [ref=e197]:
+                  - heading "Universal WebAssembly Thermal Printer SDK" [level=2] [ref=e199]
+                  - paragraph [ref=e200]: A zero-configuration, lightweight WebAssembly SDK designed to connect web-based applications (React, Vue, Next.js, Angular, Svelte, or plain JS/TS) directly to ESC/POS Thermal Receipt Printers via Web USB or Web Serial API. Completely runs in-browser without any background desktop software installation on client machines.
+                  - heading "Technical Stack" [level=2] [ref=e201]
+                  - list [ref=e202]:
+                    - listitem [ref=e203]:
+                      - paragraph [ref=e204]:
+                        - strong [ref=e205]: Golang
+                        - text: ": Underlying printer driver and binary parser compiled to WebAssembly."
+                    - listitem [ref=e206]:
+                      - paragraph [ref=e207]:
+                        - strong [ref=e208]: TypeScript
+                        - text: ": Strongly typed interfaces and lightweight TS SDK wrapper."
+                    - listitem [ref=e209]:
+                      - paragraph [ref=e210]:
+                        - strong [ref=e211]: Web USB / Web Serial API
+                        - text: ": Direct hardware port communications for client security and instant connectivity."
+                  - heading "Project Status" [level=2] [ref=e212]
+                  - paragraph [ref=e213]: Published to npm registry with over 100% test coverage on WASM initialization, module exports, and driver APIs.
+            - generic [ref=e93]:
+              - generic [ref=e94]:
+                - generic [ref=e95]: Options
+                - generic [ref=e97]:
+                  - generic [ref=e98] [cursor=pointer]:
+                    - checkbox "Featured project" [checked] [ref=e99]
+                    - text: Featured project
+                  - button "💾 Save Project" [ref=e100] [cursor=pointer]
+              - generic [ref=e101]:
+                - generic [ref=e102]: Slug
+                - textbox "project-slug" [ref=e105]: web-thermal-printer
+              - generic [ref=e106]:
+                - generic [ref=e107]: Excerpt
+                - textbox "Brief summary..." [ref=e110]: Universal WebAssembly Thermal Printer SDK for Browser & Node.js with Full TypeScript Support.
+              - generic [ref=e111]:
+                - generic [ref=e112]: Cover Image
+                - generic [ref=e121] [cursor=pointer]:
+                  - paragraph [ref=e122]: Click to upload or drag & drop
+                  - paragraph [ref=e123]: PNG, JPG, WEBP (max. 10MB)
+              - generic [ref=e124]:
+                - generic [ref=e125]: Links
+                - generic [ref=e127]:
+                  - textbox "Live URL" [ref=e128]: https://www.npmjs.com/package/web-thermal-printer
+                  - textbox "GitHub URL" [ref=e129]: https://github.com/masqomar21/web-thermal-printer
+              - generic [ref=e130]:
+                - generic [ref=e131]: Tags
+                - textbox "Add tag…" [active] [ref=e135]
+  - alert [ref=e136]

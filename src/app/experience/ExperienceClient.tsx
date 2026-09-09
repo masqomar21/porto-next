@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Input } from '@/components/ui/input';
+import { Briefcase, ArrowUpRight, Search } from 'lucide-react';
 
 type ExperienceLink = { label: string; url: string };
 
@@ -23,12 +24,10 @@ export default function ExperienceClientPage({ experiences }: { experiences: Exp
   const [search, setSearch] = useState('');
   const [activeTag, setActiveTag] = useState('');
 
-  // Extract all unique technology tags across experiences
   const allTags = useMemo(() => {
     return [...new Set(experiences.flatMap(e => e.tags))].sort();
   }, [experiences]);
 
-  // Filter experiences based on search input and active tag
   const filtered = useMemo(() => {
     return experiences.filter(e => {
       const matchSearch =
@@ -43,175 +42,151 @@ export default function ExperienceClientPage({ experiences }: { experiences: Exp
   }, [experiences, search, activeTag]);
 
   return (
-    <div className="bg-background min-h-screen relative overflow-hidden py-32 px-6 md:px-12">
-      <div className="max-w-6xl mx-auto z-10 relative">
+    <div className="bg-background min-h-screen py-28 md:py-36 px-6">
+      <div className="max-w-5xl mx-auto flex flex-col gap-12">
         {/* Page Header */}
-        <div className="mb-16">
-          <span className="font-mono text-[10px] uppercase tracking-widest text-foreground/40 font-bold block mb-2">
-            // CAREER HISTORY
+        <div className="flex flex-col gap-3 pb-8 border-b border-border/60">
+          <span className="text-xs font-mono font-semibold text-primary uppercase tracking-widest flex items-center gap-1.5">
+            <Briefcase className="w-3.5 h-3.5" />
+            Career History
           </span>
-          <h1 className="font-serif text-4xl md:text-6xl font-bold text-foreground tracking-tight">
-            Work Experience
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-foreground tracking-tight">
+            Work Experience & Roles
           </h1>
-          <div className="border-b border-dashed border-foreground/20 mt-6" />
+          <p className="text-xs sm:text-sm text-muted-foreground max-w-xl leading-relaxed">
+            Chronological overview of software engineering positions, key achievements, and technology stacks.
+          </p>
         </div>
 
-        {/* Filters and Search */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-end mb-16">
-          <div className="md:col-span-6 flex flex-col gap-1.5">
-            <label htmlFor="experience-search" className="font-mono text-[10px] font-bold text-foreground/40 uppercase tracking-widest">
-              Search Roles & Companies
-            </label>
+        {/* Filters and Search Bar */}
+        <div className="flex flex-col gap-4">
+          <div className="relative w-full max-w-md">
+            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground" />
             <Input
               value={search}
               onChange={e => setSearch(e.target.value)}
-              placeholder="Type role, company or skill..."
+              placeholder="Search roles, companies, or tech..."
               id="experience-search"
-              className="bg-transparent border-0 border-b border-foreground/20 rounded-none px-0 pb-2 focus:ring-0 focus-visible:ring-0 focus-visible:border-foreground font-mono text-sm placeholder:text-foreground/30 text-foreground shadow-none w-full"
+              className="pl-10 pr-4 py-2 bg-card border-border/70 rounded-xl text-xs font-sans text-foreground placeholder:text-muted-foreground/60 focus-visible:ring-1 focus-visible:ring-ring w-full shadow-2xs"
             />
           </div>
 
           {allTags.length > 0 && (
-            <div className="md:col-span-6 flex flex-wrap gap-2 items-center justify-start md:justify-end">
+            <div className="flex items-center gap-1.5 overflow-x-auto pb-2 pt-1 scrollbar-none max-w-full">
               <button
                 onClick={() => setActiveTag('')}
-                className={`px-4 py-1.5 rounded-full text-[10px] font-mono uppercase tracking-widest border transition-all cursor-pointer ${
+                className={`px-3 py-1.5 rounded-full text-xs font-mono transition-all shrink-0 cursor-pointer ${
                   activeTag === ''
-                    ? 'bg-foreground text-background border-foreground'
-                    : 'bg-transparent border-foreground/20 text-foreground/60 hover:text-foreground hover:border-foreground'
+                    ? 'bg-foreground text-background font-medium shadow-2xs'
+                    : 'bg-card border border-border/60 text-muted-foreground hover:text-foreground'
                 }`}
               >
-                All
+                All ({experiences.length})
               </button>
-              {allTags.map(t => (
-                <button
-                  key={t}
-                  onClick={() => setActiveTag(t === activeTag ? '' : t)}
-                  className={`px-4 py-1.5 rounded-full text-[10px] font-mono uppercase tracking-widest border transition-all cursor-pointer ${
-                    activeTag === t
-                      ? 'bg-foreground text-background border-foreground'
-                      : 'bg-transparent border-foreground/20 text-foreground/60 hover:text-foreground hover:border-foreground'
-                  }`}
-                >
-                  {t}
-                </button>
-              ))}
+              {allTags.map(t => {
+                const count = experiences.filter(e => e.tags.includes(t)).length;
+                return (
+                  <button
+                    key={t}
+                    onClick={() => setActiveTag(t === activeTag ? '' : t)}
+                    className={`px-3 py-1.5 rounded-full text-xs font-mono transition-all shrink-0 cursor-pointer flex items-center gap-1.5 ${
+                      activeTag === t
+                        ? 'bg-foreground text-background font-medium shadow-2xs'
+                        : 'bg-card border border-border/60 text-muted-foreground hover:text-foreground'
+                    }`}
+                  >
+                    <span>{t}</span>
+                    <span className="text-[10px] opacity-60">({count})</span>
+                  </button>
+                );
+              })}
             </div>
           )}
         </div>
 
         {filtered.length === 0 ? (
-          <div className="text-center py-20 font-mono text-xs text-foreground/50 uppercase tracking-widest">
+          <div className="text-center py-24 rounded-3xl bg-card border border-border/60 font-mono text-xs text-muted-foreground">
             No work experience found matching your query.
           </div>
         ) : (
-          /* Experience List */
-          <div className="flex flex-col gap-6 max-w-4xl mx-auto">
+          <div className="flex flex-col gap-5">
             {filtered.map((item, idx) => (
               <motion.div
                 key={item._id}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: idx * 0.05 }}
-                className="group relative border border-transparent rounded-[24px] p-6 md:p-8 hover:bg-card/40 hover:border-border hover:shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] dark:hover:shadow-[0_4px_20px_-4px_rgba(0,0,0,0.3)] transition-all duration-300"
+                transition={{ duration: 0.3, delay: idx * 0.04 }}
+                className="p-6 sm:p-8 rounded-3xl bg-card border border-border/80 hover:border-foreground/20 hover:shadow-xs transition-all duration-300 flex flex-col md:flex-row md:items-start justify-between gap-6"
               >
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
-                  {/* Duration */}
-                  <div className="md:col-span-3">
-                    <span className="font-mono text-[10px] sm:text-xs uppercase tracking-widest text-foreground/45 font-semibold block pt-1">
-                      {item.duration}
-                    </span>
-                  </div>
+                {/* Left Column: Role + Company */}
+                <div className="flex flex-col gap-1.5 md:w-1/3">
+                  <span className="text-xs font-mono text-muted-foreground font-medium">
+                    {item.duration}
+                  </span>
+                  <h3 className="text-lg font-bold text-foreground">
+                    {item.role}
+                  </h3>
+                  {item.companyUrl ? (
+                    <a
+                      href={item.companyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-mono text-primary hover:underline inline-flex items-center gap-1 w-fit"
+                    >
+                      <span>{item.company}</span>
+                      <ArrowUpRight className="w-3 h-3" />
+                    </a>
+                  ) : (
+                    <span className="text-xs font-mono text-muted-foreground">{item.company}</span>
+                  )}
+                </div>
 
-                  {/* Details */}
-                  <div className="md:col-span-9 flex flex-col">
-                    <h3 className="font-serif text-xl font-bold text-foreground leading-snug">
-                      {item.companyUrl ? (
+                {/* Right Column: Description + Tech Badges */}
+                <div className="flex flex-col gap-4 md:w-2/3">
+                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed whitespace-pre-wrap">
+                    {item.description}
+                  </p>
+
+                  {item.links && item.links.length > 0 && (
+                    <div className="flex flex-wrap gap-x-4 gap-y-2 pt-1">
+                      {item.links.map((link, lIdx) => (
                         <a
-                          href={item.companyUrl}
+                          key={lIdx}
+                          href={link.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 hover:text-foreground group-hover:text-primary transition-colors cursor-pointer"
+                          className="inline-flex items-center gap-1 font-mono text-xs text-foreground/80 hover:underline"
                         >
-                          <span>{item.role}</span>
-                          <span className="text-foreground/30 font-normal font-sans">·</span>
-                          <span>{item.company}</span>
-                          <span className="inline-block transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 text-sm sm:text-base">
-                            ↗
-                          </span>
+                          <span>{link.label}</span>
+                          <ArrowUpRight className="w-3 h-3" />
                         </a>
-                      ) : (
-                        <span className="inline-flex items-center gap-1">
-                          <span>{item.role}</span>
-                          <span className="text-foreground/30 font-normal font-sans">·</span>
-                          <span className="text-foreground/85">{item.company}</span>
+                      ))}
+                    </div>
+                  )}
+
+                  {item.tags && item.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 pt-1">
+                      {item.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          onClick={() => setActiveTag(tag === activeTag ? '' : tag)}
+                          className={`text-[10px] font-mono px-2.5 py-0.5 rounded-full border transition-all cursor-pointer ${
+                            activeTag === tag
+                              ? 'bg-foreground border-foreground text-background font-medium'
+                              : 'bg-secondary/80 border-border/60 text-foreground/80 hover:border-foreground/30'
+                          }`}
+                        >
+                          {tag}
                         </span>
-                      )}
-                    </h3>
-
-                    <p className="mt-3 text-xs sm:text-sm text-foreground/65 leading-relaxed font-sans whitespace-pre-wrap">
-                      {item.description}
-                    </p>
-
-                    {/* Associated Reference Links */}
-                    {item.links && item.links.length > 0 && (
-                      <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2">
-                        {item.links.map((link, lIdx) => (
-                          <a
-                            key={lIdx}
-                            href={link.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 font-mono text-[11px] text-foreground/60 hover:text-foreground hover:underline transition-colors"
-                          >
-                            <svg
-                              className="w-3.5 h-3.5 opacity-60"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                              strokeWidth={2}
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
-                              />
-                            </svg>
-                            <span>{link.label}</span>
-                          </a>
-                        ))}
-                      </div>
-                    )}
-
-                    {/* Tech badging */}
-                    {item.tags && item.tags.length > 0 && (
-                      <div className="mt-6 flex flex-wrap gap-2">
-                        {item.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            onClick={() => setActiveTag(tag === activeTag ? '' : tag)}
-                            className={`font-mono text-[10px] font-semibold tracking-wider px-3 py-1 rounded-full border transition-all cursor-pointer ${
-                              activeTag === tag
-                                ? 'bg-foreground border-foreground text-background'
-                                : 'bg-foreground/[0.04] dark:bg-foreground/[0.06] border-foreground/[0.06] hover:bg-foreground/[0.08] text-foreground/80 hover:border-foreground/20'
-                            }`}
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </motion.div>
             ))}
           </div>
         )}
       </div>
-
-      {/* Decorative dashed lines */}
-      <div className="absolute left-6 md:left-12 top-0 bottom-0 w-[1px] border-l border-dashed border-foreground/10 pointer-events-none" />
-      <div className="absolute right-6 md:right-12 top-0 bottom-0 w-[1px] border-r border-dashed border-foreground/10 pointer-events-none" />
     </div>
   );
 }

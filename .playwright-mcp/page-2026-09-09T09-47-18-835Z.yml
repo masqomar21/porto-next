@@ -1,0 +1,588 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - list [ref=e5]:
+        - listitem [ref=e6]:
+          - link "Websites" [ref=e7] [cursor=pointer]:
+            - /url: https://minimal.gallery/websites/
+        - listitem [ref=e8]:
+          - link "Templates" [ref=e9] [cursor=pointer]:
+            - /url: https://minimal.gallery/templates/
+        - listitem [ref=e10]:
+          - link "Tools" [ref=e11] [cursor=pointer]:
+            - /url: https://minimal.gallery/tools/
+      - list [ref=e13]:
+        - listitem [ref=e14]:
+          - link "Minimal Gallery" [ref=e15] [cursor=pointer]:
+            - /url: https://minimal.gallery/
+      - list [ref=e17]:
+        - listitem [ref=e18]:
+          - button "Search" [ref=e19] [cursor=pointer]
+        - listitem [ref=e21]:
+          - link "About" [ref=e22] [cursor=pointer]:
+            - /url: https://minimal.gallery/about/
+        - listitem [ref=e23]:
+          - link "Submit" [ref=e24] [cursor=pointer]:
+            - /url: https://minimal.gallery/submit/
+        - listitem [ref=e25]:
+          - link [ref=e26] [cursor=pointer]:
+            - /url: https://minimal.gallery/bookmarks/
+            - emphasis [ref=e29]
+  - generic [ref=e30]:
+    - generic [ref=e32]:
+      - heading "For the love of beautiful & functional websites" [level=1] [ref=e33]
+      - generic [ref=e34]:
+        - generic [ref=e35]:
+          - paragraph [ref=e36]: Receive a weekly digest via email
+          - generic [ref=e38]:
+            - textbox "Name" [ref=e40]
+            - textbox "Email address" [ref=e42]
+            - button [ref=e43] [cursor=pointer]
+        - paragraph [ref=e47]: Published once per week, unsubscribe anytime
+    - generic [ref=e52]:
+      - list [ref=e54]:
+        - listitem [ref=e55]:
+          - link "AI" [ref=e56] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/ai/
+        - listitem [ref=e57]:
+          - link "Portfolio" [ref=e58] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/portfolio/
+        - listitem [ref=e59]:
+          - link "Personal" [ref=e60] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/personal/
+        - listitem [ref=e61]:
+          - link "Startup" [ref=e62] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/startup/
+        - listitem [ref=e63]:
+          - link "One page" [ref=e64] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/one-page/
+        - listitem [ref=e65]:
+          - link "Agency" [ref=e66] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/agency/
+        - listitem [ref=e67]:
+          - link "E-commerce" [ref=e68] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/e-commerce/
+        - listitem [ref=e69]:
+          - link "Branding" [ref=e70] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/branding/
+        - listitem [ref=e71]:
+          - link "Tools" [ref=e72] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/tools/
+        - listitem [ref=e73]:
+          - link "Fashion" [ref=e74] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/fashion/
+        - listitem [ref=e75]:
+          - link "SAAS" [ref=e76] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/saas/
+        - listitem [ref=e77]:
+          - link "Finance" [ref=e78] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/finance/
+        - listitem [ref=e79]:
+          - link "Type foundry" [ref=e80] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/type-foundry/
+        - listitem [ref=e81]:
+          - link "Non-profit & charity" [ref=e82] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/non-profit-charity/
+        - listitem [ref=e83]:
+          - link "Crypto & web3" [ref=e84] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/crypto-web3/
+        - listitem [ref=e85]:
+          - link "Architecture & interior design" [ref=e86] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/architecture-interior-design/
+        - listitem [ref=e87]:
+          - link "Animation" [ref=e88] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/animation/
+        - listitem [ref=e89]:
+          - link "Consulting" [ref=e90] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/consulting/
+        - listitem [ref=e91]:
+          - link "Programming" [ref=e92] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/programming/
+        - listitem [ref=e93]:
+          - link "Software" [ref=e94] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/software/
+        - listitem [ref=e95]:
+          - link "Online Gallery" [ref=e96] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/online-gallery/
+        - listitem [ref=e97]:
+          - link "Directory" [ref=e98] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/directory/
+        - listitem [ref=e99]:
+          - link "Food & drink" [ref=e100] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/food-drink/
+        - listitem [ref=e101]:
+          - link "Museum & gallery" [ref=e102] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/museum-gallery/
+        - listitem [ref=e103]:
+          - link "Real estate" [ref=e104] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/real-estate/
+        - listitem [ref=e105]:
+          - link "Photography" [ref=e106] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/photography/
+        - listitem [ref=e107]:
+          - link "Entertainment" [ref=e108] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/entertainment/
+        - listitem [ref=e109]:
+          - link "Product" [ref=e110] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/product/
+        - listitem [ref=e111]:
+          - link "App" [ref=e112] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/app/
+        - listitem [ref=e113]:
+          - link "Music" [ref=e114] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/music/
+        - listitem [ref=e115]:
+          - link "Science" [ref=e116] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/science/
+        - listitem [ref=e117]:
+          - link "Education" [ref=e118] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/education/
+        - listitem [ref=e119]:
+          - link "Healthcare" [ref=e120] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/healthcare/
+        - listitem [ref=e121]:
+          - link "Blog" [ref=e122] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/blog/
+        - listitem [ref=e123]:
+          - link "Production Studio" [ref=e124] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/production-studio/
+        - listitem [ref=e125]:
+          - link "Research" [ref=e126] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/research/
+        - listitem [ref=e127]:
+          - link "Pricing" [ref=e128] [cursor=pointer]:
+            - /url: https://minimal.gallery/tag/pricing/
+      - list [ref=e129]:
+        - listitem [ref=e130]:
+          - button "All tags" [ref=e131] [cursor=pointer]
+    - generic [ref=e132]:
+      - generic [ref=e133]:
+        - generic [ref=e134]:
+          - link "View details for Samuel Räikkönen" [ref=e135] [cursor=pointer]:
+            - /url: https://minimal.gallery/samuel-raikkonen/
+            - img "Samuel Räikkönen website" [ref=e136]
+          - generic [ref=e137]:
+            - button "Bookmark website" [ref=e138] [cursor=pointer]
+            - link "Visit Samuel Räikkönen website" [ref=e141] [cursor=pointer]:
+              - /url: https://honest.fi/?ref=minimal.gallery
+        - generic [ref=e145]:
+          - heading [level=3] [ref=e146]:
+            - link "View details for Samuel Räikkönen" [ref=e147] [cursor=pointer]:
+              - /url: https://minimal.gallery/samuel-raikkonen/
+              - text: Samuel Räikkönen
+          - time [ref=e148]: today
+      - generic [ref=e149]:
+        - generic [ref=e150]:
+          - link "View details for Gabriel Beaugonin" [ref=e151] [cursor=pointer]:
+            - /url: https://minimal.gallery/gabriel-beaugonin/
+            - img "Gabriel Beaugonin website" [ref=e152]
+          - generic [ref=e153]:
+            - button "Bookmark website" [ref=e154] [cursor=pointer]
+            - link "Visit Gabriel Beaugonin website" [ref=e157] [cursor=pointer]:
+              - /url: https://www.gabrielbeaugonin.com/?ref=minimal.gallery
+        - generic [ref=e161]:
+          - heading [level=3] [ref=e162]:
+            - link "View details for Gabriel Beaugonin" [ref=e163] [cursor=pointer]:
+              - /url: https://minimal.gallery/gabriel-beaugonin/
+              - text: Gabriel Beaugonin
+          - time [ref=e164]: 1 day ago
+      - generic [ref=e165]:
+        - generic [ref=e166]:
+          - link "View details for Boc.Studio" [ref=e167] [cursor=pointer]:
+            - /url: https://minimal.gallery/boc-studio/
+            - img "Boc.Studio website" [ref=e168]
+          - generic [ref=e169]:
+            - button "Bookmark website" [ref=e170] [cursor=pointer]
+            - link "Visit Boc.Studio website" [ref=e173] [cursor=pointer]:
+              - /url: https://boc.studio/?ref=minimal.gallery
+        - generic [ref=e177]:
+          - heading [level=3] [ref=e178]:
+            - link "View details for Boc.Studio" [ref=e179] [cursor=pointer]:
+              - /url: https://minimal.gallery/boc-studio/
+              - text: Boc.Studio
+          - time [ref=e180]: 2 days ago
+      - generic [ref=e181]:
+        - link "Visit Readymag website" [ref=e183] [cursor=pointer]:
+          - /url: https://readymag.com/websites-of-the-year/?utm_source=minimalgallery&utm_medium=partnership_banner&utm_campaign=woty26&utm_content=woty_banner
+          - text: Sponsored
+        - heading [level=3] [ref=e185]:
+          - link "Visit Readymag website" [ref=e186] [cursor=pointer]:
+            - /url: https://readymag.com/websites-of-the-year/?utm_source=minimalgallery&utm_medium=partnership_banner&utm_campaign=woty26&utm_content=woty_banner
+            - text: Show your work to the design community. Submit your website.
+      - generic [ref=e187]:
+        - generic [ref=e188]:
+          - link "View details for Cozy Journal" [ref=e189] [cursor=pointer]:
+            - /url: https://minimal.gallery/cozy-journal/
+            - img "Cozy Journal website" [ref=e190]
+          - generic [ref=e191]:
+            - button "Bookmark website" [ref=e192] [cursor=pointer]
+            - link "Visit Cozy Journal website" [ref=e195] [cursor=pointer]:
+              - /url: https://cozyjournal.app/?ref=minimal.gallery
+        - generic [ref=e199]:
+          - heading [level=3] [ref=e200]:
+            - link "View details for Cozy Journal" [ref=e201] [cursor=pointer]:
+              - /url: https://minimal.gallery/cozy-journal/
+              - text: Cozy Journal
+          - time [ref=e202]: 4 days ago
+      - generic [ref=e203]:
+        - generic [ref=e204]:
+          - link "View details for Denmu" [ref=e205] [cursor=pointer]:
+            - /url: https://minimal.gallery/denmu/
+            - img "Denmu website" [ref=e206]
+          - generic [ref=e207]:
+            - button "Bookmark website" [ref=e208] [cursor=pointer]
+            - link "Visit Denmu website" [ref=e211] [cursor=pointer]:
+              - /url: https://denmu.com/?ref=minimal.gallery
+        - generic [ref=e215]:
+          - heading [level=3] [ref=e216]:
+            - link "View details for Denmu" [ref=e217] [cursor=pointer]:
+              - /url: https://minimal.gallery/denmu/
+              - text: Denmu
+          - time [ref=e218]: 5 days ago
+      - generic [ref=e219]:
+        - generic [ref=e220]:
+          - link "View details for Philip Readman" [ref=e221] [cursor=pointer]:
+            - /url: https://minimal.gallery/philip-readman/
+            - img "Philip Readman website" [ref=e222]
+          - generic [ref=e223]:
+            - button "Bookmark website" [ref=e224] [cursor=pointer]
+            - link "Visit Philip Readman website" [ref=e227] [cursor=pointer]:
+              - /url: https://www.philipreadman.com/?ref=minimal.gallery
+        - generic [ref=e231]:
+          - heading [level=3] [ref=e232]:
+            - link "View details for Philip Readman" [ref=e233] [cursor=pointer]:
+              - /url: https://minimal.gallery/philip-readman/
+              - text: Philip Readman
+          - time [ref=e234]: 6 days ago
+      - generic [ref=e235]:
+        - generic [ref=e236]:
+          - link "View details for Buena Dev" [ref=e237] [cursor=pointer]:
+            - /url: https://minimal.gallery/buena-dev/
+            - img "Buena Dev website" [ref=e238]
+          - generic [ref=e239]:
+            - button "Bookmark website" [ref=e240] [cursor=pointer]
+            - link "Visit Buena Dev website" [ref=e243] [cursor=pointer]:
+              - /url: https://buena.com/dev/?ref=minimal.gallery
+        - generic [ref=e247]:
+          - heading [level=3] [ref=e248]:
+            - link "View details for Buena Dev" [ref=e249] [cursor=pointer]:
+              - /url: https://minimal.gallery/buena-dev/
+              - text: Buena Dev
+          - time [ref=e250]: 1 week ago
+      - generic [ref=e251]:
+        - generic [ref=e252]:
+          - link "View details for Allagi" [ref=e253] [cursor=pointer]:
+            - /url: https://minimal.gallery/allagi/
+            - img "Allagi website" [ref=e254]
+          - generic [ref=e255]:
+            - button "Bookmark website" [ref=e256] [cursor=pointer]
+            - link "Visit Allagi website" [ref=e259] [cursor=pointer]:
+              - /url: https://allagi.music?ref=minimal.gallery
+        - generic [ref=e263]:
+          - heading [level=3] [ref=e264]:
+            - link "View details for Allagi" [ref=e265] [cursor=pointer]:
+              - /url: https://minimal.gallery/allagi/
+              - text: Allagi
+          - time [ref=e266]: 1 week ago
+      - generic [ref=e267]:
+        - generic [ref=e268]:
+          - link "View details for House of Yellow" [ref=e269] [cursor=pointer]:
+            - /url: https://minimal.gallery/house-of-yellow/
+            - img "House of Yellow website" [ref=e270]
+          - generic [ref=e271]:
+            - button "Bookmark website" [ref=e272] [cursor=pointer]
+            - link "Visit House of Yellow website" [ref=e275] [cursor=pointer]:
+              - /url: https://houseofyellow.nl/?ref=minimal.gallery
+        - generic [ref=e279]:
+          - heading [level=3] [ref=e280]:
+            - link "View details for House of Yellow" [ref=e281] [cursor=pointer]:
+              - /url: https://minimal.gallery/house-of-yellow/
+              - text: House of Yellow
+          - time [ref=e282]: 1 week ago
+      - generic [ref=e283]:
+        - generic [ref=e284]:
+          - link "View details for ANDMADE Inc." [ref=e285] [cursor=pointer]:
+            - /url: https://minimal.gallery/andmade-inc/
+            - img "ANDMADE Inc. website" [ref=e286]
+          - generic [ref=e287]:
+            - button "Bookmark website" [ref=e288] [cursor=pointer]
+            - link "Visit ANDMADE Inc. website" [ref=e291] [cursor=pointer]:
+              - /url: https://andmade.jp/?ref=minimal.gallery
+        - generic [ref=e295]:
+          - heading [level=3] [ref=e296]:
+            - link "View details for ANDMADE Inc." [ref=e297] [cursor=pointer]:
+              - /url: https://minimal.gallery/andmade-inc/
+              - text: ANDMADE Inc.
+          - time [ref=e298]: 1 week ago
+      - generic [ref=e299]:
+        - generic [ref=e300]:
+          - link "View details for Company Policy" [ref=e301] [cursor=pointer]:
+            - /url: https://minimal.gallery/company-policy/
+            - img "Company Policy website" [ref=e302]
+          - generic [ref=e303]:
+            - button "Bookmark website" [ref=e304] [cursor=pointer]
+            - link "Visit Company Policy website" [ref=e307] [cursor=pointer]:
+              - /url: https://www.companypolicy.studio/?ref=minimal.gallery
+        - generic [ref=e311]:
+          - heading [level=3] [ref=e312]:
+            - link "View details for Company Policy" [ref=e313] [cursor=pointer]:
+              - /url: https://minimal.gallery/company-policy/
+              - text: Company Policy
+          - time [ref=e314]: 1 week ago
+      - generic [ref=e315]:
+        - generic [ref=e316]:
+          - link "View details for Yana Savchuk" [ref=e317] [cursor=pointer]:
+            - /url: https://minimal.gallery/yana-savchuk/
+            - img "Yana Savchuk website" [ref=e318]
+          - generic [ref=e319]:
+            - button "Bookmark website" [ref=e320] [cursor=pointer]
+            - link "Visit Yana Savchuk website" [ref=e323] [cursor=pointer]:
+              - /url: https://readymag.website/5818315?ref=minimal.gallery
+        - generic [ref=e327]:
+          - heading [level=3] [ref=e328]:
+            - link "View details for Yana Savchuk" [ref=e329] [cursor=pointer]:
+              - /url: https://minimal.gallery/yana-savchuk/
+              - text: Yana Savchuk
+          - time [ref=e330]: 2 weeks ago
+      - generic [ref=e331]:
+        - generic [ref=e332]:
+          - link "View details for Duft und Kultur" [ref=e333] [cursor=pointer]:
+            - /url: https://minimal.gallery/duft-und-kultur/
+            - img "Duft und Kultur website" [ref=e334]
+          - generic [ref=e335]:
+            - button "Bookmark website" [ref=e336] [cursor=pointer]
+            - link "Visit Duft und Kultur website" [ref=e339] [cursor=pointer]:
+              - /url: https://www.duftundkultur.com/en-de/?ref=minimal.gallery
+        - generic [ref=e343]:
+          - heading [level=3] [ref=e344]:
+            - link "View details for Duft und Kultur" [ref=e345] [cursor=pointer]:
+              - /url: https://minimal.gallery/duft-und-kultur/
+              - text: Duft und Kultur
+          - time [ref=e346]: 2 weeks ago
+      - generic [ref=e347]:
+        - generic [ref=e348]:
+          - link "View details for Hellomatik" [ref=e349] [cursor=pointer]:
+            - /url: https://minimal.gallery/hellomatik/
+            - img "Hellomatik website" [ref=e350]
+          - generic [ref=e351]:
+            - button "Bookmark website" [ref=e352] [cursor=pointer]
+            - link "Visit Hellomatik website" [ref=e355] [cursor=pointer]:
+              - /url: https://hellomatik.com/?ref=minimal.gallery
+        - generic [ref=e359]:
+          - heading [level=3] [ref=e360]:
+            - link "View details for Hellomatik" [ref=e361] [cursor=pointer]:
+              - /url: https://minimal.gallery/hellomatik/
+              - text: Hellomatik
+          - time [ref=e362]: 2 weeks ago
+      - generic [ref=e363]:
+        - generic [ref=e364]:
+          - link "View details for SevenGrid" [ref=e365] [cursor=pointer]:
+            - /url: https://minimal.gallery/sevengrid/
+            - img "SevenGrid website" [ref=e366]
+          - generic [ref=e367]:
+            - button "Bookmark website" [ref=e368] [cursor=pointer]
+            - link "Visit SevenGrid website" [ref=e371] [cursor=pointer]:
+              - /url: https://sevengrid.app/?ref=minimal.gallery
+        - generic [ref=e375]:
+          - heading [level=3] [ref=e376]:
+            - link "View details for SevenGrid" [ref=e377] [cursor=pointer]:
+              - /url: https://minimal.gallery/sevengrid/
+              - text: SevenGrid
+          - time [ref=e378]: 2 weeks ago
+      - generic [ref=e379]:
+        - generic [ref=e380]:
+          - link "View details for Artem Morozov" [ref=e381] [cursor=pointer]:
+            - /url: https://minimal.gallery/artem-morozov/
+            - img "Artem Morozov website" [ref=e382]
+          - generic [ref=e383]:
+            - button "Bookmark website" [ref=e384] [cursor=pointer]
+            - link "Visit Artem Morozov website" [ref=e387] [cursor=pointer]:
+              - /url: https://artem.vyraz.studio/?ref=minimal.gallery
+        - generic [ref=e391]:
+          - heading [level=3] [ref=e392]:
+            - link "View details for Artem Morozov" [ref=e393] [cursor=pointer]:
+              - /url: https://minimal.gallery/artem-morozov/
+              - text: Artem Morozov
+          - time [ref=e394]: 2 weeks ago
+      - generic [ref=e395]:
+        - generic [ref=e396]:
+          - link "View details for Jason Bergh" [ref=e397] [cursor=pointer]:
+            - /url: https://minimal.gallery/jason-bergh/
+            - img "Jason Bergh website" [ref=e398]
+          - generic [ref=e399]:
+            - button "Bookmark website" [ref=e400] [cursor=pointer]
+            - link "Visit Jason Bergh website" [ref=e403] [cursor=pointer]:
+              - /url: https://www.jasonbergh.com/?ref=minimal.gallery
+        - generic [ref=e407]:
+          - heading [level=3] [ref=e408]:
+            - link "View details for Jason Bergh" [ref=e409] [cursor=pointer]:
+              - /url: https://minimal.gallery/jason-bergh/
+              - text: Jason Bergh
+          - time [ref=e410]: 2 weeks ago
+      - generic [ref=e411]:
+        - generic [ref=e412]:
+          - link "View details for ScreenTune" [ref=e413] [cursor=pointer]:
+            - /url: https://minimal.gallery/screentune/
+            - img "ScreenTune website" [ref=e414]
+          - generic [ref=e415]:
+            - button "Bookmark website" [ref=e416] [cursor=pointer]
+            - link "Visit ScreenTune website" [ref=e419] [cursor=pointer]:
+              - /url: https://screentune.app/?ref=minimal.gallery
+        - generic [ref=e423]:
+          - heading [level=3] [ref=e424]:
+            - link "View details for ScreenTune" [ref=e425] [cursor=pointer]:
+              - /url: https://minimal.gallery/screentune/
+              - text: ScreenTune
+          - time [ref=e426]: 2 weeks ago
+      - generic [ref=e427]:
+        - generic [ref=e428]:
+          - link "View details for Kai Blamey" [ref=e429] [cursor=pointer]:
+            - /url: https://minimal.gallery/kai-blamey/
+            - img "Kai Blamey website" [ref=e430]
+          - generic [ref=e431]:
+            - button "Bookmark website" [ref=e432] [cursor=pointer]
+            - link "Visit Kai Blamey website" [ref=e435] [cursor=pointer]:
+              - /url: https://kaiblamey.com/?ref=minimal.gallery
+        - generic [ref=e439]:
+          - heading [level=3] [ref=e440]:
+            - link "View details for Kai Blamey" [ref=e441] [cursor=pointer]:
+              - /url: https://minimal.gallery/kai-blamey/
+              - text: Kai Blamey
+          - time [ref=e442]: 3 weeks ago
+      - generic [ref=e443]:
+        - generic [ref=e444]:
+          - link "View details for Jacob Ince" [ref=e445] [cursor=pointer]:
+            - /url: https://minimal.gallery/jacob-ince/
+            - img "Jacob Ince website" [ref=e446]
+          - generic [ref=e447]:
+            - button "Bookmark website" [ref=e448] [cursor=pointer]
+            - link "Visit Jacob Ince website" [ref=e451] [cursor=pointer]:
+              - /url: https://jacobince.com/?ref=minimal.gallery
+        - generic [ref=e455]:
+          - heading [level=3] [ref=e456]:
+            - link "View details for Jacob Ince" [ref=e457] [cursor=pointer]:
+              - /url: https://minimal.gallery/jacob-ince/
+              - text: Jacob Ince
+          - time [ref=e458]: 3 weeks ago
+      - generic [ref=e459]:
+        - generic [ref=e460]:
+          - link "View details for Van Gogh Museum" [ref=e461] [cursor=pointer]:
+            - /url: https://minimal.gallery/van-gogh-museum/
+            - img "Van Gogh Museum website" [ref=e462]
+          - generic [ref=e463]:
+            - button "Bookmark website" [ref=e464] [cursor=pointer]
+            - link "Visit Van Gogh Museum website" [ref=e467] [cursor=pointer]:
+              - /url: https://www.vangoghmuseum.nl/en?ref=minimal.gallery
+        - generic [ref=e471]:
+          - heading [level=3] [ref=e472]:
+            - link "View details for Van Gogh Museum" [ref=e473] [cursor=pointer]:
+              - /url: https://minimal.gallery/van-gogh-museum/
+              - text: Van Gogh Museum
+          - time [ref=e474]: 3 weeks ago
+      - generic [ref=e475]:
+        - generic [ref=e476]:
+          - link "View details for Wwake" [ref=e477] [cursor=pointer]:
+            - /url: https://minimal.gallery/wwake/
+            - img "Wwake website" [ref=e478]
+          - generic [ref=e479]:
+            - button "Bookmark website" [ref=e480] [cursor=pointer]
+            - link "Visit Wwake website" [ref=e483] [cursor=pointer]:
+              - /url: https://wwake.com/?ref=minimal.gallery
+        - generic [ref=e487]:
+          - heading [level=3] [ref=e488]:
+            - link "View details for Wwake" [ref=e489] [cursor=pointer]:
+              - /url: https://minimal.gallery/wwake/
+              - text: Wwake
+          - time [ref=e490]: 3 weeks ago
+      - generic [ref=e491]:
+        - generic [ref=e492]:
+          - link "View details for Minwook Shin" [ref=e493] [cursor=pointer]:
+            - /url: https://minimal.gallery/minwook-shin/
+            - img "Minwook Shin website" [ref=e494]
+          - generic [ref=e495]:
+            - button "Bookmark website" [ref=e496] [cursor=pointer]
+            - link "Visit Minwook Shin website" [ref=e499] [cursor=pointer]:
+              - /url: https://www.minwookshin.com/?ref=minimal.gallery
+        - generic [ref=e503]:
+          - heading [level=3] [ref=e504]:
+            - link "View details for Minwook Shin" [ref=e505] [cursor=pointer]:
+              - /url: https://minimal.gallery/minwook-shin/
+              - text: Minwook Shin
+          - time [ref=e506]: 3 weeks ago
+    - generic [ref=e508]:
+      - generic [ref=e509]: "1"
+      - link "2" [ref=e510] [cursor=pointer]:
+        - /url: https://minimal.gallery/websites/page/2/%20
+      - link "3" [ref=e511] [cursor=pointer]:
+        - /url: https://minimal.gallery/websites/page/3/%20
+      - generic [ref=e512]: …
+      - link "130" [ref=e513] [cursor=pointer]:
+        - /url: https://minimal.gallery/websites/page/130/%20
+      - link "Older" [ref=e514] [cursor=pointer]:
+        - /url: https://minimal.gallery/websites/page/2/%20
+    - contentinfo [ref=e518]:
+      - generic [ref=e519]:
+        - generic [ref=e520]:
+          - paragraph [ref=e525]: Minimal Gallery is a curated source of website design inspiration for creatives. Since 2013.
+          - generic [ref=e526]:
+            - generic [ref=e527]:
+              - heading "Site" [level=4] [ref=e528]
+              - list [ref=e529]:
+                - listitem [ref=e530]:
+                  - link "About" [ref=e531] [cursor=pointer]:
+                    - /url: https://minimal.gallery/about/
+                - listitem [ref=e532]:
+                  - link "Submit to gallery" [ref=e533] [cursor=pointer]:
+                    - /url: https://minimal.gallery/submit/
+                - listitem [ref=e534]:
+                  - link "Sponsorship" [ref=e535] [cursor=pointer]:
+                    - /url: https://minimal.gallery/sponsor/
+                - listitem [ref=e536]:
+                  - link "Subscribe to digest" [ref=e537] [cursor=pointer]:
+                    - /url: https://minimal.gallery/subscribe/
+                - listitem [ref=e538]:
+                  - link "Bookmarks" [ref=e539] [cursor=pointer]:
+                    - /url: https://minimal.gallery/bookmarks/
+                - listitem [ref=e540]:
+                  - link "Contact" [ref=e541] [cursor=pointer]:
+                    - /url: https://minimal.gallery/about/
+                - listitem [ref=e542]:
+                  - link "Legal & privacy" [ref=e543] [cursor=pointer]:
+                    - /url: https://minimal.gallery/legal/
+            - generic [ref=e544]:
+              - heading "Resources" [level=4] [ref=e545]
+              - list [ref=e546]:
+                - listitem [ref=e547]:
+                  - link "Website design inspiration" [ref=e548] [cursor=pointer]:
+                    - /url: https://minimal.gallery/websites/
+                - listitem [ref=e549]:
+                  - link "Website templates" [ref=e550] [cursor=pointer]:
+                    - /url: https://minimal.gallery/templates/
+                - listitem [ref=e551]:
+                  - link "Tools for creatives" [ref=e552] [cursor=pointer]:
+                    - /url: https://minimal.gallery/tools/
+                - listitem [ref=e553]:
+                  - link "Agency website design" [ref=e554] [cursor=pointer]:
+                    - /url: https://minimal.gallery/tag/agency/
+                - listitem [ref=e555]:
+                  - link "E-commerce design inspiration" [ref=e556] [cursor=pointer]:
+                    - /url: https://minimal.gallery/tag/e-commerce/
+                - listitem [ref=e557]:
+                  - link "Portfolio design inspiration" [ref=e558] [cursor=pointer]:
+                    - /url: https://minimal.gallery/tag/portfolio/
+                - listitem [ref=e559]:
+                  - link "One page websites" [ref=e560] [cursor=pointer]:
+                    - /url: https://minimal.gallery/tag/one-page/
+        - generic [ref=e561]:
+          - paragraph [ref=e563]: © Minimal Gallery 2013-2026
+          - list [ref=e565]:
+            - listitem [ref=e566]:
+              - link "X/Twitter" [ref=e567] [cursor=pointer]:
+                - /url: https://x.com/minimal_gallery
+            - listitem [ref=e568]:
+              - link "Pinterest" [ref=e569] [cursor=pointer]:
+                - /url: https://pinterest.com/minimal_gallery/website-design-inspiration/
+            - listitem [ref=e570]:
+              - link "Instagram" [ref=e571] [cursor=pointer]:
+                - /url: https://www.instagram.com/minimalgalleryweb/
+          - button "Back to Top" [ref=e572] [cursor=pointer]

@@ -93,36 +93,40 @@ export default async function BlogPostPage({ params }: Props) {
   };
 
   return (
-    <div className="bg-background min-h-screen relative overflow-hidden">
+    <div className="bg-background min-h-screen py-28 md:py-36 px-6">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="max-w-3xl mx-auto px-6 md:px-12 py-32 md:py-40 z-10 relative">
+      <div className="max-w-4xl mx-auto flex flex-col gap-10">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-foreground/60 hover:text-foreground mb-8 transition-colors"
+          className="inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground hover:text-foreground transition-colors w-fit"
         >
-          ← Back to Blog
+          <span>← Back to Blog</span>
         </Link>
 
-        <header className="mb-10">
-          <div className="flex items-center gap-4 font-mono text-[10px] uppercase tracking-widest text-foreground/50 mb-4">
+        <header className="flex flex-col gap-4 pb-8 border-b border-border/60">
+          <div className="flex items-center gap-3 font-mono text-xs text-muted-foreground">
             <span>{dateStr}</span>
             <span>•</span>
-            <span>👁 {serializedPost.views} views</span>
+            <span>{serializedPost.views} views</span>
           </div>
 
-          <h1 className="font-serif text-3xl md:text-5xl font-bold tracking-tight mb-6 text-foreground leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-foreground leading-tight">
             {serializedPost.title}
           </h1>
 
+          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+            {serializedPost.excerpt}
+          </p>
+
           {serializedPost.tags && serializedPost.tags.length > 0 && (
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 pt-1">
               {serializedPost.tags.map((tag: string) => (
                 <span
                   key={tag}
-                  className="font-mono text-[9px] uppercase tracking-widest bg-foreground text-background px-3 py-1 rounded-full border border-foreground"
+                  className="font-mono text-xs px-3 py-1 rounded-full bg-secondary/80 text-foreground/80 font-medium"
                 >
                   {tag}
                 </span>
@@ -131,32 +135,25 @@ export default async function BlogPostPage({ params }: Props) {
           )}
         </header>
 
-        {/* Cover Image styled w/ offset dashed frame */}
-        <div className="relative w-full h-60 md:h-[400px] mb-12 group">
-          <div className="absolute -inset-1 border-2 border-dashed border-pastel-pink rounded-[24px] pointer-events-none opacity-50" />
-          <div
-            className="w-full h-full rounded-[24px] border border-foreground/10 relative z-10 bg-muted/20"
-            style={{
-              backgroundImage: serializedPost.coverUrl
-                ? `url(${serializedPost.coverUrl})`
-                : undefined,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          />
-        </div>
+        {/* Cover Image Container */}
+        {serializedPost.coverUrl && (
+          <div className="relative w-full aspect-[16/9] rounded-3xl overflow-hidden border border-border/70 bg-muted/40 shadow-xs">
+            <div
+              className="w-full h-full bg-cover bg-center"
+              style={{ backgroundImage: `url(${serializedPost.coverUrl})` }}
+            />
+          </div>
+        )}
 
         <article
-          className="prose max-w-none font-mono text-sm leading-relaxed text-foreground/80"
+          className="prose dark:prose-invert max-w-none font-sans text-sm sm:text-base leading-relaxed text-foreground/85 pt-4"
           dangerouslySetInnerHTML={{ __html: serializedPost.content }}
         />
 
-        <ViewCounter slug={serializedPost.slug} />
+        <div className="pt-8 border-t border-border/60">
+          <ViewCounter slug={serializedPost.slug} />
+        </div>
       </div>
-
-      {/* Decorative dashed lines */}
-      <div className="absolute left-6 md:left-12 top-0 bottom-0 w-[1px] border-l border-dashed border-foreground/10 pointer-events-none" />
-      <div className="absolute right-6 md:right-12 top-0 bottom-0 w-[1px] border-r border-dashed border-foreground/10 pointer-events-none" />
     </div>
   );
 }

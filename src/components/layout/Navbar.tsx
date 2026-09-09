@@ -100,118 +100,92 @@ export default function Navbar({
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-[1000] h-20 flex items-center px-6 md:px-12 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-[1000] h-16 flex items-center px-6 transition-all duration-300 ${
           scrolled
-            ? "bg-background/90 backdrop-blur-md border-b border-foreground/10"
+            ? "bg-background/80 backdrop-blur-md border-b border-border/60 shadow-2xs"
             : "bg-transparent border-b border-transparent"
         }`}
       >
-        <Link
-          href="/"
-          className="font-serif italic font-bold text-2xl tracking-tight text-foreground hover:opacity-80 transition-opacity"
-        >
-          {activeLogo ? (
-            <div className="flex items-center gap-2">
+        <div className="max-w-5xl mx-auto w-full flex items-center justify-between">
+          <Link
+            href="/"
+            className="font-sans font-bold text-sm tracking-tight text-foreground hover:opacity-80 transition-opacity flex items-center gap-2.5"
+          >
+            {activeLogo ? (
               <img
                 src={activeLogo}
-                alt="Profile Preview"
-                className="w-12 h-12 rounded-full object-cover border border-border bg-muted/40 shrink-0"
+                alt="Logo"
+                className="w-7 h-7 rounded-xl object-cover border border-border/60 bg-muted/40 shrink-0"
                 onError={(e) => {
                   (e.target as HTMLImageElement).style.display = "none";
                 }}
               />
-              {navbarData.title}
+            ) : null}
+            <span>{navbarData.title || "Portfolio"}</span>
+          </Link>
+
+          <div className="flex items-center gap-4 sm:gap-6">
+            <div className="hidden sm:flex items-center gap-5 text-xs font-mono text-muted-foreground">
+              {links.map((l) =>
+                l.type === "section" ? (
+                  <button
+                    key={l.label}
+                    onClick={() => handleScroll(l.href)}
+                    className="hover:text-foreground transition-colors cursor-pointer"
+                  >
+                    {l.label}
+                  </button>
+                ) : (
+                  <Link
+                    key={l.label}
+                    href={l.href}
+                    className="hover:text-foreground transition-colors"
+                  >
+                    {l.label}
+                  </Link>
+                ),
+              )}
             </div>
-          ) : (
-            navbarData.title
-          )}
-        </Link>
 
-        <div className="flex items-center gap-4 md:gap-8 ml-auto">
-          {/* Desktop Navigation Links */}
-          <div className="hidden md:flex items-center gap-8">
-            {links.map((l) =>
-              l.type === "section" ? (
-                <button
-                  key={l.label}
-                  onClick={() => handleScroll(l.href)}
-                  className="text-xs font-mono uppercase tracking-widest text-foreground/60 hover:text-foreground transition-colors cursor-pointer"
-                >
-                  {l.label}
-                </button>
-              ) : (
-                <Link
-                  key={l.label}
-                  href={l.href}
-                  className="text-xs font-mono uppercase tracking-widest text-foreground/60 hover:text-foreground transition-colors"
-                >
-                  {l.label}
-                </Link>
-              ),
-            )}
-            {/* <Link
-              href="/projects"
-              className="text-xs font-mono uppercase tracking-widest text-foreground/60 hover:text-foreground transition-colors"
-            >
-              Projects
-            </Link> */}
-          </div>
-
-          {/* Theme Toggle Button */}
-          {mounted ? (
             <button
               onClick={toggleTheme}
-              className="w-10 h-10 rounded-full border border-foreground/10 flex items-center justify-center text-foreground hover:bg-foreground/5 transition-colors cursor-pointer"
-              aria-label="Toggle Theme"
+              className="p-2 rounded-xl border border-border/60 hover:bg-secondary/60 text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+              title="Toggle theme"
             >
-              {theme === "dark" ? (
+              {activeTheme === "dark" ? (
                 <Sun className="w-4 h-4" />
               ) : (
                 <Moon className="w-4 h-4" />
               )}
             </button>
-          ) : (
-            <div className="w-10 h-10 rounded-full border border-foreground/10 bg-transparent" />
-          )}
 
-          {/* Desktop Admin Button */}
-          {/* <Link
-            href="/admin"
-            className="hidden md:inline-block px-5 py-2.5 bg-foreground text-background hover:opacity-90 rounded-full text-xs font-mono uppercase tracking-widest transition-all"
-          >
-            Admin
-          </Link> */}
-
-          {/* Hamburger Menu Button */}
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden w-10 h-10 flex items-center justify-center text-foreground hover:bg-foreground/5 rounded-full cursor-pointer transition-colors"
-            aria-label="Toggle Menu"
-          >
-            {menuOpen ? (
-              <X className="w-5 h-5" />
-            ) : (
-              <Menu className="w-5 h-5" />
-            )}
-          </button>
+            {/* Mobile menu trigger */}
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="sm:hidden p-2 rounded-xl border border-border/60 text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+              aria-label="Toggle menu"
+            >
+              {menuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+            </button>
+          </div>
         </div>
       </nav>
 
       {/* Mobile Drawer Overlay */}
       {menuOpen && (
         <div
-          className="fixed inset-0 z-[998] bg-background/60 backdrop-blur-sm md:hidden"
+          className="fixed inset-0 z-[998] bg-background/60 backdrop-blur-sm sm:hidden"
           onClick={() => setMenuOpen(false)}
         />
       )}
 
       {/* Mobile Menu Drawer */}
       <div
-        className={`fixed inset-y-0 right-0 z-[999] w-full sm:w-80 bg-background border-l border-foreground/10 p-6 pt-24 flex flex-col gap-6 shadow-2xl md:hidden transition-transform duration-300 ${
+        className={`fixed inset-y-0 right-0 z-[999] w-64 bg-background border-l border-border/40 p-6 pt-20 flex flex-col gap-4 shadow-xl sm:hidden transition-transform duration-200 ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex flex-col gap-6 font-mono text-sm uppercase tracking-widest">
+        <div className="flex flex-col gap-3 font-mono text-xs">
           {links.map((l) =>
             l.type === "section" ? (
               <button
@@ -220,7 +194,7 @@ export default function Navbar({
                   setMenuOpen(false);
                   handleScroll(l.href);
                 }}
-                className="text-left py-2 border-b border-foreground/5 text-foreground/75 hover:text-foreground transition-colors cursor-pointer"
+                className="text-left py-2 text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
               >
                 {l.label}
               </button>
@@ -229,26 +203,12 @@ export default function Navbar({
                 key={l.label}
                 href={l.href}
                 onClick={() => setMenuOpen(false)}
-                className="py-2 border-b border-foreground/5 text-foreground/75 hover:text-foreground transition-colors"
+                className="py-2 text-muted-foreground hover:text-foreground transition-colors"
               >
                 {l.label}
               </Link>
             ),
           )}
-          {/* <Link
-            href="/projects"
-            onClick={() => setMenuOpen(false)}
-            className="py-2 border-b border-foreground/5 text-foreground/75 hover:text-foreground transition-colors"
-          >
-            Projects
-          </Link> */}
-          {/* <Link
-            href="/admin"
-            onClick={() => setMenuOpen(false)}
-            className="mt-4 py-3 bg-foreground text-background rounded-full text-xs text-center font-bold transition-all"
-          >
-            Admin
-          </Link> */}
         </div>
       </div>
     </>

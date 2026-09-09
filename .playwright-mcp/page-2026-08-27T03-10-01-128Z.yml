@@ -1,0 +1,179 @@
+- generic [ref=f4e5]:
+  - navigation [ref=f4e6]:
+    - generic [ref=f4e7]:
+      - generic [ref=f4e8]:
+        - link "Unsplash Home" [ref=f4e9] [cursor=pointer]:
+          - /url: /
+          - img "Unsplash Home" [ref=f4e10]
+        - link "Photos" [ref=f4e12] [cursor=pointer]:
+          - /url: /
+        - link "Illustrations" [ref=f4e15] [cursor=pointer]:
+          - /url: /illustrations
+      - generic [ref=f4e18]:
+        - button "Explore" [ref=f4e19] [cursor=pointer]
+        - button "Collections" [ref=f4e22] [cursor=pointer]
+        - button "Download History" [ref=f4e25] [cursor=pointer]
+      - button "Bookmarks" [ref=f4e29] [cursor=pointer]
+    - generic [ref=f4e32]:
+      - link "Log in / Sign up" [ref=f4e33] [cursor=pointer]:
+        - /url: /login?referrer=%2Fs%2Fphotos%2Freceipt-printer
+      - button "Language" [ref=f4e36] [cursor=pointer]
+      - button "Menu" [ref=f4e39] [cursor=pointer]
+  - generic [ref=f4e42]:
+    - generic [ref=f4e43]:
+      - navigation [ref=f4e44]:
+        - search "Find visuals sitewide" [ref=f4e46]:
+          - button "Search Unsplash" [ref=f4e47] [cursor=pointer]
+          - combobox [ref=f4e50]:
+            - searchbox "Search Unsplash" [ref=f4e51]: receipt printer
+            - listbox
+          - button "Clear" [ref=f4e52] [cursor=pointer]
+          - button "Visual search" [ref=f4e57] [cursor=pointer]
+        - generic [ref=f4e60]:
+          - link "Get Unsplash+" [ref=f4e61] [cursor=pointer]:
+            - /url: /plus
+          - link "Log in" [ref=f4e62] [cursor=pointer]:
+            - /url: /login?referrer=%2Fs%2Fphotos%2Freceipt-printer
+        - button "Submit an image" [ref=f4e64] [cursor=pointer]
+      - generic [ref=f4e65]:
+        - generic [ref=f4e71]:
+          - list [ref=f4e72]:
+            - listitem [ref=f4e73]:
+              - link "Photos 489":
+                - /url: /s/photos/receipt-printer
+                - text: Photos
+                - generic: "489"
+            - listitem [ref=f4e74]:
+              - link "Illustrations 180" [ref=f4e75] [cursor=pointer]:
+                - /url: /s/illustrations/receipt-printer
+                - text: Illustrations
+                - generic [ref=f4e78]: "180"
+            - listitem [ref=f4e79]:
+              - button "More" [ref=f4e80] [cursor=pointer]
+          - button [ref=f4e82] [cursor=pointer]
+        - generic [ref=f4e86]:
+          - heading "Receipt printer" [level=1] [ref=f4e88]
+          - generic [ref=f4e90]:
+            - button "scroll list to the right" [ref=f4e92] [cursor=pointer]
+            - generic [ref=f4e96]:
+              - link "receipt" [ref=f4e98] [cursor=pointer]:
+                - /url: /s/photos/receipt
+              - link "paper" [ref=f4e100] [cursor=pointer]:
+                - /url: /s/photos/paper
+              - link "texture" [ref=f4e102] [cursor=pointer]:
+                - /url: /s/photos/texture
+              - link "paper texture" [ref=f4e104] [cursor=pointer]:
+                - /url: /s/photos/paper-texture
+              - link "background" [ref=f4e106] [cursor=pointer]:
+                - /url: /s/photos/background
+              - link "backdrop" [ref=f4e108] [cursor=pointer]:
+                - /url: /s/photos/backdrop
+              - link "rough texture" [ref=f4e110] [cursor=pointer]:
+                - /url: /s/photos/rough-texture
+              - link "background texture" [ref=f4e112] [cursor=pointer]:
+                - /url: /s/photos/background-texture
+              - link "textural" [ref=f4e114] [cursor=pointer]:
+                - /url: /s/photos/textural
+              - link "design element" [ref=f4e116] [cursor=pointer]:
+                - /url: /s/photos/design-element
+              - link "service industry" [ref=f4e118] [cursor=pointer]:
+                - /url: /s/photos/service-industry
+              - link "abstract background" [ref=f4e120] [cursor=pointer]:
+                - /url: /s/photos/abstract-background
+        - generic [ref=f4e122]:
+          - generic [ref=f4e126]:
+            - generic [ref=f4e127]:
+              - figure [ref=f4e128]:
+                - generic [ref=f4e130]:
+                  - link [ref=f4e131]:
+                    - /url: /photos/a-close-up-of-a-piece-of-white-paper-nW3XR5c1aCg
+                    - img "a close up of a piece of white paper" [ref=f4e132]
+                  - link [ref=f4e133] [cursor=pointer]:
+                    - /url: /plus?referrer=%2Fphotos%2Fa-close-up-of-a-piece-of-white-paper-nW3XR5c1aCg
+              - figure [ref=f4e136]:
+                - link [ref=f4e139]:
+                  - /url: /photos/a-person-using-a-machine-to-cut-tomatoes-RdvqSIoowQg
+                  - img "A person using a machine to cut tomatoes" [ref=f4e140]
+              - figure [ref=f4e141]:
+                - link [ref=f4e144]:
+                  - /url: /photos/a-person-using-a-machine-to-cut-tomatoes-bwGOwO3cl-E
+                  - img "A person using a machine to cut tomatoes" [ref=f4e145]
+              - figure [ref=f4e146]:
+                - link [ref=f4e149]:
+                  - /url: /photos/man-paying-with-credit-card-at-a-terminal-v1Csmlztqiw
+                  - img "Man paying with credit card at a terminal" [ref=f4e150]
+              - figure [ref=f4e151]:
+                - generic [ref=f4e153]:
+                  - link [ref=f4e154]:
+                    - /url: /photos/a-piece-of-white-paper-that-is-very-wrinkled-R2LSlb8Xw9I
+                    - img "A piece of white paper that is very wrinkled" [ref=f4e155]
+                  - link [ref=f4e156] [cursor=pointer]:
+                    - /url: /plus?referrer=%2Fphotos%2Fa-piece-of-white-paper-that-is-very-wrinkled-R2LSlb8Xw9I
+              - figure [ref=f4e159]:
+                - link [ref=f4e162]:
+                  - /url: /photos/three-colleagues-viewing-a-business-presentation-on-a-large-screen-ZfRXaTHKEu0
+                  - img "Three colleagues viewing a business presentation on a large screen" [ref=f4e163]
+            - generic [ref=f4e164]:
+              - figure [ref=f4e165]:
+                - link [ref=f4e168]:
+                  - /url: /photos/brown-shipping-boxes-next-to-a-small-label-printer-cpwP43LnGRk
+                  - img "Brown shipping boxes next to a small label printer" [ref=f4e169]
+              - figure [ref=f4e170]:
+                - link [ref=f4e173]:
+                  - /url: /photos/a-man-working-at-a-hotel-reception-desk-yXndKBtVbZA
+                  - img "A man working at a hotel reception desk" [ref=f4e174]
+              - figure [ref=f4e175]:
+                - generic [ref=f4e177]:
+                  - link [ref=f4e178]:
+                    - /url: /photos/close-up-of-cut-papers-heap-produced-with-linotype-machine-at-printing-house-pDC58dnDADA
+                    - img "Close-up of cut papers heap produced with linotype machine at printing house" [ref=f4e179]
+                  - link [ref=f4e180] [cursor=pointer]:
+                    - /url: /plus?referrer=%2Fphotos%2Fclose-up-of-cut-papers-heap-produced-with-linotype-machine-at-printing-house-pDC58dnDADA
+              - figure [ref=f4e183]:
+                - link [ref=f4e186]:
+                  - /url: /photos/point-of-sale-system-on-a-marble-counter-eA7w-9HVwws
+                  - img "Point of sale system on a marble counter" [ref=f4e187]
+              - figure [ref=f4e188]:
+                - generic [ref=f4e190]:
+                  - link [ref=f4e191]:
+                    - /url: /photos/men-checking-stock-of-pastry-in-bakery-shop-8pubsn5S2NU
+                    - img "Men Checking Stock of Pastry in Bakery Shop" [ref=f4e192]
+                  - link [ref=f4e193] [cursor=pointer]:
+                    - /url: /plus?referrer=%2Fphotos%2Fmen-checking-stock-of-pastry-in-bakery-shop-8pubsn5S2NU
+            - generic [ref=f4e196]:
+              - contentinfo [ref=f4e201]:
+                - generic [ref=f4e202]: –– ––– ––– –– ––– – ––– ––– –––– – – –– ––– – – ––– –– –– –––– ––
+                - generic [ref=f4e208] [cursor=pointer]
+              - figure [ref=f4e209]:
+                - link [ref=f4e212]:
+                  - /url: /photos/a-table-topped-with-plates-of-food-and-a-credit-card-nZnnJZA1Uvk
+                  - img "A table topped with plates of food and a credit card" [ref=f4e213]
+              - figure [ref=f4e214]:
+                - link [ref=f4e217]:
+                  - /url: /photos/a-person-putting-a-credit-card-into-a-machine-fW0TfeMWsi0
+                  - img "A person putting a credit card into a machine" [ref=f4e218]
+              - figure [ref=f4e219]:
+                - generic [ref=f4e221]:
+                  - link [ref=f4e222]:
+                    - /url: /photos/barista-is-making-coffee-at-his-restaurant-and-own-a-coffee-shop-she-is-swiping-credit-card-where-customers-are-paying-Av-lF0H3AzA
+                    - img "Barista is making coffee at his restaurant. And own a coffee shop She is swiping credit card. Where customers are paying" [ref=f4e223]
+                  - link [ref=f4e224] [cursor=pointer]:
+                    - /url: /plus?referrer=%2Fphotos%2Fbarista-is-making-coffee-at-his-restaurant-and-own-a-coffee-shop-she-is-swiping-credit-card-where-customers-are-paying-Av-lF0H3AzA
+              - figure [ref=f4e227]:
+                - link [ref=f4e230]:
+                  - /url: /photos/a-bunch-of-bowls-of-food-on-a-table-o9Ahz94Ooiw
+                  - img "A bunch of bowls of food on a table" [ref=f4e231]
+              - figure [ref=f4e232]:
+                - link [ref=f4e235]:
+                  - /url: /photos/multiple-cash-registers-with-computer-monitors-at-a-checkout-counter-UaMMROu5fq0
+                  - img "Multiple cash registers with computer monitors at a checkout counter" [ref=f4e236]
+          - heading "Browse premium images on iStock | Claim your discount now" [level=2] [ref=f4e240]:
+            - text: Browse premium images on iStock
+            - generic [ref=f4e241]: "| Claim your discount now"
+          - button "Load more" [ref=f4e255] [cursor=pointer]
+          - generic [ref=f4e256]:
+            - link [ref=f4e257] [cursor=pointer]:
+              - /url: /
+            - paragraph [ref=f4e260]: Make something awesome
+    - generic:
+      - region "Notifications"

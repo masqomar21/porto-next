@@ -1,52 +1,26 @@
 import Link from 'next/link';
-import { DynamicIcon } from '@/components/ui/dynamic-icon';
+import { ArrowUp } from 'lucide-react';
 
-export default function Footer({ contactData }: { contactData: { email?: string; socialLinks?: { platform: string; url: string; icon: string }[] } }) {
+export default function Footer({
+  contactData,
+}: {
+  contactData: {
+    email?: string;
+    socialLinks?: { platform: string; url: string; icon: string }[];
+  };
+}) {
   return (
-    <footer className="bg-background border-t border-dashed border-foreground/15 py-16 px-6 md:px-12 relative overflow-hidden">
-      <div className="max-w-6xl mx-auto flex flex-col items-center">
-        
-        {/* Large Serif CTA */}
-        <h3 className="font-serif italic font-bold text-3xl md:text-5xl text-foreground mb-10 text-center max-w-2xl leading-tight">
-          Hire Me for Your Next Big Project!
-        </h3>
-
-        {/* Navigation & Socials Row */}
-        <div className="flex flex-wrap gap-x-8 gap-y-4 justify-center font-mono text-xs uppercase tracking-widest text-foreground/60 mb-12">
-          <Link href="#about" className="hover:text-foreground transition-all">ABOUT</Link>
-          <Link href="#skills" className="hover:text-foreground transition-all">SKILLS</Link>
-          <Link href="#projects" className="hover:text-foreground transition-all">PROJECTS</Link>
-          <Link href="#contact" className="hover:text-foreground transition-all">CONTACT</Link>
-          
-          {contactData?.socialLinks?.map(l => (
-            <a
-              key={l.platform}
-              href={l.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-foreground hover:underline flex items-center gap-1.5 transition-all"
-            >
-              <DynamicIcon name={l.icon} className="w-3.5 h-3.5" />
-              {l.platform}
-            </a>
-          ))}
-        </div>
-
-        {/* Bottom copyright */}
-        <div className="w-full border-t border-dashed border-foreground/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="font-mono text-[10px] text-foreground/40 uppercase tracking-widest">
-            © {new Date().getFullYear()} · All rights reserved.
-          </p>
-          <p className="font-mono text-[10px] text-foreground/40 uppercase tracking-widest">
-            Built with Next.js & Tailwind · <Link href="/admin" className="underline hover:text-foreground transition-colors">Admin Panel</Link>
-          </p>
-        </div>
-
+    <footer className="border-t border-border/40 py-12 px-6 max-w-5xl mx-auto w-full">
+      <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono text-muted-foreground">
+        <p>© {new Date().getFullYear()} Muhammad Qomarudin. All rights reserved.</p>
+        <a
+          href="#hero"
+          className="hover:text-foreground transition-colors inline-flex items-center gap-1"
+        >
+          <span>Back to top</span>
+          <ArrowUp className="w-3.5 h-3.5" />
+        </a>
       </div>
-
-      {/* Decorative dashed lines */}
-      <div className="absolute left-6 md:left-12 top-0 bottom-0 w-[1px] border-l border-dashed border-foreground/10 pointer-events-none" />
-      <div className="absolute right-6 md:right-12 top-0 bottom-0 w-[1px] border-r border-dashed border-foreground/10 pointer-events-none" />
     </footer>
   );
 }

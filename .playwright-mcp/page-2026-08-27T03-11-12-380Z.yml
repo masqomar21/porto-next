@@ -1,0 +1,45 @@
+- generic [active] [ref=f16e1]:
+  - generic [ref=f16e2]:
+    - complementary [ref=f16e3]:
+      - link [ref=f16e5] [cursor=pointer]:
+        - /url: /admin
+        - generic [ref=f16e9]:
+          - heading "Admin CMS" [level=2] [ref=f16e10]
+          - paragraph [ref=f16e11]: masqomar.com
+      - navigation [ref=f16e12]:
+        - link "Dashboard" [ref=f16e13] [cursor=pointer]:
+          - /url: /admin
+        - link "Hero Section" [ref=f16e20] [cursor=pointer]:
+          - /url: /admin/hero
+        - link "Navbar" [ref=f16e25] [cursor=pointer]:
+          - /url: /admin/navbar
+        - link "About" [ref=f16e28] [cursor=pointer]:
+          - /url: /admin/about
+        - link "Experience" [ref=f16e33] [cursor=pointer]:
+          - /url: /admin/experience
+        - link "Skills" [ref=f16e38] [cursor=pointer]:
+          - /url: /admin/skills
+        - link "Projects" [ref=f16e42] [cursor=pointer]:
+          - /url: /admin/projects
+        - link "Blog Posts" [ref=f16e47] [cursor=pointer]:
+          - /url: /admin/blog
+        - link "Contact" [ref=f16e52] [cursor=pointer]:
+          - /url: /admin/contact
+        - link "Inbox Messages" [ref=f16e57] [cursor=pointer]:
+          - /url: /admin/inbox
+        - link "Media Library" [ref=f16e62] [cursor=pointer]:
+          - /url: /admin/media
+        - link "Settings" [ref=f16e68] [cursor=pointer]:
+          - /url: /admin/settings
+      - generic [ref=f16e73]:
+        - link "View Site" [ref=f16e74] [cursor=pointer]:
+          - /url: /
+        - button "Sign Out" [ref=f16e79] [cursor=pointer]
+    - generic [ref=f16e80]:
+      - banner [ref=f16e81]:
+        - generic [ref=f16e82]:
+          - generic [ref=f16e83]: AD
+          - generic [ref=f16e84]: admin@app.dev
+      - main [ref=f16e85]:
+        - generic [ref=f16e86]: Loading…
+  - alert [ref=f16e87]

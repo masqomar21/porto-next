@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { Briefcase, ArrowUpRight } from 'lucide-react';
 
 export type ExperienceItem = {
   _id: string;
@@ -19,136 +20,87 @@ export default function ExperienceSection({ data }: { data: ExperienceItem[] }) 
   if (!data || data.length === 0) return null;
 
   return (
-    <section id="experience" className="py-24 md:py-36 bg-background px-6 md:px-12 relative border-t border-dashed border-foreground/15">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
-        
-        {/* Left Column: Heading & Description */}
-        <div className="lg:col-span-4 flex flex-col justify-between">
-          <div>
-            <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground tracking-tight">Experience</h2>
-            <div className="border-b border-dashed border-foreground/20 my-6" />
-            <p className="font-mono text-xs leading-relaxed text-foreground/60 uppercase tracking-widest">
-              A timeline of my professional career, software engineering roles, and technical contributions.
-            </p>
+    <section id="experience" className="py-20 md:py-28 px-6 max-w-5xl mx-auto border-t border-border/40">
+      <div className="flex flex-col gap-10">
+
+        {/* Section Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div className="flex flex-col gap-2">
+            <span className="text-xs font-mono font-semibold text-primary uppercase tracking-widest flex items-center gap-1.5">
+              <Briefcase className="w-3.5 h-3.5" />
+              Career Journey
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-foreground tracking-tight">
+              Work Experience & Roles
+            </h2>
           </div>
-          
-          <div className="mt-8 pt-6 border-t border-foreground/10 lg:border-0 lg:pt-0">
-            <Link
-              href="/experience"
-              className="inline-block bg-foreground text-background hover:bg-foreground/80 rounded-full font-mono text-xs uppercase tracking-widest px-8 py-3.5 transition-all text-center w-full sm:w-auto"
-            >
-              View Full Timeline →
-            </Link>
-          </div>
+          <Link
+            href="/experience"
+            className="inline-flex items-center gap-1 text-xs font-mono font-medium text-muted-foreground hover:text-foreground transition-colors self-start sm:self-auto"
+          >
+            <span>Full timeline</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </Link>
         </div>
 
-        {/* Right Column: Timeline Cards */}
-        <div className="lg:col-span-8 flex flex-col gap-6">
+        {/* Bento Timeline Stack */}
+        <div className="flex flex-col gap-4">
           {data.map((item, idx) => (
             <motion.div
               key={item._id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="group relative border border-transparent rounded-[24px] p-6 md:p-8 hover:bg-card/40 hover:border-border hover:shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] dark:hover:shadow-[0_4px_20px_-4px_rgba(0,0,0,0.3)] transition-all duration-300"
+              transition={{ delay: idx * 0.06, duration: 0.4 }}
+              className="p-6 sm:p-7 rounded-3xl bg-card border border-border/80 hover:border-foreground/20 hover:shadow-xs transition-all duration-300 flex flex-col md:flex-row md:items-start justify-between gap-6"
             >
-              {/* Layout: Date on left, details on right for wide screens */}
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
-                
-                {/* Duration */}
-                <div className="md:col-span-3">
-                  <span className="font-mono text-[10px] sm:text-xs uppercase tracking-widest text-foreground/45 font-semibold block pt-1">
-                    {item.duration}
-                  </span>
-                </div>
+              {/* Left Column: Role + Company */}
+              <div className="flex flex-col gap-1.5 md:w-1/3">
+                <span className="text-xs font-mono text-muted-foreground font-medium">
+                  {item.duration}
+                </span>
+                <h3 className="text-lg font-bold text-foreground">
+                  {item.role}
+                </h3>
+                {item.companyUrl ? (
+                  <a
+                    href={item.companyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs font-mono text-primary hover:underline inline-flex items-center gap-1 w-fit"
+                  >
+                    <span>{item.company}</span>
+                    <ArrowUpRight className="w-3 h-3" />
+                  </a>
+                ) : (
+                  <span className="text-xs font-mono text-muted-foreground">{item.company}</span>
+                )}
+              </div>
 
-                {/* Details */}
-                <div className="md:col-span-9 flex flex-col">
-                  {/* Job Title & Company Name */}
-                  <h3 className="font-serif text-xl font-bold text-foreground leading-snug">
-                    {item.companyUrl ? (
-                      <a
-                        href={item.companyUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 hover:text-foreground group-hover:text-primary transition-colors cursor-pointer"
+              {/* Right Column: Description + Tech Badges */}
+              <div className="flex flex-col gap-4 md:w-2/3">
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                  {item.description}
+                </p>
+
+                {item.tags && item.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5 pt-1">
+                    {item.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-secondary/80 text-foreground/80 font-medium"
                       >
-                        <span>{item.role}</span>
-                        <span className="text-foreground/30 font-normal font-sans">·</span>
-                        <span>{item.company}</span>
-                        <span className="inline-block transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 text-sm sm:text-base">
-                          ↗
-                        </span>
-                      </a>
-                    ) : (
-                      <span className="inline-flex items-center gap-1">
-                        <span>{item.role}</span>
-                        <span className="text-foreground/30 font-normal font-sans">·</span>
-                        <span className="text-foreground/85">{item.company}</span>
+                        {tag}
                       </span>
-                    )}
-                  </h3>
-
-                  {/* Job Description */}
-                  <p className="mt-3 text-xs sm:text-sm text-foreground/65 leading-relaxed font-sans whitespace-pre-wrap">
-                    {item.description}
-                  </p>
-
-                  {/* Associated Project / External Links */}
-                  {item.links && item.links.length > 0 && (
-                    <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2">
-                      {item.links.map((link, lIdx) => (
-                        <a
-                          key={lIdx}
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 font-mono text-[11px] text-foreground/60 hover:text-foreground hover:underline transition-colors"
-                        >
-                          <svg
-                            className="w-3.5 h-3.5 opacity-60"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
-                            />
-                          </svg>
-                          <span>{link.label}</span>
-                        </a>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* Skills / Tech Badge Pills */}
-                  {item.tags && item.tags.length > 0 && (
-                    <div className="mt-6 flex flex-wrap gap-2">
-                      {item.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="bg-foreground/[0.04] dark:bg-foreground/[0.06] border border-foreground/[0.06] hover:bg-foreground/[0.08] text-foreground/80 font-mono text-[10px] font-semibold tracking-wider px-3 py-1 rounded-full transition-colors"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </motion.div>
           ))}
         </div>
 
       </div>
-
-      {/* Decorative dashed lines */}
-      <div className="absolute left-6 md:left-12 top-0 bottom-0 w-[1px] border-l border-dashed border-foreground/10 pointer-events-none" />
-      <div className="absolute right-6 md:right-12 top-0 bottom-0 w-[1px] border-r border-dashed border-foreground/10 pointer-events-none" />
     </section>
   );
 }

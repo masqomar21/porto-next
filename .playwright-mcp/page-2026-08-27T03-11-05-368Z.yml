@@ -1,0 +1,489 @@
+- generic [active] [ref=f12e1]:
+  - generic:
+    - generic:
+      - link "Lewati ke konten utama" [ref=f12e2] [cursor=pointer]
+      - link "Nonaktifkan scroll berkelanjutan" [ref=f12e3] [cursor=pointer]:
+        - /url: "#"
+      - link "Bantuan aksesibilitas" [ref=f12e4] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=id
+  - generic [ref=f12e9]:
+    - search [ref=f12e10]:
+      - generic [ref=f12e12]:
+        - link "Ke Beranda Google" [ref=f12e14] [cursor=pointer]:
+          - /url: https://www.google.com/imghp?hl=id&sa=X&ved=0ahUKEwi4kZ_96r-WAxWcyDgGHcVfPEIQPAgJ
+        - generic [ref=f12e22]:
+          - generic [ref=f12e23]:
+            - combobox "Cari" [ref=f12e26]: thermal printer mockup banner illustration png url thermal printer mockup banner illustration png url
+            - generic [ref=f12e27]:
+              - button "Hapus" [ref=f12e29] [cursor=pointer]
+              - generic [ref=f12e34]:
+                - button "Telusuri dengan suara" [ref=f12e35] [cursor=pointer]
+                - button "Telusuri pakai gambar" [ref=f12e38] [cursor=pointer]
+          - button "Telusuri" [ref=f12e41] [cursor=pointer]
+    - generic [ref=f12e46]:
+      - button "Setelan" [ref=f12e48] [cursor=pointer]
+      - generic [ref=f12e54]:
+        - button "Aplikasi Google" [ref=f12e56] [cursor=pointer]
+        - link "Login" [ref=f12e61] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=id&passive=true&continue=https://www.google.com/search%3Fq%3Dthermal%2Bprinter%2Bmockup%2Bbanner%2Billustration%2Bpng%2Burl%26udm%3D2%26sei%3Dx6qPasGlKLi64-EP5c_N0Qo&ec=futura_srp_og_si_72236_p
+  - generic [ref=f12e66]:
+    - navigation [ref=f12e70]:
+      - generic [ref=f12e76]:
+        - list [ref=f12e77]:
+          - listitem [ref=f12e78]:
+            - link "Mode AI" [ref=f12e81] [cursor=pointer]:
+              - /url: /search?q=thermal+printer+mockup+banner+illustration+png+url&sca_esv=a9a0bb83e07c50fc&udm=50&fbs=ABfTbFWdsmmmhjl_BDjuxsGOJsG5PeIotS9Fo4zjKe5Cdzohrqvltg1_bP4koeNEKMFLKeRZCm6B0TKEWOel1B1QQN4VcDyp-rSHGCXk4yzXPCSfsfiPLiY_CBitnyIzih2gFTi60a_YYZHRnDinxg0SLNnxkLCEdSr5QHKCzfAY1uWdEDcrp0BX2_brgdNlILNFZQwDYcwmB-BD_pNatOuCktOyTf4XMVMYyoAmAu3vCiDEi7O7VqM&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwi4kZ_96r-WAxWcyDgGHcVfPEIQ2J8OegQIChAD
+          - listitem [ref=f12e85]:
+            - link "Semua" [ref=f12e86] [cursor=pointer]:
+              - /url: /search?sca_esv=a9a0bb83e07c50fc&q=thermal+printer+mockup+banner+illustration+png+url&source=lnms&fbs=ABfTbFWdsmmmhjl_BDjuxsGOJsG5PeIotS9Fo4zjKe5Cdzohrqvltg1_bP4koeNEKMFLKeRZCm6B0TKEWOel1B1QQN4VcDyp-rSHGCXk4yzXPCSfsfiPLiY_CBitnyIzih2gFTi60a_YYZHRnDinxg0SLNnxkLCEdSr5QHKCzfAY1uWdEDcrp0BX2_brgdNlILNFZQwDYcwmB-BD_pNatOuCktOyTf4XMVMYyoAmAu3vCiDEi7O7VqM&sa=X&ved=2ahUKEwi4kZ_96r-WAxWcyDgGHcVfPEIQ0pQJegQICxAB
+          - listitem [ref=f12e89]:
+            - link "Gambar" [disabled] [ref=f12e90]
+          - listitem [ref=f12e93]:
+            - link "Video singkat" [ref=f12e94] [cursor=pointer]:
+              - /url: /search?sca_esv=a9a0bb83e07c50fc&udm=39&fbs=ABfTbFWdsmmmhjl_BDjuxsGOJsG5PeIotS9Fo4zjKe5Cdzohrqvltg1_bP4koeNEKMFLKeRZCm6B0TKEWOel1B1QQN4VcDyp-rSHGCXk4yzXPCSfsfiPLiY_CBitnyIzih2gFTi60a_YYZHRnDinxg0SLNnxkLCEdSr5QHKCzfAY1uWdEDcrp0BX2_brgdNlILNFZQwDYcwmB-BD_pNatOuCktOyTf4XMVMYyoAmAu3vCiDEi7O7VqM&q=thermal+printer+mockup+banner+illustration+png+url&sa=X&ved=2ahUKEwi4kZ_96r-WAxWcyDgGHcVfPEIQs6gLegQIDRAB
+          - listitem [ref=f12e97]:
+            - link "Penerbangan" [ref=f12e98] [cursor=pointer]:
+              - /url: /travel/flights?sca_esv=a9a0bb83e07c50fc&output=search&q=thermal+printer+mockup+banner+illustration+png+url&source=lnms&fbs=ABfTbFWdsmmmhjl_BDjuxsGOJsG5PeIotS9Fo4zjKe5Cdzohrqvltg1_bP4koeNEKMFLKeRZCm6B0TKEWOel1B1QQN4VcDyp-rSHGCXk4yzXPCSfsfiPLiY_CBitnyIzih2gFTi60a_YYZHRnDinxg0SLNnxkLCEdSr5QHKCzfAY1uWdEDcrp0BX2_brgdNlILNFZQwDYcwmB-BD_pNatOuCktOyTf4XMVMYyoAmAu3vCiDEi7O7VqM&ved=1t:200715&ictx=111
+          - listitem [ref=f12e101]:
+            - link "Web" [ref=f12e102] [cursor=pointer]:
+              - /url: /search?sca_esv=a9a0bb83e07c50fc&udm=web&fbs=ABfTbFWdsmmmhjl_BDjuxsGOJsG5PeIotS9Fo4zjKe5Cdzohrqvltg1_bP4koeNEKMFLKeRZCm6B0TKEWOel1B1QQN4VcDyp-rSHGCXk4yzXPCSfsfiPLiY_CBitnyIzih2gFTi60a_YYZHRnDinxg0SLNnxkLCEdSr5QHKCzfAY1uWdEDcrp0BX2_brgdNlILNFZQwDYcwmB-BD_pNatOuCktOyTf4XMVMYyoAmAu3vCiDEi7O7VqM&q=thermal+printer+mockup+banner+illustration+png+url&sa=X&ved=2ahUKEwi4kZ_96r-WAxWcyDgGHcVfPEIQs6gLegQIDhAB
+          - listitem [ref=f12e105]:
+            - link "Keuangan" [ref=f12e106] [cursor=pointer]:
+              - /url: /finance?sca_esv=a9a0bb83e07c50fc&output=search&q=thermal+printer+mockup+banner+illustration+png+url&source=lnms&fbs=ABfTbFWdsmmmhjl_BDjuxsGOJsG5PeIotS9Fo4zjKe5Cdzohrqvltg1_bP4koeNEKMFLKeRZCm6B0TKEWOel1B1QQN4VcDyp-rSHGCXk4yzXPCSfsfiPLiY_CBitnyIzih2gFTi60a_YYZHRnDinxg0SLNnxkLCEdSr5QHKCzfAY1uWdEDcrp0BX2_brgdNlILNFZQwDYcwmB-BD_pNatOuCktOyTf4XMVMYyoAmAu3vCiDEi7O7VqM&sa=X&ved=2ahUKEwi4kZ_96r-WAxWcyDgGHcVfPEIQ0pQJegQIDBAB
+          - listitem [ref=f12e109]:
+            - button [ref=f12e110] [cursor=pointer]:
+              - generic "Filter lainnya" [ref=f12e111]: Lainnya
+        - button "Alat" [ref=f12e118] [cursor=pointer]
+    - navigation [ref=f12e126]:
+      - navigation [ref=f12e129]:
+        - list [ref=f12e138]:
+          - listitem [ref=f12e139]:
+            - link "Tambahkan Printing machine" [ref=f12e140] [cursor=pointer]:
+              - /url: /search?sca_esv=a9a0bb83e07c50fc&q=printing+machine+thermal+printer+mockup+banner+illustration+png+url&uds=AJ5uw1_a2D0D09lxm8gpKKOTUn4rUom2Ggtan9a-ySIyW3QNas4vt9lvaMppimq2_KdYZe07MAfnKG_ByPfoDRzIMucB6rOiM0LWO2V5DsYjj7kEYEdCzuUcZIfxyVQTQPZQGQyLDIrwMhnh4A7MnoXmPw9X5W3XG3McXN29vXnFuTo-GkcKOWe9o0yGTWcihuA1pXyfs-A4rZkQj60zQRoXr5Io_v8X2Q&udm=2&sa=X&ved=2ahUKEwi4kZ_96r-WAxWcyDgGHcVfPEIQxKsJKAB6BAgREAE&ictx=0
+              - generic [ref=f12e141]: Printing machine
+          - listitem [ref=f12e147]:
+            - link "Tambahkan Pngtree" [ref=f12e148] [cursor=pointer]:
+              - /url: /search?sca_esv=a9a0bb83e07c50fc&q=pngtree+thermal+printer+mockup+banner+illustration+png+url&uds=AJ5uw1_a2D0D09lxm8gpKKOTUn4rnLiUJofidH-w32pUWxHOgdP-Gnnc1G2iMIyK8theIxzsdjMJXgAu-pNyYfFvSfGR8FK_X6_W5d7ynmJuLJy4U1U0qfxNILezDq4OUkhbs6xU535BY4_9dweTYQv0Idx0xRqfZgFOSl0xs9JT9qXsd8s4TavAynC8xKoenLfCSoKvscPkAVFXPPaKbhpvIjVjY93xiA&udm=2&sa=X&ved=2ahUKEwi4kZ_96r-WAxWcyDgGHcVfPEIQxKsJKAF6BAgVEAE&ictx=0
+              - generic [ref=f12e149]: Pngtree
+          - listitem [ref=f12e155]:
+            - link "Tambahkan Magnific" [ref=f12e156] [cursor=pointer]:
+              - /url: /search?sca_esv=a9a0bb83e07c50fc&q=magnific+thermal+printer+mockup+banner+illustration+png+url&uds=AJ5uw1_a2D0D09lxm8gpKKOTUn4r6cd0dmTIiQhobo0LA7r0bsFyPD7BvR3fFWFpH0G_HpuxPsgH_Iul5UK-hlPbOvCWdJPT5UTQg5VeUwC5vIJLZ6GChYWgKK7wP2yan_8KqcvXjMArBFocHhMszJ-8gaOE62HV-vPLwhzrxjluuwxc5wR5Sai_tjU_sQf9mBOeF1Tk5GQgIeyNi0usRGSkk_Mzqy_Jcg&udm=2&sa=X&ved=2ahUKEwi4kZ_96r-WAxWcyDgGHcVfPEIQxKsJKAJ6BAgUEAE&ictx=0
+              - generic [ref=f12e157]: Magnific
+          - listitem [ref=f12e163]:
+            - link "Tambahkan Receipt" [ref=f12e164] [cursor=pointer]:
+              - /url: /search?sca_esv=a9a0bb83e07c50fc&q=receipt+thermal+printer+mockup+banner+illustration+png+url&uds=AJ5uw1_a2D0D09lxm8gpKKOTUn4rnLiUJofidH-w32pUWxHOgdP-Gnnc1G2iMIyK8theIxzsdjMJXgAu-pNyYfFvSfGR8FK_X6_W5d7ynmJuLJy4U9NGhm6TzN2uC_RNj-n_dWcA0gkGU2dd6bOUVSapfi2a6q8kgv8Cm8b2dK79R0--a2Oot2NIskZBjeeIf6sY-T55Aa3pmL1rVwWMYhbEBDopPAZXxA&udm=2&sa=X&ved=2ahUKEwi4kZ_96r-WAxWcyDgGHcVfPEIQxKsJKAN6BAgTEAE&ictx=0
+              - generic [ref=f12e165]: Receipt
+          - listitem [ref=f12e171]:
+            - link "Tambahkan Invoice template" [ref=f12e172] [cursor=pointer]:
+              - /url: /search?sca_esv=a9a0bb83e07c50fc&q=invoice+template+thermal+printer+mockup+banner+illustration+png+url&uds=AJ5uw1_a2D0D09lxm8gpKKOTUn4rUom2Ggtan9a-ySIyW3QNas4vt9lvaMppimq2_KdYZe07MAfnKG_ByPfoDRzIMucB6rOiM0LWO2V5DsYjj7kEYA0OqGQr3rJlbSS4v72DIIYMLD0tosk9-XAYSRB9KPJwHwUIMXqyfVwBHP4iNU1qH3PnHP8TxGQid02mjLClcJ_XzhxD3yuHCC2cD50JYMnWF_5aNg&udm=2&sa=X&ved=2ahUKEwi4kZ_96r-WAxWcyDgGHcVfPEIQxKsJKAR6BAgSEAE&ictx=0
+              - generic [ref=f12e173]: Invoice template
+          - listitem [ref=f12e179]:
+            - link "Tambahkan Receipt printer" [ref=f12e180] [cursor=pointer]:
+              - /url: /search?sca_esv=a9a0bb83e07c50fc&q=receipt+printer+thermal+printer+mockup+banner+illustration+png+url&uds=AJ5uw1_a2D0D09lxm8gpKKOTUn4rCMTPkrLeUGyztLjwmR70xYsDK7CPnOt2fAQYdk79aHJrdmewoI_3Vtgi-Alfey7B6eF9tOCQ1itfSftAhqZq8kVvTfNbWOCOSOleEnskRzCkJSSjZsIqF_VcDrjbbl_jAx7V1YaSLjO2tsNEDJqdMO3PpyjxnjEI0Q4k0EA6ESl09U5jZHtpl4e8OmjusOZDbG44RA&udm=2&sa=X&ved=2ahUKEwi4kZ_96r-WAxWcyDgGHcVfPEIQxKsJKAV6BQjlBRAB&ictx=0
+              - generic [ref=f12e181]: Receipt printer
+          - listitem [ref=f12e187]:
+            - link "Tambahkan Thermal receipt" [ref=f12e188] [cursor=pointer]:
+              - /url: /search?sca_esv=a9a0bb83e07c50fc&q=thermal+receipt+thermal+printer+mockup+banner+illustration+png+url&uds=AJ5uw1_a2D0D09lxm8gpKKOTUn4rCMTPkrLeUGyztLjwmR70xYsDK7CPnOt2fAQYdk79aHJrdmewoI_3Vtgi-Alfey7B6eF9tOCQ1itfSftAhqZq8nYo6QMtehWfGE88YqB9l8EiYt8wg24GDGe0YqjPTGn9UM3gL90Ej4vyZ7qGx-eJhpw-pzd7eT4eLqN98hW_TIcgggJHcHZxdvVM7n1nhbm5mv8kSA&udm=2&sa=X&ved=2ahUKEwi4kZ_96r-WAxWcyDgGHcVfPEIQxKsJKAZ6BQjmBRAB&ictx=0
+              - generic [ref=f12e189]: Thermal receipt
+          - listitem [ref=f12e195]:
+            - link "Tambahkan Thermal label printer" [ref=f12e196] [cursor=pointer]:
+              - /url: /search?sca_esv=a9a0bb83e07c50fc&q=thermal+label+printer+thermal+printer+mockup+banner+illustration+png+url&uds=AJ5uw1_a2D0D09lxm8gpKKOTUn4r2a3aKXb5ZNqJK7Ik9LldwKGVVHYxMi5DymLEN9Y9vsxQMH8i8OZ2Szidwy3UFoJBGJtlsTPLTD2Cug9-5QdvobQoA13iBlYgTHiwhPGmAZrec_BKyPRFS2JrOPFtWibhNT0hS0qi6axubbbZdqajbfcK1B6obZ_zBW5iH4tOINHLWIvl-7upWUEVVidk0PkP3V00fQ&udm=2&sa=X&ved=2ahUKEwi4kZ_96r-WAxWcyDgGHcVfPEIQxKsJKAd6BQjkBRAB&ictx=0
+              - generic [ref=f12e197]: Thermal label printer
+          - listitem [ref=f12e203]:
+            - link "Tambahkan Printer icon" [ref=f12e204] [cursor=pointer]:
+              - /url: /search?sca_esv=a9a0bb83e07c50fc&q=printer+icon+thermal+printer+mockup+banner+illustration+png+url&uds=AJ5uw1_a2D0D09lxm8gpKKOTUn4rouFTjGhkNxw4smSk-aXCyhQiB6gR2PVbQICqzU8ueUayuvve9uL2TBVTQAPIOqrIw4A00oM_YOx3zlUYDZDx62Z0JElydZYdx4nl3Cvg9hEVwTR8o5NyclKiD_VGKTF1UaRhgFoNHWpeNf_lHyhGbkMmRYnDcXrEPMQE_V4W7rVV8-QyFocG6mj-Fi-7QqbNcTcQ7Q&udm=2&sa=X&ved=2ahUKEwi4kZ_96r-WAxWcyDgGHcVfPEIQxKsJKAh6BQjnBRAB&ictx=0
+              - generic [ref=f12e205]: Printer icon
+          - listitem [ref=f12e211]:
+            - link "Tambahkan Format printer" [ref=f12e212] [cursor=pointer]:
+              - /url: /search?sca_esv=a9a0bb83e07c50fc&q=format+printer+thermal+printer+mockup+banner+illustration+png+url&uds=AJ5uw1_a2D0D09lxm8gpKKOTUn4rwRcZoAVMpufIl7KGXymd5N6wjXmcLJCsuvFgbzX3giQQGUoZPT4-i09NJi-czOujTFpgPolDEOCcVWOm6nQU-vVPCmbffLmpYDpF_71bsEruCySAdPSkAcNpERO2UyVbQLWchJNn7T7qAiChceTsbmmLl6cbJ8aBmiNy8jkRU-jgSjR7RMEOQ_39it9eeIlIc8SPYA&udm=2&sa=X&ved=2ahUKEwi4kZ_96r-WAxWcyDgGHcVfPEIQxKsJKAl6BQjpBRAB&ictx=0
+              - generic [ref=f12e213]: Format printer
+          - listitem [ref=f12e219]:
+            - link "Tambahkan Pos printer" [ref=f12e220] [cursor=pointer]:
+              - /url: /search?sca_esv=a9a0bb83e07c50fc&q=pos+printer+thermal+printer+mockup+banner+illustration+png+url&uds=AJ5uw1_a2D0D09lxm8gpKKOTUn4raFaJXJAdSd7JcdFVCK-e3tw7pKIpU7scitqt_i5AEuDE81UhVbseR_LY2n8DxP1N-eeQ0T9p1G8gson3p-ez2VTOgMn1ZXyRJW4gjmEap5BoiE1xXpeGTBVKfTvA4zrESS1sTVhmNDTWw1Ryq7a2hgOH1-yXFlT5A0IFAkTxo3lXrkuCTq2KnaOPjnD4Dt07XRFxTw&udm=2&sa=X&ved=2ahUKEwi4kZ_96r-WAxWcyDgGHcVfPEIQxKsJKAp6BQjoBRAB&ictx=0
+              - generic [ref=f12e221]: Pos printer
+    - heading "Hasil Telusur" [level=1] [ref=f12e227]
+    - main [ref=f12e229]:
+      - generic [ref=f12e238]:
+        - generic [ref=f12e242] [cursor=pointer]:
+          - generic [ref=f12e244]:
+            - button [ref=f12e247]:
+              - img "Illustration Of A Modern Thermal Receipt Printer With Paper Roll Displaying Text And Barcode, Cash Register, Point Sale, Business PNG Transparent Image and Clipart for Free Download" [ref=f12e249]
+            - generic: Lisensi
+          - link "Illustration Of A Modern Thermal Receipt Printer With Paper Roll Displaying Text And Barcode, Cash Register, Point Sale, Business PNG Transparent Image and Clipart for Free Download Pngtree" [ref=f12e251]:
+            - /url: /goto?url=CAESvwEB6zswFWec-eJoW9SR3LyqT3ThQzd_QUaufRk3tBZmaj7vBBh0f2_2LZPmaL-fN5fwk34C-5GNnSKZwWvwX5r1n7Om4RsPQAtGoOnMbjNKn5hh3AKkEG2r_JaOOHkduwBJCj1DHqgDdg4xdVVe4Wn3CTyqvSR2Q6fc6di9Wq2H9EWCwomPCKyxshJuv9vvTYPzjPbr--7f0I0cB5pzhLU76_yeNV0Ry_URVIFqT1PATPTJp_WIw0U15jSV6VopGg
+            - generic [ref=f12e252]:
+              - generic [ref=f12e253]: Illustration Of A Modern Thermal Receipt Printer With Paper Roll Displaying Text And Barcode, Cash Register, Point Sale, Business PNG Transparent Image and Clipart for Free Download
+              - generic [ref=f12e255]: Pngtree
+        - generic [ref=f12e262] [cursor=pointer]:
+          - generic [ref=f12e264]:
+            - button [ref=f12e267]:
+              - img "Thermal Printer, Pos Printer, Printer PNG Transparent Image and Clipart for Free Download" [ref=f12e269]
+            - generic: Lisensi
+          - link "Thermal Printer, Pos Printer, Printer PNG Transparent Image and Clipart for Free Download Pngtree" [ref=f12e271]:
+            - /url: /goto?url=CAEScQHrOzAVmXkHW18UIzeKhTMgHWg0I1Y4vYFOr-vdyzq2CeBz-3gLDBhT7A11LUg1C_PTpg-V0-w1wI3mAgGIHqKXYqEUf1YDnNyM2dOtYUOToU4-ZB825YR81z6ram6vk0Zs3WabxesB6Dqsp2UnDcfl
+            - generic [ref=f12e272]:
+              - generic [ref=f12e273]: Thermal Printer, Pos Printer, Printer PNG Transparent Image and Clipart for Free Download
+              - generic [ref=f12e275]: Pngtree
+        - generic [ref=f12e282] [cursor=pointer]:
+          - generic [ref=f12e284]:
+            - button [ref=f12e287]:
+              - img "Thermal Label Printer With Lcd Display And Paper Roll, Receipt, Industrial, Barcode PNG Transparent Image and Clipart for Free Download" [ref=f12e289]
+            - generic: Lisensi
+          - link "Thermal Label Printer With Lcd Display And Paper Roll, Receipt, Industrial, Barcode PNG Transparent Image and Clipart for Free Download Pngtree" [ref=f12e291]:
+            - /url: /goto?url=CAESlwEB6zswFby_Ql4R3_HC_izfDou1HuBsFKqLg7ueWEErwBCiKjYsstYSAcNSo3yaXIPBUprfrO1dAfVzVT-V5XXD6_--p9ceSCFsoFIfjVd3kNL6XCd4JDj0f-b5QDo3b2B-aJmvgTdWRmx16rTlmkNAc6RSZ7n3CQXLZ1G7jHQLDsj3ROyZDbB9TYw1_T0z08G9hkfQ119f
+            - generic [ref=f12e292]:
+              - generic [ref=f12e293]: Thermal Label Printer With Lcd Display And Paper Roll, Receipt, Industrial, Barcode PNG Transparent Image and Clipart for Free Download
+              - generic [ref=f12e295]: Pngtree
+        - generic [ref=f12e302] [cursor=pointer]:
+          - button [ref=f12e307]:
+            - img "Thermal Printer PNG Transparent Images Free Download | Vector Files | Pngtree" [ref=f12e309]
+          - link "Thermal Printer PNG Transparent Images Free Download | Vector Files | Pngtree Pngtree" [ref=f12e311]:
+            - /url: /goto?url=CAESXgHrOzAVHZR-o9vPPQUC4i6hLaqLB97gZTkvUQd1Tvm8A2djdSMgoHD8TErLjJpiefRnespcvbbnARR2JmxyWaCMoSBrPvAoMWhiQ2UkQK8O3_ZVMKjgsFG0FajZzsE
+            - generic [ref=f12e312]:
+              - generic [ref=f12e313]: Thermal Printer PNG Transparent Images Free Download | Vector Files | Pngtree
+              - generic [ref=f12e315]: Pngtree
+        - generic [ref=f12e322] [cursor=pointer]:
+          - button [ref=f12e327]:
+            - img "Thermal printing PSD, High Quality Free PSD Templates for Download | Magnific (formerly Freepik)" [ref=f12e329]
+          - link "Thermal printing PSD, High Quality Free PSD Templates for Download | Magnific (formerly Freepik) Magnific" [ref=f12e331]:
+            - /url: /goto?url=CAESZQHrOzAVtFCj-RZ8aoXxcxHfnN04mK2b5o86hGWV7rwkVn9Fsc5xtTuYBmm6dF92jRRjutGfQz1aR-8wNsvZHadZ0T-FXBf_hPUzB4oLbaEnvh1N1gPlb7ieFBSiVcfZu6DBIgoc
+            - generic [ref=f12e332]:
+              - generic [ref=f12e333]: Thermal printing PSD, High Quality Free PSD Templates for Download | Magnific (formerly Freepik)
+              - generic [ref=f12e335]: Magnific
+        - generic [ref=f12e342] [cursor=pointer]:
+          - generic [ref=f12e344]:
+            - button [ref=f12e347]:
+              - img "Thermal Printer PNG Transparent Images Free Download | Vector Files | Pngtree" [ref=f12e349]
+            - generic: Lisensi
+          - link "Thermal Printer PNG Transparent Images Free Download | Vector Files | Pngtree Pngtree" [ref=f12e351]:
+            - /url: /goto?url=CAESYAHrOzAVpfYHzY4t7ikNFBXUbShh6ixr95ycQ8AYJBlywDfkq5Ap6AtPgQ8EYLNQQuAk-nolGUzsF3NB-COxHUcYKCn5T95WXD_wfwUsFlo0QTd-YoaZsA7hffJi0vgBoQ
+            - generic [ref=f12e352]:
+              - generic [ref=f12e353]: Thermal Printer PNG Transparent Images Free Download | Vector Files | Pngtree
+              - generic [ref=f12e355]: Pngtree
+        - generic [ref=f12e362] [cursor=pointer]:
+          - button [ref=f12e367]:
+            - img "Thermal printer PSD, High Quality Free PSD Templates for Download | Magnific (formerly Freepik)" [ref=f12e369]
+          - link "Thermal printer PSD, High Quality Free PSD Templates for Download | Magnific (formerly Freepik) Magnific" [ref=f12e371]:
+            - /url: /goto?url=CAESZAHrOzAVZnY8LSrU8R62AHc051ZLGbIQnp4b3coqLtPjy1ZB8cgwTQqcM46o7WGCzfNqz3S506tvGLcXgEQY8k9sa7XnFTT81Ea0QnSWpuuHoYuYU_ltFIVWvgjQ8TRkyEbnT3I
+            - generic [ref=f12e372]:
+              - generic [ref=f12e373]: Thermal printer PSD, High Quality Free PSD Templates for Download | Magnific (formerly Freepik)
+              - generic [ref=f12e375]: Magnific
+        - generic [ref=f12e382] [cursor=pointer]:
+          - button [ref=f12e387]:
+            - img "Thermal Receipt Printer PNG Transparent Images Free Download | Vector Files | Pngtree" [ref=f12e389]
+          - link "Thermal Receipt Printer PNG Transparent Images Free Download | Vector Files | Pngtree Pngtree" [ref=f12e391]:
+            - /url: /goto?url=CAESZgHrOzAVgp-7hZSJmiVl6WQ0-q6TgzbJJ5MtmWXMHMjVjUiis681UI97XJ3E8odvR7R3kou6UhML3l7PkULeP6YmLTvWPD6ItPBVJefP0sz5mH5z64KwGXn2bhES5QI8BKOvK5C_3Q
+            - generic [ref=f12e392]:
+              - generic [ref=f12e393]: Thermal Receipt Printer PNG Transparent Images Free Download | Vector Files | Pngtree
+              - generic [ref=f12e395]: Pngtree
+        - generic [ref=f12e402] [cursor=pointer]:
+          - generic [ref=f12e404]:
+            - button [ref=f12e407]:
+              - img "Thermal Label Printer PNG Transparent Images Free Download | Vector Files | Pngtree" [ref=f12e409]
+            - generic: Lisensi
+          - link "Thermal Label Printer PNG Transparent Images Free Download | Vector Files | Pngtree Pngtree" [ref=f12e411]:
+            - /url: /goto?url=CAESZAHrOzAVZZVOZrMTtp8uz4UGSYrnBsdyFZHYXVeZWrM3eXdlk9jZ084RXqqKi8dBi2pgVheCNxLVSFxly7rLFpbyz-tzkOgDxnO9AB5pVYhFsdpY7bjgPKKybOezUNz4MFtRAnQ
+            - generic [ref=f12e412]:
+              - generic [ref=f12e413]: Thermal Label Printer PNG Transparent Images Free Download | Vector Files | Pngtree
+              - generic [ref=f12e415]: Pngtree
+        - generic [ref=f12e422] [cursor=pointer]:
+          - generic [ref=f12e424]:
+            - button [ref=f12e427]:
+              - img "Compact thermal receipt printer with paper roll isolated on transparent background 69809302 PNG" [ref=f12e429]
+            - generic: Lisensi
+          - link "Compact thermal receipt printer with paper roll isolated on transparent background 69809302 PNG Vecteezy" [ref=f12e431]:
+            - /url: /goto?url=CAESsAEB6zswFWfZZjZV_5eDqxwd1j-oxuzG1QjaCgEOk4qEH6qGDkx57Sbiu1X4sb9c0le8-N7gQqRMVGO3mADKtzjOvMfPAn0fxxz_q8efavenOs8PuXKD1Uo9iw-ZR_PF-0k3aiqbzhIhlgR74FLXTqUh606UVv01qxDTu6CDZi5Hsvwhq6lfps0SVrxMReEgK5sSh67T0HP51H2Ji-9lt9lnvaapSSc1prHyQw7-aBZ5tA
+            - generic [ref=f12e432]:
+              - generic [ref=f12e433]: Compact thermal receipt printer with paper roll isolated on transparent background 69809302 PNG
+              - generic [ref=f12e435]: Vecteezy
+        - generic [ref=f12e442] [cursor=pointer]:
+          - generic [ref=f12e444]:
+            - button [ref=f12e447]:
+              - img "Printer Mockup Images | Free Photos, PNG Stickers, Wallpapers & Backgrounds - rawpixel" [ref=f12e449]
+            - generic: Lisensi
+          - link "Printer Mockup Images | Free Photos, PNG Stickers, Wallpapers & Backgrounds - rawpixel Rawpixel" [ref=f12e451]:
+            - /url: /goto?url=CAESaAHrOzAVkqTBCyfTD0T-lqdaMc7QlvYRTZlIrDF07E0bfmlWxyQAQW8JSOAdEYyUmr9URoDlwl32EiqdywvVAZs5aWp8gItLnu9SiIKCY-l47HKXAgySkBPQ4F-VqZteG1kYPijuPCmE
+            - generic [ref=f12e452]:
+              - generic [ref=f12e453]: Printer Mockup Images | Free Photos, PNG Stickers, Wallpapers & Backgrounds - rawpixel
+              - generic [ref=f12e455]: Rawpixel
+        - generic [ref=f12e462] [cursor=pointer]:
+          - button [ref=f12e467]:
+            - img "Thermal Printer Vector Art, Icons, and Graphics for Free Download" [ref=f12e469]
+          - link "Thermal Printer Vector Art, Icons, and Graphics for Free Download Vecteezy" [ref=f12e471]:
+            - /url: /goto?url=CAESbAHrOzAVMaPp8uzJukEXnZEUE9V8PuCVUcREQbWMUieiRjIK_PdjK-23JvnnDy2ugvlaPz17teDX4icyKmMns5ZNJ8VIWvAmtdP5UbB5ASOFMnlEr5t8yPcVzxaXzhlBZQ9d81U1hAKlMg8wwQ
+            - generic [ref=f12e472]:
+              - generic [ref=f12e473]: Thermal Printer Vector Art, Icons, and Graphics for Free Download
+              - generic [ref=f12e475]: Vecteezy
+        - generic [ref=f12e482] [cursor=pointer]:
+          - generic [ref=f12e484]:
+            - button [ref=f12e487]:
+              - img "A Black Thermal Receipt Printer With Paper Emerging From The Top, Cash Register, Point Of Sale, Business PNG Transparent Image and Clipart for Free Download" [ref=f12e489]
+            - generic: Lisensi
+          - link "A Black Thermal Receipt Printer With Paper Emerging From The Top, Cash Register, Point Of Sale, Business PNG Transparent Image and Clipart for Free Download Pngtree" [ref=f12e491]:
+            - /url: /goto?url=CAESogEB6zswFfoAhbbTqu7xPY3FTC9w3oRmf4G8dEGSi2WChf7Fddld6l_sv51ix3eG5YDsmoT104skp-rsaq68BDaB7WR8Eqnmj0BMdsyNrhH8-q508I3XDWAom-gHq1a6NQUv8yr_Q6JSX_BN3TJmTdl--mnCOv3nce3qeWI5aqKi76F2ciu0zZaXrAlG87txec5lio5VW2wb_qmVbo8joQ8t9jQ
+            - generic [ref=f12e492]:
+              - generic [ref=f12e493]: A Black Thermal Receipt Printer With Paper Emerging From The Top, Cash Register, Point Of Sale, Business PNG Transparent Image and Clipart for Free Download
+              - generic [ref=f12e495]: Pngtree
+        - generic [ref=f12e502] [cursor=pointer]:
+          - generic [ref=f12e504]:
+            - button [ref=f12e507]:
+              - img "Thermal Printer Stock Illustrations – 188 Thermal Printer Stock Illustrations, Vectors & Clipart - Dreamstime" [ref=f12e509]
+            - generic: Lisensi
+          - link "Thermal Printer Stock Illustrations – 188 Thermal Printer Stock Illustrations, Vectors & Clipart - Dreamstime Dreamstime.com" [ref=f12e511]:
+            - /url: /goto?url=CAESdAHrOzAVzvCLkQThxWVDrm8vBOcDgnsrDFN5UDLHkARL8aL9EQbVlGRSWkioF2q4Ipu27qvrOGgi-NgGct3-_HjekO3gZt1UhivHD_pOoT2Z_VXZqdSsqXnWGp48X1XVyewMQmGCnLdsb7tKnfL7mcjv6cCP
+            - generic [ref=f12e512]:
+              - generic [ref=f12e513]: Thermal Printer Stock Illustrations – 188 Thermal Printer Stock Illustrations, Vectors & Clipart - Dreamstime
+              - generic [ref=f12e515]: Dreamstime.com
+        - generic [ref=f12e522] [cursor=pointer]:
+          - generic [ref=f12e524]:
+            - button [ref=f12e527]:
+              - img "Printer Thermal Stock Illustrations – 187 Printer Thermal Stock Illustrations, Vectors & Clipart - Dreamstime" [ref=f12e529]
+            - generic: Lisensi
+          - link "Printer Thermal Stock Illustrations – 187 Printer Thermal Stock Illustrations, Vectors & Clipart - Dreamstime Dreamstime.com" [ref=f12e531]:
+            - /url: /goto?url=CAESdAHrOzAVUlCnIuunseKu55ZTYGooXohDtMV5pESWU5zpqaBWpH1evHY3Xmy8xWBO-CMfAO8dzrAfpDXMIFYuOBibuQ5IYzkIn2LVIxUoIgXd0T-OJ8HuS6YEy_DDRFFPbvM6lzh53PvtaEP8bpzXQU5hiWNo
+            - generic [ref=f12e532]:
+              - generic [ref=f12e533]: Printer Thermal Stock Illustrations – 187 Printer Thermal Stock Illustrations, Vectors & Clipart - Dreamstime
+              - generic [ref=f12e535]: Dreamstime.com
+        - generic [ref=f12e542] [cursor=pointer]:
+          - button [ref=f12e547]:
+            - img "Thermal Printer PNG Transparent Images Free Download | Vector Files | Pngtree" [ref=f12e549]
+          - link "Thermal Printer PNG Transparent Images Free Download | Vector Files | Pngtree Pngtree" [ref=f12e551]:
+            - /url: /goto?url=CAESXgHrOzAVHZR-o9vPPQUC4i6hLaqLB97gZTkvUQd1Tvm8A2djdSMgoHD8TErLjJpiefRnespcvbbnARR2JmxyWaCMoSBrPvAoMWhiQ2UkQK8O3_ZVMKjgsFG0FajZzsE
+            - generic [ref=f12e552]:
+              - generic [ref=f12e553]: Thermal Printer PNG Transparent Images Free Download | Vector Files | Pngtree
+              - generic [ref=f12e555]: Pngtree
+        - generic [ref=f12e562] [cursor=pointer]:
+          - button [ref=f12e567]:
+            - img "Printer mockup banner Images - Free Download on Magnific (formerly Freepik)" [ref=f12e569]
+          - link "Printer mockup banner Images - Free Download on Magnific (formerly Freepik) Magnific" [ref=f12e571]:
+            - /url: /goto?url=CAESegHrOzAV79F9ARTGjK7NFDD_YppOfXktIILHfSynU0pWyQC9O6JY98wTS0ZEuAmqo5Auo9zq_wjcEgFvhhp1JRDg7wlQo1fDT5O_im-PEQDOCabx8ubgv8MB0fat5xS5ERwvwxJ5YXKMbH9iisSUQQfADofcF7zEmsQF
+            - generic [ref=f12e572]:
+              - generic [ref=f12e573]: Printer mockup banner Images - Free Download on Magnific (formerly Freepik)
+              - generic [ref=f12e575]: Magnific
+        - generic [ref=f12e582] [cursor=pointer]:
+          - generic [ref=f12e584]:
+            - button [ref=f12e587]:
+              - img "Receipt Printer PNG Transparent Images Free Download | Vector Files | Pngtree" [ref=f12e589]
+            - generic: Lisensi
+          - link "Receipt Printer PNG Transparent Images Free Download | Vector Files | Pngtree Pngtree" [ref=f12e591]:
+            - /url: /goto?url=CAESXgHrOzAVNQMLOD8Rg4mwS1VGW05RHk6GjikwABLk8Ho1DPQAfXuH929CgvQbgxWe6m1oaScykiajC7xAnLf95x6Z1x4hdEMioGoV-E2AORg9Eug0H3CS5uPhNzbyDps
+            - generic [ref=f12e592]:
+              - generic [ref=f12e593]: Receipt Printer PNG Transparent Images Free Download | Vector Files | Pngtree
+              - generic [ref=f12e595]: Pngtree
+        - generic [ref=f12e602] [cursor=pointer]:
+          - button [ref=f12e607]:
+            - img "Thermal printing PSD, High Quality Free PSD Templates for Download | Magnific (formerly Freepik)" [ref=f12e609]
+          - link "Thermal printing PSD, High Quality Free PSD Templates for Download | Magnific (formerly Freepik) Magnific" [ref=f12e611]:
+            - /url: /goto?url=CAESZQHrOzAVtFCj-RZ8aoXxcxHfnN04mK2b5o86hGWV7rwkVn9Fsc5xtTuYBmm6dF92jRRjutGfQz1aR-8wNsvZHadZ0T-FXBf_hPUzB4oLbaEnvh1N1gPlb7ieFBSiVcfZu6DBIgoc
+            - generic [ref=f12e612]:
+              - generic [ref=f12e613]: Thermal printing PSD, High Quality Free PSD Templates for Download | Magnific (formerly Freepik)
+              - generic [ref=f12e615]: Magnific
+        - generic [ref=f12e622] [cursor=pointer]:
+          - button [ref=f12e627]:
+            - img "Thermal Printer PNG Transparent Images Free Download | Vector Files | Pngtree" [ref=f12e629]
+          - link "Thermal Printer PNG Transparent Images Free Download | Vector Files | Pngtree Pngtree" [ref=f12e631]:
+            - /url: /goto?url=CAESXgHrOzAVHZR-o9vPPQUC4i6hLaqLB97gZTkvUQd1Tvm8A2djdSMgoHD8TErLjJpiefRnespcvbbnARR2JmxyWaCMoSBrPvAoMWhiQ2UkQK8O3_ZVMKjgsFG0FajZzsE
+            - generic [ref=f12e632]:
+              - generic [ref=f12e633]: Thermal Printer PNG Transparent Images Free Download | Vector Files | Pngtree
+              - generic [ref=f12e635]: Pngtree
+        - generic [ref=f12e642] [cursor=pointer]:
+          - generic [ref=f12e644]:
+            - button [ref=f12e647]:
+              - img "Thermal Printer Stock Illustrations – 188 Thermal Printer Stock Illustrations, Vectors & Clipart - Dreamstime" [ref=f12e649]
+            - generic: Lisensi
+          - link "Thermal Printer Stock Illustrations – 188 Thermal Printer Stock Illustrations, Vectors & Clipart - Dreamstime Dreamstime.com" [ref=f12e651]:
+            - /url: /goto?url=CAESdAHrOzAVzvCLkQThxWVDrm8vBOcDgnsrDFN5UDLHkARL8aL9EQbVlGRSWkioF2q4Ipu27qvrOGgi-NgGct3-_HjekO3gZt1UhivHD_pOoT2Z_VXZqdSsqXnWGp48X1XVyewMQmGCnLdsb7tKnfL7mcjv6cCP
+            - generic [ref=f12e652]:
+              - generic [ref=f12e653]: Thermal Printer Stock Illustrations – 188 Thermal Printer Stock Illustrations, Vectors & Clipart - Dreamstime
+              - generic [ref=f12e655]: Dreamstime.com
+        - generic [ref=f12e662] [cursor=pointer]:
+          - generic [ref=f12e664]:
+            - button [ref=f12e667]:
+              - img "Page 2 | Thermal Printer Vector Art, Icons, and Graphics for Free Download" [ref=f12e669]
+            - generic: Lisensi
+          - link "Page 2 | Thermal Printer Vector Art, Icons, and Graphics for Free Download Vecteezy" [ref=f12e671]:
+            - /url: /goto?url=CAEScwHrOzAVzwB5DLnShgXMCvgmXuQpUhZeVjQ4Qp9CK0v7uQYtHU_Ud_KGODpaPKMEUsxoxqFeQUPHHfIOEuypkoBmsfzVPB3eKxBt3hVYCA_aTXHMuUdBe-7-DpNr3JTdxUUlCFHe3js4o91UrX8FYJpNdZg
+            - generic [ref=f12e672]:
+              - generic [ref=f12e673]: Page 2 | Thermal Printer Vector Art, Icons, and Graphics for Free Download
+              - generic [ref=f12e675]: Vecteezy
+        - generic [ref=f12e682] [cursor=pointer]:
+          - button [ref=f12e687]:
+            - img "Thermal Printer PNG Transparent Images Free Download | Vector Files | Pngtree" [ref=f12e689]
+          - link "Thermal Printer PNG Transparent Images Free Download | Vector Files | Pngtree Pngtree" [ref=f12e691]:
+            - /url: /goto?url=CAESXgHrOzAVHZR-o9vPPQUC4i6hLaqLB97gZTkvUQd1Tvm8A2djdSMgoHD8TErLjJpiefRnespcvbbnARR2JmxyWaCMoSBrPvAoMWhiQ2UkQK8O3_ZVMKjgsFG0FajZzsE
+            - generic [ref=f12e692]:
+              - generic [ref=f12e693]: Thermal Printer PNG Transparent Images Free Download | Vector Files | Pngtree
+              - generic [ref=f12e695]: Pngtree
+        - generic [ref=f12e702] [cursor=pointer]:
+          - button [ref=f12e707]:
+            - img "Thermal printer PSD, High Quality Free PSD Templates for Download | Magnific (formerly Freepik)" [ref=f12e709]
+          - link "Thermal printer PSD, High Quality Free PSD Templates for Download | Magnific (formerly Freepik) Magnific" [ref=f12e711]:
+            - /url: /goto?url=CAESZAHrOzAVZnY8LSrU8R62AHc051ZLGbIQnp4b3coqLtPjy1ZB8cgwTQqcM46o7WGCzfNqz3S506tvGLcXgEQY8k9sa7XnFTT81Ea0QnSWpuuHoYuYU_ltFIVWvgjQ8TRkyEbnT3I
+            - generic [ref=f12e712]:
+              - generic [ref=f12e713]: Thermal printer PSD, High Quality Free PSD Templates for Download | Magnific (formerly Freepik)
+              - generic [ref=f12e715]: Magnific
+        - generic [ref=f12e722] [cursor=pointer]:
+          - generic [ref=f12e724]:
+            - button [ref=f12e727]:
+              - img "Thermal Receipt Printer PNG Transparent Images Free Download | Vector Files | Pngtree" [ref=f12e729]
+            - generic: Lisensi
+          - link "Thermal Receipt Printer PNG Transparent Images Free Download | Vector Files | Pngtree Pngtree" [ref=f12e731]:
+            - /url: /goto?url=CAESZgHrOzAVgp-7hZSJmiVl6WQ0-q6TgzbJJ5MtmWXMHMjVjUiis681UI97XJ3E8odvR7R3kou6UhML3l7PkULeP6YmLTvWPD6ItPBVJefP0sz5mH5z64KwGXn2bhES5QI8BKOvK5C_3Q
+            - generic [ref=f12e732]:
+              - generic [ref=f12e733]: Thermal Receipt Printer PNG Transparent Images Free Download | Vector Files | Pngtree
+              - generic [ref=f12e735]: Pngtree
+        - generic [ref=f12e742] [cursor=pointer]:
+          - generic [ref=f12e744]:
+            - button [ref=f12e747]:
+              - img "Thermal Printer designs, themes, templates and downloadable graphic elements on Dribbble" [ref=f12e749]
+            - generic: Lisensi
+          - link "Thermal Printer designs, themes, templates and downloadable graphic elements on Dribbble Dribbble" [ref=f12e751]:
+            - /url: /goto?url=CAESYQHrOzAVqsmLSvrvF68yiA2BeveWYN20YP63ioA0M-vCtdEZXnmFS8z2GmWjG2bZscTYnUuLeKyhgxcd_ge6D98HdtExsOP1wk8cV_EhOyNuj3szVPmIYRE_CU_kyD0W0qI
+            - generic [ref=f12e752]:
+              - generic [ref=f12e753]: Thermal Printer designs, themes, templates and downloadable graphic elements on Dribbble
+              - generic [ref=f12e755]: Dribbble
+        - generic [ref=f12e762] [cursor=pointer]:
+          - generic [ref=f12e764]:
+            - button [ref=f12e767]:
+              - img "Thermal Printer Stock Illustrations – 188 Thermal Printer Stock Illustrations, Vectors & Clipart - Dreamstime" [ref=f12e769]
+            - generic: Lisensi
+          - link "Thermal Printer Stock Illustrations – 188 Thermal Printer Stock Illustrations, Vectors & Clipart - Dreamstime Dreamstime.com" [ref=f12e771]:
+            - /url: /goto?url=CAESdAHrOzAVzvCLkQThxWVDrm8vBOcDgnsrDFN5UDLHkARL8aL9EQbVlGRSWkioF2q4Ipu27qvrOGgi-NgGct3-_HjekO3gZt1UhivHD_pOoT2Z_VXZqdSsqXnWGp48X1XVyewMQmGCnLdsb7tKnfL7mcjv6cCP
+            - generic [ref=f12e772]:
+              - generic [ref=f12e773]: Thermal Printer Stock Illustrations – 188 Thermal Printer Stock Illustrations, Vectors & Clipart - Dreamstime
+              - generic [ref=f12e775]: Dreamstime.com
+        - generic [ref=f12e782] [cursor=pointer]:
+          - button [ref=f12e787]:
+            - img "Thermal printer Vectors - Download Free High-Quality Vectors | Magnific (formerly Freepik)" [ref=f12e789]
+          - link "Thermal printer Vectors - Download Free High-Quality Vectors | Magnific (formerly Freepik) Magnific" [ref=f12e791]:
+            - /url: /goto?url=CAESaAHrOzAV14BUxS_flJH1Pkcum6FFLjOI5bylw0tmIKP9oUXnYHCDxQ17Y-Xhcsa-3tnilZdCgEhq0zErm1D7K9tTQVGSTzsEHYamY0JjhT3BPAvhxkyZInZPnaQBa0OfA7GUHPBUXxCy
+            - generic [ref=f12e792]:
+              - generic [ref=f12e793]: Thermal printer Vectors - Download Free High-Quality Vectors | Magnific (formerly Freepik)
+              - generic [ref=f12e795]: Magnific
+        - generic [ref=f12e802] [cursor=pointer]:
+          - generic [ref=f12e804]:
+            - button [ref=f12e807]:
+              - img "240+ Receipt Printer Stock Illustrations, Royalty-Free Vector Graphics & Clip Art - iStock" [ref=f12e809]
+            - generic: Lisensi
+          - link "240+ Receipt Printer Stock Illustrations, Royalty-Free Vector Graphics & Clip Art - iStock iStock" [ref=f12e811]:
+            - /url: /goto?url=CAEScQHrOzAV739p6AIMxw9JIm5yIAcbBeDVwoj1gjMk2DSnKU9DzL1q9OeVaN09DEhxfRaCNFvCdDoYE-1LyPwmd3QaKmMxDotojpqKRr5Kx7Vk2ml-jb7KuNRHWmkA6dllOrPuuZtWYuJxHfKBXY8iB7sj
+            - generic [ref=f12e812]:
+              - generic [ref=f12e813]: 240+ Receipt Printer Stock Illustrations, Royalty-Free Vector Graphics & Clip Art - iStock
+              - generic [ref=f12e815]: iStock
+        - generic [ref=f12e822] [cursor=pointer]:
+          - button [ref=f12e827]:
+            - img "Thermal Printer Icons - Free Download in SVG, PNG" [ref=f12e829]
+          - link "Thermal Printer Icons - Free Download in SVG, PNG IconScout" [ref=f12e831]:
+            - /url: /goto?url=CAESYwHrOzAVbzpR_4xPedWJ8DfRAN6c-4u_wVyRlrkW9N5ocGQjue-LPySWGeLthUKHrqWQeyXAiMYuw9BpD7rzv4oNjZ3fZpSw3JwVoLgxPgTnrTE13ryDqRjGk-qPWhB9cbJbzQ
+            - generic [ref=f12e832]:
+              - generic [ref=f12e833]: Thermal Printer Icons - Free Download in SVG, PNG
+              - generic [ref=f12e835]: IconScout
+        - generic [ref=f12e842] [cursor=pointer]:
+          - generic [ref=f12e844]:
+            - button [ref=f12e847]:
+              - img "Thermal Printer Vector Art, Icons, and Graphics for Free Download" [ref=f12e849]
+            - generic: Lisensi
+          - link "Thermal Printer Vector Art, Icons, and Graphics for Free Download Vecteezy" [ref=f12e851]:
+            - /url: /goto?url=CAESbAHrOzAVMaPp8uzJukEXnZEUE9V8PuCVUcREQbWMUieiRjIK_PdjK-23JvnnDy2ugvlaPz17teDX4icyKmMns5ZNJ8VIWvAmtdP5UbB5ASOFMnlEr5t8yPcVzxaXzhlBZQ9d81U1hAKlMg8wwQ
+            - generic [ref=f12e852]:
+              - generic [ref=f12e853]: Thermal Printer Vector Art, Icons, and Graphics for Free Download
+              - generic [ref=f12e855]: Vecteezy
+        - generic [ref=f12e862] [cursor=pointer]:
+          - button [ref=f12e867]:
+            - img "Thermal Printing png images | PNGEgg" [ref=f12e869]
+          - link "Thermal Printing png images | PNGEgg PNGEgg" [ref=f12e871]:
+            - /url: /goto?url=CAESawHrOzAVDzx7tt3FgH9If4dAQDlOH6kq0CFAUvidkPtTz6DHQ3w4MrMKOZKspmz6wY6m4I2Z2uBUGAgYfeAFG0BlhIIOIXvDJomdjMY7lPQeneJF_NkBSCjY_5Rkm6Hgf6HOXxpdIDg2npjo
+            - generic [ref=f12e872]:
+              - generic [ref=f12e873]: Thermal Printing png images | PNGEgg
+              - generic [ref=f12e875]: PNGEgg
+        - generic [ref=f12e882] [cursor=pointer]:
+          - generic [ref=f12e884]:
+            - button [ref=f12e887]:
+              - img "Thermal Printer Icons - Free Download in SVG, PNG" [ref=f12e889]
+            - generic: Lisensi
+          - link "Thermal Printer Icons - Free Download in SVG, PNG IconScout" [ref=f12e891]:
+            - /url: /goto?url=CAESYwHrOzAVbzpR_4xPedWJ8DfRAN6c-4u_wVyRlrkW9N5ocGQjue-LPySWGeLthUKHrqWQeyXAiMYuw9BpD7rzv4oNjZ3fZpSw3JwVoLgxPgTnrTE13ryDqRjGk-qPWhB9cbJbzQ
+            - generic [ref=f12e892]:
+              - generic [ref=f12e893]: Thermal Printer Icons - Free Download in SVG, PNG
+              - generic [ref=f12e895]: IconScout
+        - generic [ref=f12e902] [cursor=pointer]:
+          - button [ref=f12e907]:
+            - img "Thermal Printer PNG Transparent Images Free Download | Vector Files | Pngtree" [ref=f12e909]
+          - link "Thermal Printer PNG Transparent Images Free Download | Vector Files | Pngtree Pngtree" [ref=f12e911]:
+            - /url: /goto?url=CAESXgHrOzAVHZR-o9vPPQUC4i6hLaqLB97gZTkvUQd1Tvm8A2djdSMgoHD8TErLjJpiefRnespcvbbnARR2JmxyWaCMoSBrPvAoMWhiQ2UkQK8O3_ZVMKjgsFG0FajZzsE
+            - generic [ref=f12e912]:
+              - generic [ref=f12e913]: Thermal Printer PNG Transparent Images Free Download | Vector Files | Pngtree
+              - generic [ref=f12e915]: Pngtree
+        - generic [ref=f12e922] [cursor=pointer]:
+          - button [ref=f12e927]:
+            - img "Thermal printer Vector Images & Graphics for Commercial Use | VectorStock" [ref=f12e929]
+          - link "Thermal printer Vector Images & Graphics for Commercial Use | VectorStock VectorStock" [ref=f12e931]:
+            - /url: /goto?url=CAESgAEB6zswFe3pCmDF3XXSUVv-NcBHr-AMdbWaJDbEMoxRPcKDEegrSP_ql-xQv6p_CfqlwnjkQsSDZnLrvSK1phblfMavBNbZNp2Q_9_eGLUf4ZcyTfV2fd0QHxViE56PV2OjxUw0AqykJU1bQ8X_5Ip8d58pvrfde1AhJyEAfftAIA
+            - generic [ref=f12e932]:
+              - generic [ref=f12e933]: Thermal printer Vector Images & Graphics for Commercial Use | VectorStock
+              - generic [ref=f12e935]: VectorStock
+        - generic [ref=f12e942] [cursor=pointer]:
+          - button [ref=f12e947]:
+            - img "Thermal printer PSD, High Quality Free PSD Templates for Download | Magnific (formerly Freepik)" [ref=f12e949]
+          - link "Thermal printer PSD, High Quality Free PSD Templates for Download | Magnific (formerly Freepik) Magnific" [ref=f12e951]:
+            - /url: /goto?url=CAESZAHrOzAVZnY8LSrU8R62AHc051ZLGbIQnp4b3coqLtPjy1ZB8cgwTQqcM46o7WGCzfNqz3S506tvGLcXgEQY8k9sa7XnFTT81Ea0QnSWpuuHoYuYU_ltFIVWvgjQ8TRkyEbnT3I
+            - generic [ref=f12e952]:
+              - generic [ref=f12e953]: Thermal printer PSD, High Quality Free PSD Templates for Download | Magnific (formerly Freepik)
+              - generic [ref=f12e955]: Magnific
+        - generic [ref=f12e962] [cursor=pointer]:
+          - button [ref=f12e967]:
+            - img "Thermal Printing png images | PNGEgg" [ref=f12e969]
+          - link "Thermal Printing png images | PNGEgg PNGEgg" [ref=f12e971]:
+            - /url: /goto?url=CAESawHrOzAVDzx7tt3FgH9If4dAQDlOH6kq0CFAUvidkPtTz6DHQ3w4MrMKOZKspmz6wY6m4I2Z2uBUGAgYfeAFG0BlhIIOIXvDJomdjMY7lPQeneJF_NkBSCjY_5Rkm6Hgf6HOXxpdIDg2npjo
+            - generic [ref=f12e972]:
+              - generic [ref=f12e973]: Thermal Printing png images | PNGEgg
+              - generic [ref=f12e975]: PNGEgg
+        - generic [ref=f12e982] [cursor=pointer]:
+          - button [ref=f12e987]:
+            - img "RP58 58mm Thermal Receipt Printer" [ref=f12e989]
+          - link "RP58 58mm Thermal Receipt Printer Rongta Tech" [ref=f12e991]:
+            - /url: /goto?url=CAESfQHrOzAVaq7qWBa8Udsb9R12GNv-Z8jKoe6tijRINmMDegRR5pBiwfrGEi9uCr1jt0bc-5zbJmAcig0MQyhY9uXB_N17zUoXgG91_iaIVIphN5hrQIfr0Uk73o-QR0m_wR2G4Xn2Xq-Zwf6bIAgvVf2ekvJ3T88kG8UbVXXP
+            - generic [ref=f12e992]:
+              - generic [ref=f12e993]: RP58 58mm Thermal Receipt Printer
+              - generic [ref=f12e995]: Rongta Tech
+        - generic [ref=f12e1002] [cursor=pointer]:
+          - button [ref=f12e1007]:
+            - img "Black Thermal Printer for Office Use PNG Image – Free Download | CleanPNG - CleanPNG" [ref=f12e1009]
+          - link "Black Thermal Printer for Office Use PNG Image – Free Download | CleanPNG - CleanPNG CleanPNG" [ref=f12e1011]:
+            - /url: /goto?url=CAESjwEB6zswFWy2tnO1rGV8MFYj4JKctwOAqjwJYQEFLnES6ii5Y05zoNCZPp-SyHGCjPtIuPFCo9Jd7s8wVurPBqafWh0QwjkT9GK7HYB6gZTfPAJ-zFaslmWZuj_piawX4LaQ9r14Sp9SdDpqYDs-2-XPa8pRWvcDcB8rZpWgZbte_g31_BDrX4jouRrpHfII2A
+            - generic [ref=f12e1012]:
+              - generic [ref=f12e1013]: Black Thermal Printer for Office Use PNG Image – Free Download | CleanPNG - CleanPNG
+              - generic [ref=f12e1015]: CleanPNG
+        - generic [ref=f12e1022] [cursor=pointer]:
+          - button [ref=f12e1027]:
+            - img "Thermal Printer Icons - Free Download in SVG, PNG" [ref=f12e1029]
+          - link "Thermal Printer Icons - Free Download in SVG, PNG IconScout" [ref=f12e1031]:
+            - /url: /goto?url=CAESYwHrOzAVbzpR_4xPedWJ8DfRAN6c-4u_wVyRlrkW9N5ocGQjue-LPySWGeLthUKHrqWQeyXAiMYuw9BpD7rzv4oNjZ3fZpSw3JwVoLgxPgTnrTE13ryDqRjGk-qPWhB9cbJbzQ
+            - generic [ref=f12e1032]:
+              - generic [ref=f12e1033]: Thermal Printer Icons - Free Download in SVG, PNG
+              - generic [ref=f12e1035]: IconScout
+        - generic [ref=f12e1042] [cursor=pointer]:
+          - generic [ref=f12e1044]:
+            - button [ref=f12e1047]:
+              - img "Printer Thermal Stock Illustrations – 187 Printer Thermal Stock Illustrations, Vectors & Clipart - Dreamstime" [ref=f12e1049]
+            - generic: Lisensi
+          - link "Printer Thermal Stock Illustrations – 187 Printer Thermal Stock Illustrations, Vectors & Clipart - Dreamstime Dreamstime.com" [ref=f12e1051]:
+            - /url: /goto?url=CAESdAHrOzAVUlCnIuunseKu55ZTYGooXohDtMV5pESWU5zpqaBWpH1evHY3Xmy8xWBO-CMfAO8dzrAfpDXMIFYuOBibuQ5IYzkIn2LVIxUoIgXd0T-OJ8HuS6YEy_DDRFFPbvM6lzh53PvtaEP8bpzXQU5hiWNo
+            - generic [ref=f12e1052]:
+              - generic [ref=f12e1053]: Printer Thermal Stock Illustrations – 187 Printer Thermal Stock Illustrations, Vectors & Clipart - Dreamstime
+              - generic [ref=f12e1055]: Dreamstime.com
+        - generic [ref=f12e1062] [cursor=pointer]:
+          - button [ref=f12e1067]:
+            - img "Thermal Paper PNG Transparent Images Free Download | Vector Files | Pngtree" [ref=f12e1069]
+          - link "Thermal Paper PNG Transparent Images Free Download | Vector Files | Pngtree Pngtree" [ref=f12e1071]:
+            - /url: /goto?url=CAESXAHrOzAVnP1m8W7Qk4XyCzjnVIYn-DhF32XccDRTuqzOeSJgZYkPp7eCwJGxN6ibC3Ld4M12_uPs_6qjUQiUmGMTdySkBkm0p_-My7BaY-RT4XTUOeMjra1sStew
+            - generic [ref=f12e1072]:
+              - generic [ref=f12e1073]: Thermal Paper PNG Transparent Images Free Download | Vector Files | Pngtree
+              - generic [ref=f12e1075]: Pngtree
+      - generic [ref=f12e1082]:
+        - heading "Page Navigation" [level=1] [ref=f12e1083]
+        - generic [ref=f12e1084]:
+          - text: Hasil lainnya mungkin bukan yang Anda cari.
+          - link "Tetap tampilkan hasil lainnya" [ref=f12e1085] [cursor=pointer]:
+            - /url: "#"
+      - navigation
