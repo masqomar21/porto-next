@@ -1,149 +1,149 @@
-# VPS Deployment Guide
+# Deployment Setup Guide
 
-This guide outlines how to deploy your developer portfolio and built-in CMS onto a self-hosted VPS (such as DigitalOcean, Linode, AWS EC2, or Hetzner).
+## GitHub Actions Secrets Required
 
-## Prerequisites
+To enable automated deployment to production server, configure these secrets in GitHub repository settings.
 
-1. A VPS running Ubuntu (20.04 or 22.04 recommended).
-2. Docker and Docker Compose installed on the VPS.
-3. A domain name pointed to your VPS IP address (e.g. `yourportfolio.com`).
-
----
-
-## Option 1: Docker Compose Deployment (Recommended)
-
-Docker Compose sets up both the MongoDB database and your Next.js application in containers automatically.
-
-### 1. Copy Files to VPS
-
-Clone your repository or copy the project files to your VPS. Make sure the following files are present:
-- `Dockerfile`
-- `docker-compose.yml`
-- `package.json`
-- `package-lock.json`
-- `next.config.ts`
-- All code directories (`src/`, `public/`, `scripts/`, etc.)
-
-### 2. Configure Environment Variables
-
-Edit the `environment` section in `docker-compose.yml` on the VPS to set your production settings:
-
-```yaml
-    environment:
-      - MONGODB_URI=mongodb://admin:secret@mongodb:27017/portfolio?authSource=admin
-      - SESSION_SECRET=YOUR_SECURE_RANDOM_SESSION_SECRET # Generate with: openssl rand -base64 32
-      - NEXT_PUBLIC_SITE_URL=https://yourportfolio.com
-      - RESEND_API_KEY=your_resend_api_key
-      - RESEND_FROM_EMAIL=contact@yourportfolio.com
-      - CONTACT_TO_EMAIL=your_email@gmail.com
+### Navigate to:
 ```
-
-### 3. Build and Start the Containers
-
-Run the following command from the project root directory:
-
-```bash
-docker compose up -d --build
-```
-
-This will:
-- Build the Next.js production Docker image.
-- Download the MongoDB 6.0 image.
-- Spin up both containers in the background (`-d`).
-- Create a persistent volume (`mongodb_data`) to prevent database loss during container updates.
-
-### 4. Seed the Production Database
-
-To seed your admin credentials (`admin@portfolio.dev` / `Admin@1234`) inside the container:
-
-```bash
-docker compose exec app npm run seed
+GitHub → Repository → Settings → Secrets and variables → Actions
 ```
 
 ---
 
-## Option 2: PM2 & Native Node.js Deployment
+## Required Secrets
 
-If you prefer to run the application directly on Node.js without Docker:
+### 1. `SSH_PRIVATE_KEY`
+**Value:** Your SSH private key for server access
 
-### 1. Install Node.js & MongoDB on the VPS
-
-Install Node.js 20+ and MongoDB Community Server on your Ubuntu server. Make sure MongoDB authentication is configured if required.
-
-### 2. Install PM2 Globally
-
+**Steps to get:**
 ```bash
-npm install -g pm2
+# On local machine, if you have SSH key:
+cat ~/.ssh/id_rsa
+# OR generate new one:
+ssh-keygen -t rsa -b 4096 -f github_deploy_key -N ""
+cat github_deploy_key
 ```
 
-### 3. Clone and Build App
+**Paste:** The entire private key content (including `-----BEGIN RSA PRIVATE KEY-----` and `-----END RSA PRIVATE KEY-----`)
 
+---
+
+### 2. `SSH_KNOWN_HOSTS`
+**Value:** Server fingerprint to prevent man-in-the-middle attacks
+
+**Steps to get:**
 ```bash
-git clone <your-repo-url> portfolio
-cd portfolio
-npm ci
+# Get fingerprint from production server
+ssh-keyscan -H srv619252.hstgr.cloud 2>/dev/null
+```
+
+**Example output:**
+```
+srv619252.hstgr.cloud ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD...
+```
+
+**Paste:** The entire line (starts with hostname/IP, includes `ssh-rsa` and the key)
+
+---
+
+### 3. `SSH_USER`
+**Value:** `ai` (or the user that has deploy access)
+
+---
+
+### 4. `SSH_HOST`
+**Value:** `srv619252.hstgr.cloud` (or your production server hostname/IP)
+
+---
+
+## Setup Steps
+
+1. **Add SSH public key to server authorized_keys:**
+   ```bash
+   # On server (srv619252):
+   cat github_deploy_key.pub >> ~/.ssh/authorized_keys
+   chmod 600 ~/.ssh/authorized_keys
+   ```
+
+2. **Go to GitHub → Settings → Secrets and variables → Actions**
+
+3. **Click "New repository secret" and add:**
+   - Name: `SSH_PRIVATE_KEY` → Value: [paste entire private key]
+   - Name: `SSH_KNOWN_HOSTS` → Value: [paste ssh-keyscan output]
+   - Name: `SSH_USER` → Value: `ai`
+   - Name: `SSH_HOST` → Value: `srv619252.hstgr.cloud`
+
+4. **Merge a PR to `main` branch** to trigger deployment
+
+---
+
+## Deployment Flow
+
+```
+Developer push to main
+    ↓
+GitHub Actions triggers
+    ↓
+CI checks (lint, build, tests)
+    ↓
+Deploy job runs
+    ↓
+SSH into server
+    ↓
+Git pull latest code
+    ↓
+npm ci (install deps)
+    ↓
 npm run build
-```
-
-### 4. Configure `.env.local`
-
-Create `/var/www/portfolio/.env.local` and add:
-
-```env
-MONGODB_URI=mongodb://admin:secret@localhost:27017/portfolio?authSource=admin
-SESSION_SECRET=YOUR_SECURE_RANDOM_SESSION_SECRET
-NEXT_PUBLIC_SITE_URL=https://yourportfolio.com
-RESEND_API_KEY=your_resend_api_key
-RESEND_FROM_EMAIL=contact@yourportfolio.com
-CONTACT_TO_EMAIL=your_email@gmail.com
-```
-
-### 5. Start with PM2
-
-```bash
-pm2 start npm --name "portfolio" -- start
-pm2 save
-pm2 startup
+    ↓
+PM2 restart porto
+    ↓
+Verify deployment (curl health check)
+    ↓
+✅ Deployment complete
 ```
 
 ---
 
-## Reverse Proxy with Nginx (SSL)
+## Testing Deployment
 
-To expose the application to the internet securely on ports 80 (HTTP) and 443 (HTTPS), configure Nginx:
+1. Make a change on a feature branch
+2. Create a PR to `main`
+3. Merge PR
+4. Watch GitHub Actions tab for deployment progress
+5. Check production: https://masqomar.com
 
-1. Install Nginx:
-   ```bash
-   sudo apt update
-   sudo apt install nginx
-   ```
+---
 
-2. Create a server block config (`/etc/nginx/sites-available/portfolio`):
-   ```nginx
-   server {
-       listen 80;
-       server_name yourportfolio.com www.yourportfolio.com;
+## Troubleshooting
 
-       location / {
-           proxy_pass http://localhost:3000;
-           proxy_http_version 1.1;
-           proxy_set_header Upgrade $http_upgrade;
-           proxy_set_header Connection 'upgrade';
-           proxy_set_header Host $host;
-           proxy_cache_bypass $http_upgrade;
-       }
-   }
-   ```
+**SSH connection failed:**
+- Verify `SSH_HOST` and `SSH_USER` are correct
+- Check SSH key permissions: `chmod 600 ~/.ssh/id_rsa`
+- Verify public key in server's `~/.ssh/authorized_keys`
 
-3. Enable config and test Nginx:
-   ```bash
-   sudo ln -s /etc/nginx/sites-available/portfolio /etc/nginx/sites-enabled/
-   sudo nginx -t
-   sudo systemctl restart nginx
-   ```
+**Build fails:**
+- Check build succeeds locally: `npm run build`
+- Check Node.js version matches (20.x)
+- Review GitHub Actions logs for details
 
-4. Set up Let's Encrypt SSL:
-   ```bash
-   sudo apt install certbot python3-certbot-nginx
-   sudo certbot --nginx -d yourportfolio.com -d www.yourportfolio.com
-   ```
+**PM2 restart fails:**
+- Verify PM2 is running: `pm2 list`
+- Check PM2 config: `/home/apps/porto/pm2.config.js`
+- Verify httpsvr user has proper permissions
+
+---
+
+## Files Modified
+
+- `.github/workflows/ci.yml` - CI pipeline (lint, build, security)
+- `.github/workflows/deploy.yml` - Deployment pipeline (to production)
+
+---
+
+## Current Status
+
+- ✓ CI pipeline: Running on every push/PR to main/update/develop
+- ⏳ Deploy pipeline: Waiting for GitHub secrets setup
+- Once secrets configured: Automatic deployment on every merge to main
