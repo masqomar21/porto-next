@@ -148,7 +148,12 @@ export default function NavbarAdminPage() {
               folder="navbar"
               value={data.imageUrl}
               onChange={(url) => setData((p) => ({ ...p, imageUrl: url }))}
-              allowedTypes={['image/png', 'image/jpeg', 'image/webp', 'image/svg+xml']}
+              allowedTypes={[
+                "image/png",
+                "image/jpeg",
+                "image/webp",
+                "image/svg+xml",
+              ]}
             />
           </div>
 
@@ -160,7 +165,12 @@ export default function NavbarAdminPage() {
               folder="navbar"
               value={data.darkImageUrl}
               onChange={(url) => setData((p) => ({ ...p, darkImageUrl: url }))}
-              allowedTypes={['image/png', 'image/jpeg', 'image/webp', 'image/svg+xml']}
+              allowedTypes={[
+                "image/png",
+                "image/jpeg",
+                "image/webp",
+                "image/svg+xml",
+              ]}
             />
           </div>
         </div>
