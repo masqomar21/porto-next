@@ -261,7 +261,6 @@ export function ImageUpload({
       {value ? (
         <div className="relative group overflow-hidden rounded-xl border border-border bg-card/50 aspect-video md:aspect-[3/1] max-h-[220px] flex items-center justify-center p-2 shadow-sm transition-all duration-300 hover:shadow-md">
           {/* Image display */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={value}
             alt="Uploaded preview"

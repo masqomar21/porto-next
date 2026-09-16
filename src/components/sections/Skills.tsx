@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Layers, Sparkles } from 'lucide-react';
+import { Layers } from 'lucide-react';
 
 type Skill = {
   _id: string;

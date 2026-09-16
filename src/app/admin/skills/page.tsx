@@ -17,7 +17,7 @@ export default function SkillsAdminPage() {
   const [skillInputs, setSkillInputs] = useState<
     Record<string, { name: string; level: number | "" }>
   >({});
-  const [saving, setSaving] = useState(false);
+  const [_saving, setSaving] = useState(false);
   const [toast, setToast] = useState<{
     type: "success" | "error";
     msg: string;

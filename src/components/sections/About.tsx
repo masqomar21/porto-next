@@ -1,11 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
-
 export default function AboutSection({
   data,
-  name,
-  email,
 }: {
   data: { bio?: string; photoUrl?: string; resumeUrl?: string };
   name?: string;

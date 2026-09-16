@@ -109,7 +109,6 @@ export default function MediaClientView({
               {/* Background Image */}
               {asset.url.match(/\.(jpeg|jpg|gif|png|webp|svg)$/i) ||
               asset.mimeType.startsWith("image/") ? (
-                // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={asset.url}
                   alt={asset.filename}

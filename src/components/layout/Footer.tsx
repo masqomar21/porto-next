@@ -1,10 +1,9 @@
-import Link from 'next/link';
 import { ArrowUp } from 'lucide-react';
 
 export default function Footer({
-  contactData,
+  contactData: _,
 }: {
-  contactData: {
+  contactData?: {
     email?: string;
     socialLinks?: { platform: string; url: string; icon: string }[];
   };

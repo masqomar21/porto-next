@@ -39,8 +39,8 @@ export async function GET(request: Request) {
     const typeParam = searchParams.get("type") || "Portfolio";
     const imageParam = searchParams.get("image");
 
-    let title = titleParam;
-    let description = descriptionParam;
+    const title = titleParam;
+    const description = descriptionParam;
     let name = "Muhammad Qomarudin";
     let tagline =
       "I build fast, beautiful, and highly scalable web applications, designing interfaces that feel alive and responsive.";
@@ -143,6 +143,7 @@ export async function GET(request: Request) {
               {validLogoUrl ? (
                 <img
                   src={validLogoUrl}
+                  alt="Logo"
                   width="36"
                   height="36"
                   style={{

@@ -61,7 +61,6 @@ export default function MediaGalleryClient({ initialAssets }: { initialAssets: A
             >
               {/* Image as Background */}
               {asset.url.match(/\.(jpeg|jpg|gif|png|webp|svg)$/i) || asset.mimeType.startsWith('image/') ? (
-                // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={asset.url}
                   alt={asset.filename}
@@ -116,7 +115,6 @@ export default function MediaGalleryClient({ initialAssets }: { initialAssets: A
             </div>
 
             <div className="max-h-[60vh] overflow-hidden rounded-2xl bg-muted/40 flex items-center justify-center p-2 border border-border/60">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={activeMedia.url}
                 alt={activeMedia.filename}

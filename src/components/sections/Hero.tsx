@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { DynamicIcon } from "@/components/ui/dynamic-icon";
-import { ArrowUpRight, Sparkles, MapPin, Code2 } from "lucide-react";
+import { ArrowUpRight, MapPin, Code2 } from "lucide-react";
 
 type HeroData = {
   name?: string;

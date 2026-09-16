@@ -14,7 +14,6 @@ import {
   Zap,
   Eye,
   Sparkles,
-  Mail,
   Inbox,
   Image as ImageIcon,
   Globe,

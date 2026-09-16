@@ -414,7 +414,7 @@ export default function ExperienceAdminPage() {
           </div>
         ) : (
           <div className="space-y-4">
-            {experiences.map((exp, idx) => (
+            {experiences.map((exp, _idx) => (
               <Card
                 key={exp._id}
                 draggable

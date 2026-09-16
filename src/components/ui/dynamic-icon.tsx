@@ -1,4 +1,4 @@
-import { Globe, Mail, LucideProps } from 'lucide-react';
+import { Globe, Mail } from 'lucide-react';
 import React from 'react';
 
 // Custom SVG implementations of brand icons following Lucide styling guidelines

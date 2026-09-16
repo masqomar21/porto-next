@@ -65,7 +65,6 @@ export default function MediaSection({ data }: { data: MediaItem[] }) {
               className="group relative aspect-square rounded-2xl overflow-hidden border border-border/70 hover:border-foreground/30 bg-muted/40 cursor-pointer shadow-2xs hover:shadow-xs transition-all duration-300"
             >
               {item.url.match(/\.(jpeg|jpg|gif|png|webp|svg)$/i) || item.mimeType?.startsWith('image/') ? (
-                // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={item.url}
                   alt={item.filename}
@@ -112,7 +111,6 @@ export default function MediaSection({ data }: { data: MediaItem[] }) {
             </div>
 
             <div className="max-h-[50vh] overflow-hidden rounded-2xl bg-muted/40 flex items-center justify-center p-2 border border-border/60">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={activeMedia.url}
                 alt={activeMedia.filename}
