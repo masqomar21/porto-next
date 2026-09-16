@@ -1,5 +1,5 @@
 module.exports = {
-  name: "app", // Name of your application
+  name: "porto", // Name of your application
   script: "run start", // Entry point of your application
   interpreter: "bun", // Bun interpreter
   env: {
